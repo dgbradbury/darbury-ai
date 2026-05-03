@@ -29,7 +29,7 @@ export async function validateSession(): Promise<SessionUser | null> {
 export async function createSession(user: SessionUser): Promise<string> {
   const token = crypto.randomUUID();
   const kv = getKv();
-  await kv.set(`session:${token}`, JSON.stringify(user), { ex: SESSION_TTL });
+  await kv.set(`session:${token}`, user, { ex: SESSION_TTL });
   return token;
 }
 

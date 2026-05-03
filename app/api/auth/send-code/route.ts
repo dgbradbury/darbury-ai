@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 
     await kv.set(
       `verify:${email}`,
-      JSON.stringify({ code, name, email, company, jobTitle, phone }),
+      { code, name, email, company, jobTitle, phone },
       { ex: CODE_TTL }
     );
 

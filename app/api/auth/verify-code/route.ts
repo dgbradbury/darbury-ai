@@ -35,15 +35,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const stored = await kv.get<string>(`verify:${email}`);
-    if (!stored) {
+    const data = await kv.get<SessionUser & { code: string }>(`verify:${email}`);
+    if (!data) {
       return NextResponse.json(
         { success: false, error: "Code expired or not found. Please request a new one." },
         { status: 400 }
       );
     }
-
-    const data = JSON.parse(stored) as SessionUser & { code: string };
 
     if (!timingSafeEqual(data.code, code)) {
       await kv.set(attemptsKey, attempts + 1, { ex: 3600 });
