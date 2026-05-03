@@ -1,0 +1,25 @@
+---
+title: Darbury OCR Text Replace
+tagline: Intelligent text extraction and replacement in AutoCAD drawings
+category: Engineering Automation
+status: live
+tech: [Python, Tesseract OCR, AutoCAD, AutoLISP, OpenCV]
+featured: true
+order: 3
+---
+
+## Problem
+
+Engineering companies frequently need to update text across large sets of legacy AutoCAD drawings — tag numbers, revision marks, company names after acquisitions — and doing it manually across hundreds of DWGs costs days of draughting time.
+
+## Approach
+
+A Python pipeline uses OpenCV to locate text regions in DWG/PDF exports, Tesseract OCR to read the text, then maps detected strings to replacements using a rules file. AutoLISP scripts push the changes back into the live AutoCAD drawing objects with full undo support.
+
+## Result
+
+Batch text replacement across drawing sets that previously took days now completes in minutes. The pipeline handles multiple drawing scales, text styles, and layer configurations automatically.
+
+## Demo
+
+*Before/after DWG placeholder — original drawing vs. updated revision*
