@@ -62,15 +62,17 @@ export async function POST(req: NextRequest) {
     const token = await createSession(user);
     await setSessionCookie(token);
 
-    // Persist to Firestore (non-blocking — don't fail verification if this errors)
-    void logUserToFirestore(user).catch((e) =>
-      console.error("[verify-code] Firestore write failed:", e)
-    );
+    try {
+      await logUserToFirestore(user);
+    } catch (e) {
+      console.error("[verify-code] Firestore write failed:", e);
+    }
 
-    // Notify Dave (non-blocking)
-    void notifyDave(user).catch((e) =>
-      console.error("[verify-code] Dave notification failed:", e)
-    );
+    try {
+      await notifyDave(user);
+    } catch (e) {
+      console.error("[verify-code] Dave notification failed:", e);
+    }
 
     return NextResponse.json({
       success: true,
