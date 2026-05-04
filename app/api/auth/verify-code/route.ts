@@ -64,6 +64,7 @@ export async function POST(req: NextRequest) {
 
     try {
       await logUserToFirestore(user);
+      console.log('[verify-code] Firestore write success', email);
     } catch (e) {
       console.error("[verify-code] Firestore write failed:", e);
     }
