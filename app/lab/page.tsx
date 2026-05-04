@@ -48,28 +48,30 @@ export default function LabPage() {
           </div>
         </Link>
 
-        {/* Feature 2 placeholder */}
-        <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10">
+        {/* Feature 2 — live */}
+        <Link
+          href="/lab/drawing-intelligence"
+          className="group bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent-teal)]/50 rounded-lg p-10 transition-colors block"
+        >
           <div className="flex items-start gap-6">
             <span className="text-4xl text-[var(--accent-teal)]">◈</span>
             <div className="flex-1">
               <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
                 Lab Feature 2
               </p>
-              <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
+              <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
                 Drawing Intelligence Demo
               </h2>
               <p className="text-[var(--text-secondary)] mb-6 max-w-xl">
-                Upload a photo of an engineering sketch, diagram, or P&ID fragment. Get back what
-                it is, what it represents, and what the Darbury automation pipeline could do with
-                it.
+                Upload a photo of an engineering drawing, P&amp;ID fragment, or sketch. Find out
+                what AI can see — and what the Darbury automation pipeline could do with it.
               </p>
-              <div className="inline-block px-3 py-1 bg-amber-900/30 text-amber-400 border border-amber-800/50 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
-                Coming in Phase 4
+              <div className="inline-block px-3 py-1 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
+                Live — Try it →
               </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Feature 3 placeholder */}
         <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10">
