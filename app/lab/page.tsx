@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LabGate from "@/components/lab/LabGate";
 
 export const metadata = {
@@ -21,28 +22,31 @@ export default function LabPage() {
 
       <LabGate>
       <div className="grid md:grid-cols-1 gap-8">
-        {/* Feature 1 placeholder */}
-        <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10">
+        {/* Feature 1 — live */}
+        <Link
+          href="/lab/brief-analyser"
+          className="group bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent-teal)]/50 rounded-lg p-10 transition-colors block"
+        >
           <div className="flex items-start gap-6">
             <span className="text-4xl text-[var(--accent-teal)]">⚙</span>
             <div className="flex-1">
               <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
                 Lab Feature 1
               </p>
-              <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
+              <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
                 Engineering Brief Analyser
               </h2>
               <p className="text-[var(--text-secondary)] mb-6 max-w-xl">
                 Paste a plain-English description of an engineering problem or workflow. Get back
-                the likely automation approach, estimated time saving, suggested toolchain, and
-                what Dave would do.
+                the likely automation approach, suggested toolchain, and what a working solution
+                could look like in practice.
               </p>
-              <div className="inline-block px-3 py-1 bg-amber-900/30 text-amber-400 border border-amber-800/50 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
-                Coming in Phase 4
+              <div className="inline-block px-3 py-1 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
+                Live — Try it →
               </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Feature 2 placeholder */}
         <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10">
