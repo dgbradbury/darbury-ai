@@ -3,7 +3,7 @@ import LabGate from "@/components/lab/LabGate";
 import DrawingUpload from "@/components/lab/DrawingUpload";
 
 export const metadata = {
-  title: "Drawing Intelligence Demo — Darbury AI Lab",
+  title: "Drawing Intelligence — Darbury AI Tools",
   description:
     "Upload a photo of an engineering drawing, P&ID, sketch, or diagram. Find out what AI can see — and what the Darbury automation pipeline could do with it.",
 };
@@ -14,15 +14,15 @@ export default function DrawingIntelligencePage() {
       {/* Breadcrumb */}
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mb-10">
         <Link href="/lab" className="hover:text-[var(--accent-teal)] transition-colors">
-          AI Lab
+          AI Tools
         </Link>
         {" / "}
-        <span className="text-[var(--text-secondary)]">Drawing Intelligence Demo</span>
+        <span className="text-[var(--text-secondary)]">Drawing Intelligence</span>
       </p>
 
       {/* Page header */}
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
-        Lab Feature 2
+        AI Tool 2
       </p>
       <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
         Drawing Intelligence Demo

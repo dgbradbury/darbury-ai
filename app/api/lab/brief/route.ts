@@ -57,16 +57,22 @@ export async function POST(req: NextRequest) {
 
     const rawText =
       aiResponse.content[0].type === "text" ? aiResponse.content[0].text : "{}";
-    const result = JSON.parse(rawText) as {
+    const cleaned = rawText.replace(/^```(?:json)?\n?/m, "").replace(/\n?```$/m, "").trim();
+    const result = JSON.parse(cleaned) as {
       automationApproach: string;
       suggestedToolchain: string[];
       narrative: string;
     };
 
-    // 5. Increment usage counter
+    // 5. Calculate token cost (Haiku pricing: $0.80/MTok input, $4.00/MTok output)
+    const inputTokens = aiResponse.usage.input_tokens;
+    const outputTokens = aiResponse.usage.output_tokens;
+    const costUsd = (inputTokens * 0.0000008) + (outputTokens * 0.000004);
+
+    // 6. Increment usage counter
     await incrementUsage(user.email, "brief");
 
-    // 6. Log to Firestore
+    // 7. Log to Firestore
     let submissionId = "";
     try {
       const db = getDb();
@@ -89,6 +95,12 @@ export async function POST(req: NextRequest) {
           narrative: result.narrative,
           rawHaikuResponse: rawText,
         },
+        aiUsage: {
+          model: HAIKU_MODEL,
+          inputTokens,
+          outputTokens,
+          costUsd: parseFloat(costUsd.toFixed(6)),
+        },
         daveReviewed: false,
         daveNotes: "",
       });
@@ -98,12 +110,13 @@ export async function POST(req: NextRequest) {
       console.error("[lab/brief] Firestore write failed:", e);
     }
 
-    // 7. Notify Dave
+    // 8. Notify Dave
     try {
       const daveEmail = process.env.DAVE_EMAIL;
       if (daveEmail) {
         const toolchainList = (result.suggestedToolchain ?? []).join(", ");
         const timestamp = new Date().toUTCString();
+        const costLabel = `$${costUsd.toFixed(4)} (${inputTokens} in / ${outputTokens} out tokens)`;
 
         await getResend().emails.send({
           from: process.env.RESEND_FROM ?? "AILab@darbury.com",
@@ -137,7 +150,10 @@ export async function POST(req: NextRequest) {
     <p style="font-size:14px;margin:0;line-height:1.6;">${result.narrative}</p>
   </div>
 
-  <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
+  <div style="border-top:1px solid #1e2d3d;padding-top:12px;margin-top:20px;">
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
+  </div>
 </div>
           `.trim(),
         });

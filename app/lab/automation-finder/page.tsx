@@ -3,7 +3,7 @@ import LabGate from "@/components/lab/LabGate";
 import AuditWizard from "@/components/lab/AuditWizard";
 
 export const metadata = {
-  title: "Automation Opportunity Finder — Darbury AI Lab",
+  title: "Automation Opportunity Finder — Darbury AI Tools",
   description:
     "Five questions about your workflow. Three specific automation opportunities — generated for your situation, not a generic checklist.",
 };
@@ -14,7 +14,7 @@ export default function AutomationFinderPage() {
       {/* Breadcrumb */}
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mb-10">
         <Link href="/lab" className="hover:text-[var(--accent-teal)] transition-colors">
-          AI Lab
+          AI Tools
         </Link>
         {" / "}
         <span className="text-[var(--text-secondary)]">Automation Opportunity Finder</span>
@@ -22,7 +22,7 @@ export default function AutomationFinderPage() {
 
       {/* Page header */}
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
-        Lab Feature 3
+        AI Tool 3
       </p>
       <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
         Automation Opportunity Finder

@@ -1,16 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--bg-surface)] mt-auto">
       <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
         <div>
-          <p className="font-[var(--font-barlow)] font-bold text-lg uppercase tracking-widest text-[var(--accent-teal)] mb-3">
-            Darbury
-          </p>
+          <Link href="/" className="inline-flex mb-4">
+            <Image
+              src="/darbury-logo.png"
+              alt="Darbury"
+              width={140}
+              height={41}
+              className="h-9 w-auto"
+            />
+          </Link>
           <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
             Engineering Technology Consultancy.<br />
-            Dave Bradbury — 42 years of engineering problems, solved faster with AI.
+            42 years of engineering problems, solved with AI &amp; Automation.
           </p>
         </div>
 
@@ -19,9 +26,10 @@ export default function Footer() {
           <nav className="flex flex-col gap-2">
             {[
               { href: "/work", label: "Work" },
-              { href: "/about", label: "About" },
-              { href: "/lab", label: "AI Lab" },
+              { href: "/portfolio", label: "Case Studies" },
+              { href: "/lab", label: "AI Tools" },
               { href: "/contact", label: "Contact" },
+              { href: "/about", label: "About" },
             ].map(({ href, label }) => (
               <Link
                 key={href}

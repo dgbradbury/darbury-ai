@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAnthropic, HAIKU_MODEL } from "@/lib/anthropic";
 import { validateSession, getUsageCount, incrementUsage } from "@/lib/auth";
-import { getDb } from "@/lib/firebase-admin";
+import { getDb, getBucket } from "@/lib/firebase-admin";
 import { getResend } from "@/lib/resend";
 import { FieldValue } from "firebase-admin/firestore";
 
@@ -24,6 +24,26 @@ Your job is to:
 Write in a conversational, direct tone — as if you are a senior engineer talking to a peer. Do not use bullet points or headers. Do not make up details you cannot see. Do not fabricate specific tag numbers, instrument labels, or drawing numbers — describe generally what type of content is present.
 
 Max response length: 400 tokens.`;
+
+async function saveImageToStorage(
+  imageBase64: string,
+  mimeType: AllowedMimeType,
+  submissionId: string
+): Promise<string | null> {
+  try {
+    const ext = mimeType === "image/png" ? "png" : mimeType === "image/webp" ? "webp" : "jpg";
+    const fileName = `lab2-drawings/${submissionId}.${ext}`;
+    const bucket = getBucket();
+    const file = bucket.file(fileName);
+    const buffer = Buffer.from(imageBase64, "base64");
+    await file.save(buffer, { contentType: mimeType, metadata: { cacheControl: "private, max-age=86400" } });
+    await file.makePublic();
+    return `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+  } catch (e) {
+    console.error("[lab/drawing] Storage upload failed:", e);
+    return null;
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -92,14 +112,27 @@ export async function POST(req: NextRequest) {
     const rawText =
       aiResponse.content[0].type === "text" ? aiResponse.content[0].text : "";
 
-    // 5. Increment usage counter
+    // 5. Calculate token cost (Haiku pricing: $0.80/MTok input, $4.00/MTok output)
+    const inputTokens = aiResponse.usage.input_tokens;
+    const outputTokens = aiResponse.usage.output_tokens;
+    const costUsd = (inputTokens * 0.0000008) + (outputTokens * 0.000004);
+
+    // 6. Increment usage counter
     await incrementUsage(user.email, "drawing");
 
-    // 6. Log to Firestore (image not retained — metadata only)
+    // 7. Log to Firestore — generate a doc ID first so we can use it for Storage path
     let submissionId = "";
+    let imageStorageUrl: string | null = null;
+
     try {
       const db = getDb();
-      const docRef = await db.collection("lab_submissions").add({
+      const docRef = db.collection("lab_submissions").doc();
+      submissionId = docRef.id;
+
+      // Save image to Firebase Storage now we have a stable ID
+      imageStorageUrl = await saveImageToStorage(imageBase64, mimeType as AllowedMimeType, submissionId);
+
+      await docRef.set({
         lab: "drawing-intelligence",
         timestamp: FieldValue.serverTimestamp(),
         user: {
@@ -112,22 +145,28 @@ export async function POST(req: NextRequest) {
         input: {
           mimeType,
           imageSizeBytes,
-          imageStored: false,
+          imageStorageUrl: imageStorageUrl ?? null,
+          imageStored: imageStorageUrl !== null,
         },
         output: {
           conversationalResponse: rawText,
           rawHaikuResponse: rawText,
         },
+        aiUsage: {
+          model: HAIKU_MODEL,
+          inputTokens,
+          outputTokens,
+          costUsd: parseFloat(costUsd.toFixed(6)),
+        },
         daveReviewed: false,
         daveNotes: "",
       });
-      submissionId = docRef.id;
       console.log("[lab/drawing] Firestore write success", user.email, submissionId);
     } catch (e) {
       console.error("[lab/drawing] Firestore write failed:", e);
     }
 
-    // 7. Notify Dave
+    // 8. Notify Dave
     try {
       const daveEmail = process.env.DAVE_EMAIL;
       if (daveEmail) {
@@ -137,6 +176,7 @@ export async function POST(req: NextRequest) {
           imageSizeBytes < 1024 * 1024
             ? `${(imageSizeBytes / 1024).toFixed(0)} KB`
             : `${(imageSizeBytes / (1024 * 1024)).toFixed(1)} MB`;
+        const costLabel = `$${costUsd.toFixed(4)} (${inputTokens} in / ${outputTokens} out tokens)`;
 
         await getResend().emails.send({
           from: process.env.RESEND_FROM ?? "AILab@darbury.com",
@@ -155,9 +195,13 @@ export async function POST(req: NextRequest) {
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;">${user.email}</a></td></tr>
   </table>
 
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Image Details</p>
+  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Uploaded Drawing</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:16px;margin-bottom:24px;">
-    <p style="font-size:13px;margin:0;color:#8a9bb0;">${mimeLabel} &middot; ${sizeLabel} &middot; <em style="color:#4a5568;">Image not retained — reply to user to request the original file</em></p>
+    <p style="font-size:13px;margin:0 0 8px;color:#8a9bb0;">${mimeLabel} &middot; ${sizeLabel}</p>
+    ${imageStorageUrl
+      ? `<a href="${imageStorageUrl}" style="display:inline-block;background:#3eb8a0;color:#0a0e14;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600;">View Uploaded Drawing →</a>`
+      : `<p style="font-size:12px;color:#4a5568;margin:0;font-style:italic;">Image storage unavailable — reply to user to request the original file</p>`
+    }
   </div>
 
   <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">AI Assessment</p>
@@ -165,7 +209,10 @@ export async function POST(req: NextRequest) {
     <p style="font-size:14px;margin:0;line-height:1.8;color:#e8edf4;">${rawText.replace(/\n\n/g, "</p><p style=\"font-size:14px;margin:12px 0 0;line-height:1.8;color:#e8edf4;\">").replace(/\n/g, "<br/>")}</p>
   </div>
 
-  <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
+  <div style="border-top:1px solid #1e2d3d;padding-top:12px;margin-top:4px;">
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
+  </div>
 </div>
           `.trim(),
         });

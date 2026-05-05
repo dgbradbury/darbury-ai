@@ -1,4 +1,4 @@
-import PlaceholderAsset from "@/components/ui/PlaceholderAsset";
+import Image from "next/image";
 import Link from "next/link";
 
 const CREDENTIALS = [
@@ -38,12 +38,14 @@ export default function AboutPage() {
 
       {/* Bio + Photo */}
       <section className="px-6 max-w-6xl mx-auto mb-20 grid md:grid-cols-2 gap-12 items-start">
-        <div>
-          <PlaceholderAsset
-            title="Dave Bradbury"
-            prompt="Professional engineering consultant headshot, dark studio background, teal lighting accent, confident, experienced"
-            aspectRatio="aspect-[3/4]"
-            icon="◎"
+        <div className="rounded-lg overflow-hidden border border-[var(--border)]">
+          <Image
+            src="/dave-bradbury.jpg"
+            alt="Dave Bradbury — Darbury"
+            width={600}
+            height={800}
+            className="w-full h-auto object-cover"
+            priority
           />
         </div>
 
@@ -128,11 +130,12 @@ export default function AboutPage() {
             Testimonial
           </p>
           <blockquote className="text-lg text-[var(--text-primary)] leading-relaxed mb-6 italic">
-            &quot;[Testimonial from John Lusty — to be confirmed for public use]&quot;
+            &quot;Dave has the ability to understand the nature of engineering software at both the developer level, as well as its application in a large enterprise environment where it must add value. I have worked with Dave for over 5 years and have personally interacted with him when he was employed in capacities ranging from an engineering design software super user and administrator, to a leader in a dynamic functional team implementing an industry-leading engineering information management system at a major integrated oil &amp; gas company.&quot;
           </blockquote>
-          <p className="text-sm text-[var(--text-secondary)]">
-            — John Lusty
-          </p>
+          <div>
+            <p className="text-sm font-medium text-[var(--text-primary)]">John Lusty</p>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">Portfolio Development — Energy, Mining, Chemicals &amp; Infrastructure</p>
+          </div>
         </div>
       </section>
 

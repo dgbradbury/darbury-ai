@@ -111,7 +111,7 @@ function isValidReport(r: unknown): r is Report {
   );
 }
 
-async function generateReport(prompt: string): Promise<{ report: Report; raw: string }> {
+async function generateReport(prompt: string): Promise<{ report: Report; raw: string; usage: { input_tokens: number; output_tokens: number } }> {
   // Attempt up to 2 times on malformed JSON
   for (let attempt = 0; attempt < 2; attempt++) {
     const response = await getAnthropic().messages.create({
@@ -127,7 +127,7 @@ async function generateReport(prompt: string): Promise<{ report: Report; raw: st
       // Strip accidental markdown fences if Haiku adds them despite instructions
       const cleaned = raw.replace(/^```(?:json)?\n?/m, "").replace(/\n?```$/m, "").trim();
       const parsed = JSON.parse(cleaned);
-      if (isValidReport(parsed)) return { report: parsed, raw };
+      if (isValidReport(parsed)) return { report: parsed, raw, usage: response.usage };
     } catch {
       // fall through to retry
     }
@@ -180,7 +180,8 @@ function daveEmailHtml(
   answers: AuditAnswers,
   user: { name: string; email: string; company: string; jobTitle: string; phone: string },
   submissionId: string,
-  timestamp: string
+  timestamp: string,
+  costLabel: string
 ): string {
   return `
 <div style="font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
@@ -222,7 +223,10 @@ function daveEmailHtml(
     <p style="font-size:13px;color:#c8d3e0;line-height:1.6;margin:16px 0 0;">${report.closing}</p>
   </div>
 
-  <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
+  <div style="border-top:1px solid #1e2d3d;padding-top:12px;margin-top:4px;">
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
+  </div>
 </div>`.trim();
 }
 
@@ -275,12 +279,17 @@ export async function POST(req: NextRequest) {
 
     // 4. Generate report via Haiku (with one retry on malformed JSON)
     const prompt = buildPrompt(answers, user.name, user.company);
-    const { report, raw } = await generateReport(prompt);
+    const { report, raw, usage } = await generateReport(prompt);
 
-    // 5. Increment usage counter
+    // 5. Calculate token cost (Haiku pricing: $0.80/MTok input, $4.00/MTok output)
+    const inputTokens = usage.input_tokens;
+    const outputTokens = usage.output_tokens;
+    const costUsd = (inputTokens * 0.0000008) + (outputTokens * 0.000004);
+
+    // 6. Increment usage counter
     await incrementUsage(user.email, "audit");
 
-    // 6. Log to Firestore
+    // 7. Log to Firestore
     let submissionId = "";
     try {
       const db = getDb();
@@ -301,6 +310,12 @@ export async function POST(req: NextRequest) {
           opportunities: report.opportunities,
           closing: report.closing,
           rawHaikuResponse: raw,
+        },
+        aiUsage: {
+          model: HAIKU_MODEL,
+          inputTokens,
+          outputTokens,
+          costUsd: parseFloat(costUsd.toFixed(6)),
         },
         emailSentToVisitor: false, // updated after send
         daveReviewed: false,
@@ -342,15 +357,16 @@ export async function POST(req: NextRequest) {
       console.error("[lab/audit] Visitor email failed:", e);
     }
 
-    // 8. Notify Dave
+    // 9. Notify Dave
     try {
       const daveEmail = process.env.DAVE_EMAIL;
       if (daveEmail) {
+        const costLabel = `$${costUsd.toFixed(4)} (${inputTokens} in / ${outputTokens} out tokens)`;
         await getResend().emails.send({
           from: process.env.RESEND_FROM ?? "AILab@darbury.com",
           to: daveEmail,
           subject: `[Lab 3 Lead] ${user.name} — ${user.company} — Automation Finder`,
-          html: daveEmailHtml(report, answers, user, submissionId, timestamp),
+          html: daveEmailHtml(report, answers, user, submissionId, timestamp, costLabel),
         });
       }
     } catch (e) {

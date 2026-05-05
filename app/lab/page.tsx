@@ -2,22 +2,22 @@ import Link from "next/link";
 import LabGate from "@/components/lab/LabGate";
 
 export const metadata = {
-  title: "AI Lab — Darbury",
-  description: "Live AI showcase features — try the tools that demonstrate what AI can do for engineering workflows.",
+  title: "AI Tools — Darbury",
+  description: "Live AI tools built for engineering workflows — try them directly in your browser.",
 };
 
 export default function LabPage() {
   return (
     <main className="pt-24 pb-24 px-6 max-w-6xl mx-auto">
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
-        AI Lab
+        AI Tools
       </p>
       <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
-        Live AI Demos
+        Live AI Tools
       </h1>
       <p className="text-xl text-[var(--text-secondary)] max-w-2xl mb-16">
-        Three interactive tools that demonstrate AI applied to real engineering problems. No
-        installation. No account needed. Just the technology working.
+        Three AI tools built for real engineering problems. Try them directly in your browser —
+        no installation, no account needed.
       </p>
 
       <LabGate>
@@ -31,7 +31,7 @@ export default function LabPage() {
             <span className="text-4xl text-[var(--accent-teal)]">⚙</span>
             <div className="flex-1">
               <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
-                Lab Feature 1
+                AI Tool 1
               </p>
               <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
                 Engineering Brief Analyser
@@ -57,7 +57,7 @@ export default function LabPage() {
             <span className="text-4xl text-[var(--accent-teal)]">◈</span>
             <div className="flex-1">
               <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
-                Lab Feature 2
+                AI Tool 2
               </p>
               <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
                 Drawing Intelligence Demo
@@ -82,7 +82,7 @@ export default function LabPage() {
             <span className="text-4xl text-[var(--accent-teal)]">⬡</span>
             <div className="flex-1">
               <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
-                Lab Feature 3
+                AI Tool 3
               </p>
               <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
                 Automation Opportunity Finder

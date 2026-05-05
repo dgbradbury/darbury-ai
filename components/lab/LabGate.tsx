@@ -11,7 +11,7 @@ interface UserData {
   phone: string;
 }
 
-type GateState = "checking" | "unverified" | "code_sent" | "verified" | "expired";
+type GateState = "checking" | "disabled" | "unverified" | "code_sent" | "verified" | "expired";
 
 interface LabGateProps {
   children: ReactNode;
@@ -19,6 +19,7 @@ interface LabGateProps {
 
 export default function LabGate({ children }: LabGateProps) {
   const [state, setState] = useState<GateState>("checking");
+  const [disabledMessage, setDisabledMessage] = useState("");
   const [userData, setUserData] = useState<UserData>({
     name: "",
     email: "",
@@ -33,8 +34,25 @@ export default function LabGate({ children }: LabGateProps) {
   const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    checkSession();
+    checkLabStatus();
   }, []);
+
+  async function checkLabStatus() {
+    try {
+      const res = await fetch("/api/lab/status");
+      if (res.ok) {
+        const data = await res.json();
+        if (!data.enabled) {
+          setDisabledMessage(data.message ?? "The AI Lab is temporarily unavailable.");
+          setState("disabled");
+          return;
+        }
+      }
+    } catch {
+      // Status check failed — proceed to session check
+    }
+    checkSession();
+  }
 
   async function checkSession() {
     try {
@@ -151,6 +169,27 @@ export default function LabGate({ children }: LabGateProps) {
     );
   }
 
+  if (state === "disabled") {
+    return (
+      <div className="max-w-lg mx-auto mt-12">
+        <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10 text-center">
+          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.25em] mb-4">
+            AI Lab
+          </p>
+          <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+            Lab Unavailable
+          </h2>
+          <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
+            {disabledMessage}
+          </p>
+          <Button href="/contact" variant="outline">
+            Contact Dave →
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   if (state === "verified") {
     return <>{children}</>;
   }
@@ -166,13 +205,13 @@ export default function LabGate({ children }: LabGateProps) {
               </p>
             )}
             <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
-              AI Lab Access
+              AI Tools Access
             </p>
             <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-2">
-              Access the Darbury AI Lab
+              Access the Darbury AI Tools
             </h2>
             <p className="text-sm text-[var(--text-secondary)] mb-6">
-              Enter your details to receive a verification code. This helps us keep the Labs
+              Enter your details to receive a verification code. This helps us keep the tools
               available for genuine engineering enquiries.
             </p>
 

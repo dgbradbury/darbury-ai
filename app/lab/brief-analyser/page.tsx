@@ -3,7 +3,7 @@ import LabGate from "@/components/lab/LabGate";
 import BriefAnalyser from "@/components/lab/BriefAnalyser";
 
 export const metadata = {
-  title: "Engineering Brief Analyser — Darbury AI Lab",
+  title: "Engineering Brief Analyser — Darbury AI Tools",
   description:
     "Describe your engineering problem. Get an immediate assessment of the automation approach, toolchain, and what a solution could look like — from 42 years of engineering experience, assisted by AI.",
 };
@@ -14,7 +14,7 @@ export default function BriefAnalyserPage() {
       {/* Breadcrumb */}
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mb-10">
         <Link href="/lab" className="hover:text-[var(--accent-teal)] transition-colors">
-          AI Lab
+          AI Tools
         </Link>
         {" / "}
         <span className="text-[var(--text-secondary)]">Engineering Brief Analyser</span>
@@ -22,7 +22,7 @@ export default function BriefAnalyserPage() {
 
       {/* Page header */}
       <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
-        Lab Feature 1
+        AI Tool 1
       </p>
       <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
         Engineering Brief Analyser
