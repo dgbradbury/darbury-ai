@@ -5,6 +5,7 @@
 // Toggle pill: Teal #189B93, hover #147A73, Ink #191D23 text
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import ChatPanel from "./ChatPanel";
 
@@ -54,13 +55,15 @@ export default function ChatWidget() {
             : "#189B93")
         }
       >
-        {/*
-          Replace this span with the Darbury Eye of Ra SVG mark (white, 16×16px)
-          when the asset is available.
-        */}
-        <span className="text-base leading-none" aria-hidden="true">
-          ◎
-        </span>
+        <Image
+          src="/darbury-logo.png"
+          alt="Darbury"
+          width={55}
+          height={16}
+          className="h-4 w-auto object-contain"
+          style={{ filter: "brightness(0)" }}
+          aria-hidden="true"
+        />
         <span>{isOpen ? "Close" : "Ask Dave"}</span>
       </motion.button>
     </div>
