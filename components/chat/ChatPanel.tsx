@@ -7,6 +7,7 @@
 // Lead capture fires at turn LEAD_CAPTURE_TURN
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 import LeadCapturePrompt from "./LeadCapturePrompt";
@@ -116,18 +117,14 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
         style={{ borderBottom: "1px solid #334B49" }}
       >
         <div className="flex items-center gap-3">
-          {/*
-            Darbury mark placeholder.
-            Replace this div with: <img src="/darbury-logo.png" alt="Darbury" className="w-7 h-7 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
-            or inline the white SVG Eye of Ra mark when the asset is available.
-          */}
-          <div
-            className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-            style={{ backgroundColor: "#189B93", color: "#191D23" }}
-            aria-hidden="true"
-          >
-            ◎
-          </div>
+          <Image
+            src="/darbury-logo.png"
+            alt="Darbury"
+            width={96}
+            height={28}
+            className="h-7 w-auto object-contain"
+            priority
+          />
           <div>
             <p
               className="text-sm font-bold leading-tight"
