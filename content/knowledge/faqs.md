@@ -1,25 +1,46 @@
-# Frequently Asked Questions
+## Common Questions
 
-**How do I get in touch?**
-Use the contact form at /contact or email dave@darbury.com directly. No pitch decks required — just tell me what you're trying to fix.
+**How do I engage Darbury for a project?**
+The best way is to reach out via the contact form and describe your problem in plain English.
+No pitch deck required. No discovery calls before you're ready. Just tell me what you're
+trying to fix and I'll tell you honestly whether I can help.
+
+**Do you work with companies outside the UK?**
+Yes. Engineering problems don't have borders. I work remotely with international clients
+and have done so throughout my career — including with operators in Canada and the US.
+
+**How do you charge?**
+I work on a project or day-rate basis depending on scope. I'll give you a clear indication
+of cost after an initial conversation — there are no surprises.
+
+**Do I need to understand AI to work with you?**
+No. My job is to understand your problem and choose the right tool — AI, automation, or
+traditional software — to solve it. You don't need to know how the tools work.
+
+**Can you work with our existing software?**
+Almost certainly. Most of my work connects to existing tools: AutoCAD, Plant 3D, Excel,
+SharePoint, iOS, or web-based systems. I extend what you have rather than replace it.
+
+**What is MCP and why does it matter?**
+MCP stands for Model Context Protocol — it's a way of connecting AI models like Claude
+to external software and data sources. PlantMCP uses this to let Claude "read" a live
+Plant 3D model. It's a significant capability for engineering data extraction.
+
+**What is iSiteData?**
+iSiteData is a Darbury product — an augmented reality platform for industrial site asset
+information management. Field engineers use AR goggles to see design, commissioning and
+operational data overlaid directly on physical equipment, on-site. It's currently in
+active development.
+
+**Is this AI work reliable enough for professional use?**
+Yes, when designed properly. I build with appropriate validation, error handling, and
+human review steps. AI is a tool, not an oracle. Every system I build has a sensible
+boundary between what the AI handles and what a human confirms.
+
+**Can you build something bespoke for our industry?**
+Yes. Most of my projects are bespoke. If you have a specific workflow or data problem,
+get in touch and describe it — that's the starting point for everything I build.
 
 **What industries do you work in?**
-Primarily oil & gas, process plant, utilities, and manufacturing — anywhere AutoCAD Plant 3D, P&IDs, and engineering documentation are the currency of work. Also iOS mobile for field engineering applications.
-
-**Do you work on fixed-price or day-rate?**
-Both, depending on the scope. Small tooling projects suit fixed-price. Ongoing development and consultancy suits day-rate. We discuss what fits your situation.
-
-**What AI models do you use?**
-Primarily Anthropic's Claude family. I use Haiku for cost-efficient, high-volume tasks (chatbots, document processing) and larger models for complex reasoning tasks. I don't use a model for its name — I use the right model for the job.
-
-**Can you integrate with our existing systems?**
-Usually yes. AutoCAD, Plant 3D, Microsoft 365, Power Platform, and most standard engineering data formats are within scope. Bespoke integration is assessed case by case.
-
-**Are your API keys secure?**
-All API keys are server-side only. I never expose credentials in client-side code or public repositories. This is a non-negotiable practice.
-
-**Do you take on small projects?**
-Yes. A focused automation tool or a single AI integration can deliver significant value. Scope doesn't determine whether I'm interested — the problem does.
-
-**Are you available now?**
-Availability varies. Contact me and I'll give you an honest answer about timelines.
+Construction, oil & gas, and manufacturing primarily. My career spans all three, and
+most of my tooling is designed for process plant and industrial environments.

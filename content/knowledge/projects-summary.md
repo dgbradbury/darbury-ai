@@ -1,19 +1,55 @@
-# Portfolio Projects Summary
+## Portfolio Projects
 
-**PlantMCP** (pre-release) — Connects AutoCAD Plant 3D directly to Claude AI via the Model Context Protocol. Engineers query drawing data, validate specs, and generate reports through natural language conversation. See /work/plantmcp
+**PlantMCP** *(pre-release)*
+An MCP (Model Context Protocol) server that bridges AutoCAD Plant 3D with Claude AI.
+A VB.NET HTTP bridge plugin sits inside AutoCAD; a Python MCP server exposes the data to
+Claude. Engineers can query their live plant model in natural language — retrieving
+equipment specs, pipe segments, and component data without leaving their AI interface.
+Built for refrigeration, oil & gas, and process plant environments. Currently in final
+development ahead of commercial release. See: /work/plantmcp
 
-**DarburyAR** (active) — Native iOS AR app built in Swift 6 that overlays engineering data onto real-world equipment and pipework using ARKit and Vision. See /work/darbury-ar
+**iSiteData / DarburyAR**
+iSiteData is Darbury's AR platform for industrial site asset information management —
+field engineers use AR goggles to see design, commissioning and operational data overlaid
+directly on physical equipment on-site. DarburyAR is the iOS application component, built
+in Swift 6 / iOS 18+ using SwiftUI, MVVM architecture, and SwiftData. Currently being
+rebuilt with the latest Apple frameworks. See: /work/darbury-ar
 
-**Darbury OCR Text Replace** (live) — Python pipeline for intelligent batch text extraction and replacement in AutoCAD DWG files. Handles hundreds of drawings automatically. See /work/ocr-text-replace
+**Darbury OCR Text Replace**
+An AutoLISP + Python/Tesseract tool that converts line-geometry text in legacy AutoCAD
+drawings into proper, editable MTEXT objects. Saves hours of manual re-typing when
+migrating old drawings. Supports multi-word and multi-line text, interactive insertion
+points, and batch processing. See: /work/ocr-text-replace
 
-**PDF-to-DWG Pipeline** (live) — Automated conversion of scanned engineering PDFs to editable, layered AutoCAD drawings using OpenCV, OCR, and AutoLISP. See /work/pdf-to-dwg
+**PDF-to-DWG Pipeline**
+A Python pipeline (ExtractPDF.py) that extracts text and geometry from engineering PDFs —
+including vector-path-only CAD exports — using Tesseract OCR with hOCR output, then
+reconstructs the drawing geometry via AutoLISP (ImportPDF.lsp). See: /work/pdf-to-dwg
 
-**ClawdBot / OpenClaw** (active) — Engineering-domain chatbot framework on Claude's API. Domain-specialised with engineering codes and standards injected as context. See /work/clawdbot
+**ClawdBot / OpenClaw**
+My personal AI assistant and task routing system, running via Telegram. Routes tasks to
+different AI models depending on complexity and cost. The primary model is Claude; a local
+Qwen model handles lightweight background tasks. Installed as an npm global package via nvm.
+See: /work/clawdbot
 
-**Imhotep CRM** (concept) — AI-augmented CRM designed for engineering consultancies — understands project phases, technical context, and long-cycle relationship patterns. See /work/imhotep-crm
+**Imhotep CRM** *(concept)*
+A CRM concept designed specifically for engineering consultancies. iOS/iPadOS app with a
+Firebase Firestore backend, structured around a quote-to-cash pipeline with an integrated
+Kanban board. Workspace-based data model. Identified as a potential commercial product.
+See: /work/imhotep-crm
 
-**Webcam Object Detection** (experimental) — Real-time on-device object detection using Apple's Vision framework and Core ML. Runs at 30fps on iPhone/iPad with no cloud dependency. See /work/webcam-detection
+**Webcam Object Detection**
+A Python-based webcam object detection application using LM Studio with Qwen2.5-VL for
+structured JSON bounding box output. Demonstrates real-time computer vision using local
+AI models — no cloud dependency. See: /work/webcam-detection
 
-**DMAIC Automation Template** (delivered) — AI-assisted Six Sigma DMAIC document generator. Reduced client documentation time by 75%. See /work/dmaic-template
+**DMAIC Automation Template**
+An automation opportunity analysis document built around the DMAIC (Define, Measure,
+Analyse, Improve, Control) methodology. Used to structure client engagements around
+process automation. Generated via an industry research Python script using the Brave
+Search API. See: /work/dmaic-template
 
-**Darbury Website + Chatbot** (live) — The live darbury.com site with Haiku concierge, built on Next.js and Vercel. See /work/darbury-website
+**Darbury AI Portfolio Website**
+This site. Built in Next.js 15, Tailwind CSS v4, deployed on Vercel, with a Claude Haiku
+concierge (that's me). The site itself is a demonstration of AI-assisted development —
+built using Claude and Pi Dev as coding agents. See: /work/darbury-website

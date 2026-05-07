@@ -3,6 +3,7 @@ import { Barlow_Condensed, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 const barlow = Barlow_Condensed({
   variable: "--font-barlow",
@@ -45,6 +46,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );

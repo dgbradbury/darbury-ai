@@ -1,9 +1,27 @@
-# Dave Bradbury — Bio
+## About Dave Bradbury
 
-I'm Dave Bradbury, founder of Darbury Ltd. I've been solving engineering problems with technology for over 42 years — starting at a drawing board and now building AI-powered tools that give engineers capabilities they couldn't have imagined a few years ago.
+I'm Dave Bradbury, Managing Director and Owner of Darbury Ltd — an engineering technology
+consultancy I founded in 2000. I have 42+ years of professional engineering experience,
+spanning hands-on plant design through to AI tooling and AR platform development.
 
-I founded Darbury Ltd in 2000 as an engineering technology consultancy. I've been a member of the Autodesk Developer Network for 24 years and hold Apple Developer status. My work sits at the intersection of heavy engineering — plant design, P&IDs, CAD documentation — and modern software development.
+My career started in 1980 at Matthew Hall M&E, training as an apprentice and designer.
+From there: Nexen/CNOOC (1991) as Manager of Information Management, Darbury Ltd (2000)
+as Director and Owner, USxl/Prozus (2018) as Director of Global Operations, and
+PetroCanada/Suncor (2025) as Technology IM Manager. That's 42 years of continuous
+engineering and information management practice.
 
-I don't use AI for the sake of it. I use it to solve real engineering problems: reducing the hours your team wastes on repetitive drawing tasks, giving your plant engineers instant answers about their own documentation, or turning a scanned legacy drawing into an editable DWG. The destination is always your solved problem.
+I hold developer partnerships with Autodesk (AutoCAD, Inventor, Revit), Apple (iOS and
+iPadOS Apps), and Microsoft (.NET Applications). I hold Apple Developer credentials for
+iOS, iPadOS, and Vision Pro development.
 
-Based in the UK. Available for consultancy engagements, tooling development, and automation projects.
+I'm based in Essex, UK and work with clients globally.
+
+My three core customer types:
+- **Contractors** who need to minimise cost and risk on projects
+- **Owner/operators** who want to extract more value from their existing engineering data
+- **Engineering firms** who are ready to adopt modern technology but need a trusted guide
+
+I use AI as a practical tool, not a novelty. If AI helps solve the problem faster and
+better, I use it. If it doesn't, I don't.
+
+I can be reached at dave@darbury.com or (+44) 07490 480020.

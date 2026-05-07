@@ -1,16 +1,41 @@
-# Darbury Services
+## What Darbury Offers
 
-## Engineering Automation
-I build custom automation tools for CAD and engineering workflows — AutoCAD, AutoCAD Plant 3D, and adjacent systems. Batch processing, drawing intelligence, report generation, spec checking. If your team is doing something repetitive that a machine should be doing, that's where I work.
+Darbury's work falls into three service pillars:
 
-## AI-Powered Tooling
-AI integrations designed for engineering contexts: chatbots that understand P&ID terminology, document intelligence pipelines, AI-assisted analysis tools. Built on Anthropic's Claude API with proper server-side architecture — no client-side key exposure.
+---
 
-## CAD & Plant 3D Intelligence
-Deep expertise in AutoCAD Plant 3D: MCP integrations, data extraction, spec management, tag validation, and report automation. 24-year ADN membership means I understand the platform at a level most developers don't reach.
+**Digital Twin — Engineering Information**
+End-to-end information management programmes across construction, oil & gas, and
+manufacturing. Asset Information Management, 2D to 3D conversion, data-rich digital
+models, and operational data platforms. If your engineering data is scattered across
+PDFs, legacy drawings, and siloed systems, I bring it together into a structured,
+queryable digital twin.
 
-## iOS & Mobile Development
-Native iOS applications using Swift 6, SwiftUI, ARKit, and Vision. Engineering-focused apps: AR inspection overlays, real-time detection, field data capture. Apple Developer since the early App Store era.
+**AI & Technology — Innovation Consulting**
+Prompt engineering, local LLM vs cloud AI evaluation, AutoCAD Plant 3D MCP Server
+integration, and Autodesk suite automation. Python, AutoLISP, and VB.NET scripts that
+automate repetitive CAD tasks. OCR on legacy drawings, PDF-to-DWG conversion, batch
+processing, and AI workflow design using Claude and MCP servers.
 
-## Power Platform & Process Automation
-Microsoft Power Platform solutions for engineering organisations: Power Automate workflows, Power Apps for field teams, integration with existing engineering systems.
+**Standards & Governance — Governance Frameworks**
+Technical standards creation, work instructions, plans & budgets, and data compliancy
+frameworks. For engineering firms who need to formalise how information is structured,
+governed, and audited across a project lifecycle.
+
+---
+
+**iSiteData — AR Platform**
+iSiteData is Darbury's augmented reality platform for industrial site asset information
+management. Field engineers use AR goggles to see data-rich overlays — design,
+commissioning and operational data — directly on physical equipment on-site. Asset tag
+scanning and instant data retrieval without leaving the plant floor. This is a Darbury
+product, not a consulting service — it is in active development.
+
+**Mobile & AR Applications**
+iOS and iPadOS apps built in Swift/SwiftUI for engineering use cases. DarburyAR brings
+augmented reality to plant walkdowns and equipment identification. These are precision
+tools for people who work on plant, not consumer apps.
+
+**Microsoft Power Platform**
+Power Apps, Power Automate, and Power BI solutions for engineering teams already in the
+Microsoft ecosystem. Intermediate to advanced capability.
