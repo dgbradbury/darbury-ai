@@ -5,8 +5,9 @@ import Button from "@/components/ui/Button";
 
 interface DrawingResultCardProps {
   response: string;
-  previewUrl: string;
+  previewUrl: string | null;
   fileName: string;
+  mimeType: string;
   onReset: () => void;
 }
 
@@ -14,8 +15,10 @@ export default function DrawingResultCard({
   response,
   previewUrl,
   fileName,
+  mimeType,
   onReset,
 }: DrawingResultCardProps) {
+  const isPdf = mimeType === "application/pdf";
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -32,12 +35,46 @@ export default function DrawingResultCard({
           transition={{ duration: 0.4, delay: 0.15 }}
           className="md:w-56 shrink-0 bg-[var(--bg-elevated)] flex items-center justify-center p-5 border-b md:border-b-0 md:border-r border-[var(--border)]"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={previewUrl}
-            alt={fileName}
-            className="max-w-full max-h-56 md:max-h-80 object-contain rounded"
-          />
+          {isPdf ? (
+            /* PDF — show icon + link to open the file */
+            <a
+              href={previewUrl ?? "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-3 text-center group"
+            >
+              <svg
+                className="w-14 h-14 text-[var(--accent-teal)] opacity-80 group-hover:opacity-100 transition-opacity"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M9 13h6M9 17h4"
+                />
+              </svg>
+              <span className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] underline underline-offset-2 group-hover:opacity-80 transition-opacity break-all">
+                View PDF
+              </span>
+            </a>
+          ) : previewUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={previewUrl}
+              alt={fileName}
+              className="max-w-full max-h-56 md:max-h-80 object-contain rounded"
+            />
+          ) : null}
         </motion.div>
 
         {/* Response panel */}

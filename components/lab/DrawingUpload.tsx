@@ -14,8 +14,13 @@ type UploadState =
   | "limit_reached"
   | "error";
 
-const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4 MB
-const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/webp"];
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/webp", "application/pdf"];
+
+function formatFileType(mime: string): string {
+  if (mime === "application/pdf") return "PDF";
+  return mime.replace("image/", "").toUpperCase();
+}
 
 function formatBytes(bytes: number): string {
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
@@ -25,6 +30,7 @@ function formatBytes(bytes: number): string {
 export default function DrawingUpload() {
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileMimeType, setFileMimeType] = useState<string>("");
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -35,13 +41,18 @@ export default function DrawingUpload() {
   // ─── File selection ────────────────────────────────────────────────────────
 
   function acceptFile(file: File) {
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      setErrorMessage("Please upload a PNG, JPG, or WEBP image.");
+    // PDF detection with extension fallback (some systems return blank type)
+    const rawType = file.type;
+    const isPdfByExt = file.name.toLowerCase().endsWith(".pdf");
+    const effectiveMime = rawType === "" && isPdfByExt ? "application/pdf" : rawType;
+
+    if (!ALLOWED_TYPES.includes(effectiveMime)) {
+      setErrorMessage("Please upload a PNG, JPG, WEBP, or PDF file under 5 MB.");
       setUploadState("invalid_file");
       return;
     }
     if (file.size > MAX_FILE_SIZE) {
-      setErrorMessage(`Image is ${formatBytes(file.size)} — please use a file under 4 MB.`);
+      setErrorMessage(`File is ${formatBytes(file.size)} — please use a file under 5 MB.`);
       setUploadState("invalid_file");
       return;
     }
@@ -50,6 +61,7 @@ export default function DrawingUpload() {
     if (previewUrl) URL.revokeObjectURL(previewUrl);
 
     setSelectedFile(file);
+    setFileMimeType(effectiveMime);
     setPreviewUrl(URL.createObjectURL(file));
     setErrorMessage("");
     setUploadState("file_selected");
@@ -103,7 +115,7 @@ export default function DrawingUpload() {
       const res = await fetch("/api/lab/drawing", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageBase64, mimeType: selectedFile.type }),
+        body: JSON.stringify({ imageBase64, mimeType: fileMimeType }),
       });
 
       const data = await res.json();
@@ -131,6 +143,7 @@ export default function DrawingUpload() {
   function handleReset() {
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setSelectedFile(null);
+    setFileMimeType("");
     setPreviewUrl(null);
     setResult(null);
     setErrorMessage("");
@@ -194,12 +207,12 @@ export default function DrawingUpload() {
                 </p>
 
                 <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mt-3 mb-5">
-                  PNG · JPG · WEBP · Max 4 MB
+                  PNG · JPG · WEBP · PDF · Max 5 MB
                 </p>
 
                 <p className="text-xs text-[var(--text-muted)] max-w-sm leading-relaxed">
                   Engineering drawings · P&amp;IDs · CAD screenshots · Hand sketches ·
-                  Isometric drawings · Process flow diagrams · Instrument loop diagrams
+                  Isometric drawings · Process flow diagrams · Multi-page PDF packages
                 </p>
 
                 {/* Validation error */}
@@ -210,16 +223,39 @@ export default function DrawingUpload() {
             )}
 
             {/* File selected / submitting / error preview */}
-            {showPreview && selectedFile && previewUrl && (
+            {showPreview && selectedFile && (
               <div className="flex items-start gap-5 p-6">
-                {/* Thumbnail */}
+                {/* Thumbnail — PDF gets an icon, images get a preview */}
                 <div className="shrink-0 w-24 h-24 rounded border border-[var(--border)] overflow-hidden bg-[var(--bg-elevated)] flex items-center justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={previewUrl}
-                    alt="Drawing preview"
-                    className="w-full h-full object-cover"
-                  />
+                  {fileMimeType === "application/pdf" ? (
+                    <svg
+                      className="w-10 h-10 text-[var(--accent-teal)] opacity-80"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9 13h6M9 17h4"
+                      />
+                    </svg>
+                  ) : previewUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={previewUrl}
+                      alt="Drawing preview"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : null}
                 </div>
 
                 {/* File metadata */}
@@ -228,7 +264,7 @@ export default function DrawingUpload() {
                     {selectedFile.name}
                   </p>
                   <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mb-4">
-                    {selectedFile.type.replace("image/", "").toUpperCase()} ·{" "}
+                    {formatFileType(fileMimeType)} ·{" "}
                     {formatBytes(selectedFile.size)}
                   </p>
                   {uploadState !== "submitting" && (
@@ -252,7 +288,7 @@ export default function DrawingUpload() {
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/png,image/jpeg,image/webp"
+            accept="image/png,image/jpeg,image/webp,application/pdf,.pdf"
             className="hidden"
             onChange={handleInputChange}
           />
@@ -283,7 +319,7 @@ export default function DrawingUpload() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                     />
                   </svg>
-                  Analysing drawing…
+                  {fileMimeType === "application/pdf" ? "Analysing PDF…" : "Analysing drawing…"}
                 </span>
               </Button>
             )}
@@ -302,12 +338,13 @@ export default function DrawingUpload() {
 
       {/* ── Result / limit panels ────────────────────────────────────────────── */}
       <AnimatePresence mode="wait">
-        {uploadState === "success" && result && previewUrl && selectedFile && (
+        {uploadState === "success" && result && selectedFile && (
           <DrawingResultCard
             key="result"
             response={result}
             previewUrl={previewUrl}
             fileName={selectedFile.name}
+            mimeType={fileMimeType}
             onReset={handleReset}
           />
         )}

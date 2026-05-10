@@ -7,11 +7,18 @@ import { FieldValue } from "firebase-admin/firestore";
 
 const DAILY_CAP = parseInt(process.env.LAB_DRAWING_DAILY_CAP ?? "3", 10);
 
-// 4MB raw → ~5.33MB base64; cap at 5.5MB to be safe
-const MAX_BASE64_LENGTH = Math.ceil(5.5 * 1024 * 1024);
+// 5MB raw → ~6.87MB base64; cap at 7MB to be safe
+const MAX_BASE64_LENGTH = Math.ceil(7 * 1024 * 1024);
 
-const ALLOWED_MIME_TYPES = ["image/png", "image/jpeg", "image/webp"] as const;
+const ALLOWED_MIME_TYPES = ["image/png", "image/jpeg", "image/webp", "application/pdf"] as const;
 type AllowedMimeType = (typeof ALLOWED_MIME_TYPES)[number];
+
+const EXT_MAP: Record<string, string> = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/webp": "webp",
+  "application/pdf": "pdf",
+};
 
 const SYSTEM = `You are an expert engineering technology consultant reviewing an image submitted by a visitor to the Darbury AI Lab. The visitor has uploaded a photo of an engineering drawing, diagram, sketch, or P&ID fragment.
 
@@ -25,13 +32,25 @@ Write in a conversational, direct tone — as if you are a senior engineer talki
 
 Max response length: 400 tokens.`;
 
+const SYSTEM_PDF = `You are an expert engineering technology consultant reviewing a PDF document submitted by a visitor to the Darbury AI Lab. The visitor has uploaded an engineering PDF — this may be a single drawing, a multi-page P&ID package, a drawing register, a specification document, or a set of engineering sketches.
+
+Your job is to:
+1. Read every page of the document. State how many pages you can see and what type of content each page appears to contain (e.g. "Page 1 appears to be a process flow diagram; pages 2–4 are P&ID sheets; page 5 looks like a tag register").
+2. Provide an overall assessment of what the document represents in an engineering or process context — the system or plant section depicted, the level of detail, and the apparent purpose of the document.
+3. Explain concretely what Darbury's automation pipeline could do with this kind of document — specifically referencing OCR extraction, PDF-to-DWG conversion, AI-assisted data capture from P&IDs, instrument tag extraction, or other relevant capabilities depending on what you see across the pages.
+4. If the PDF is too low quality, password-protected, or unreadable, say so honestly and suggest the visitor contacts Dave directly with the original file.
+
+Write in a conversational, direct tone — as if you are a senior engineer talking to a peer. Do not use bullet points or headers. Do not fabricate specific tag numbers, instrument labels, or drawing numbers you cannot clearly read — describe the type of content present.
+
+Max response length: 700 tokens.`;
+
 async function saveImageToStorage(
   imageBase64: string,
   mimeType: AllowedMimeType,
   submissionId: string
 ): Promise<string | null> {
   try {
-    const ext = mimeType === "image/png" ? "png" : mimeType === "image/webp" ? "webp" : "jpg";
+    const ext = EXT_MAP[mimeType] ?? "bin";
     const fileName = `lab2-drawings/${submissionId}.${ext}`;
     const bucket = getBucket();
     const file = bucket.file(fileName);
@@ -71,39 +90,56 @@ export async function POST(req: NextRequest) {
 
     if (!ALLOWED_MIME_TYPES.includes(mimeType as AllowedMimeType)) {
       return NextResponse.json(
-        { error: "Only PNG, JPG, and WEBP images are accepted" },
+        { error: "Only PNG, JPG, WEBP, and PDF files are accepted" },
         { status: 400 }
       );
     }
 
     if (imageBase64.length > MAX_BASE64_LENGTH) {
-      return NextResponse.json({ error: "Image must be under 4MB" }, { status: 400 });
+      return NextResponse.json({ error: "File must be under 5 MB" }, { status: 400 });
     }
 
     // Approximate raw byte size from base64 length (base64 is ~4/3 larger than raw)
     const imageSizeBytes = Math.floor(imageBase64.length * 0.75);
 
-    // 4. Call Haiku with vision
+    // 4. Call Haiku — branch on PDF vs image
+    const isPdf = mimeType === "application/pdf";
+
+    const fileContent = isPdf
+      ? {
+          type: "document" as const,
+          source: {
+            type: "base64" as const,
+            media_type: "application/pdf" as const,
+            data: imageBase64,
+          },
+        }
+      : {
+          type: "image" as const,
+          source: {
+            type: "base64" as const,
+            media_type: mimeType as "image/png" | "image/jpeg" | "image/webp",
+            data: imageBase64,
+          },
+        };
+
+    const userText = isPdf
+      ? "Please analyse this engineering document. Read all pages and provide a thorough overview of what is present across the full document."
+      : "Please analyse this engineering drawing or diagram.";
+
+    const maxTokens = isPdf ? 1000 : 600;
+    const systemPrompt = isPdf ? SYSTEM_PDF : SYSTEM;
+
     const aiResponse = await getAnthropic().messages.create({
       model: HAIKU_MODEL,
-      max_tokens: 600,
-      system: SYSTEM,
+      max_tokens: maxTokens,
+      system: systemPrompt,
       messages: [
         {
           role: "user",
           content: [
-            {
-              type: "image",
-              source: {
-                type: "base64",
-                media_type: mimeType as AllowedMimeType,
-                data: imageBase64,
-              },
-            },
-            {
-              type: "text",
-              text: "Please analyse this engineering drawing or diagram.",
-            },
+            fileContent,
+            { type: "text" as const, text: userText },
           ],
         },
       ],
@@ -171,7 +207,7 @@ export async function POST(req: NextRequest) {
       const daveEmail = process.env.DAVE_EMAIL;
       if (daveEmail) {
         const timestamp = new Date().toUTCString();
-        const mimeLabel = mimeType.replace("image/", "").toUpperCase();
+        const mimeLabel = mimeType === "application/pdf" ? "PDF" : mimeType.replace("image/", "").toUpperCase();
         const sizeLabel =
           imageSizeBytes < 1024 * 1024
             ? `${(imageSizeBytes / 1024).toFixed(0)} KB`
@@ -221,7 +257,7 @@ export async function POST(req: NextRequest) {
       console.error("[lab/drawing] Dave notification failed:", e);
     }
 
-    return NextResponse.json({ response: rawText });
+    return NextResponse.json({ response: rawText, mimeType, imageUrl: imageStorageUrl });
   } catch (err) {
     console.error("[lab/drawing]", err);
     return NextResponse.json({ error: "Analysis unavailable" }, { status: 500 });
