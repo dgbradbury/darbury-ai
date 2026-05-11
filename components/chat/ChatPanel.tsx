@@ -30,6 +30,9 @@ interface ChatPanelProps {
 }
 
 export default function ChatPanel({ onClose }: ChatPanelProps) {
+  // Stable ID for the lifetime of this widget open — new mount = new conversation
+  const conversationId = useRef(crypto.randomUUID()).current;
+
   const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
   const [turnCount, setTurnCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,10 +70,16 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
             content: m.content,
           })),
           turnCount,
+          conversationId,
         }),
       });
 
       const data = await res.json();
+
+      if (res.status === 401) {
+        setError("Your access session has expired. Please re-verify at the AI Tools page.");
+        return;
+      }
 
       if (res.status === 429) {
         setError(data.error ?? "Too many messages — please try again later.");

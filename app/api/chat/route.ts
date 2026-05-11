@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAnthropic, HAIKU_MODEL } from "@/lib/anthropic";
 import { getKnowledgeBase } from "@/lib/content";
 import { checkRateLimit } from "@/lib/rateLimit";
+import { validateSession, SessionUser } from "@/lib/auth";
+import { getDb } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
 
 const MAX_INPUT_CHARS = 500;
 const MAX_TOKENS = 400;
@@ -41,8 +44,74 @@ KNOWLEDGE BASE — your memory about Dave, Darbury, and the portfolio:
 
 {{KNOWLEDGE}}`;
 
+// ---------------------------------------------------------------------------
+// Firestore chat logging (fire-and-forget)
+// ---------------------------------------------------------------------------
+
+interface TurnRecord {
+  seq: number;
+  userMessage: string;
+  assistantMessage: string;
+  inputTokens: number;
+  outputTokens: number;
+  turnCostUSD: number;
+  timestamp: Date; // plain Date — FieldValue.serverTimestamp() is not allowed inside arrayUnion
+}
+
+async function logChatTurn(
+  user: SessionUser,
+  conversationId: string,
+  turn: TurnRecord,
+  isFirst: boolean
+): Promise<void> {
+  const db = getDb();
+  const ref = db
+    .collection("lab_users")
+    .doc(user.email)
+    .collection("chat_sessions")
+    .doc(conversationId);
+
+  const always = {
+    lastActiveAt: FieldValue.serverTimestamp(),
+    turnCount: FieldValue.increment(1),
+    totalInputTokens: FieldValue.increment(turn.inputTokens),
+    totalOutputTokens: FieldValue.increment(turn.outputTokens),
+    estimatedCostUSD: FieldValue.increment(turn.turnCostUSD),
+    turns: FieldValue.arrayUnion(turn),
+  };
+
+  if (isFirst) {
+    await ref.set(
+      {
+        conversationId,
+        userEmail: user.email,
+        userName: user.name,
+        userCompany: user.company,
+        startedAt: FieldValue.serverTimestamp(),
+        ...always,
+      },
+      { merge: true }
+    );
+  } else {
+    await ref.update(always);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Route handler
+// ---------------------------------------------------------------------------
+
 export async function POST(req: NextRequest) {
   try {
+    // --- Session guard (also gives us the user identity for logging) ---
+    const sessionUser = await validateSession();
+    if (!sessionUser) {
+      return NextResponse.json(
+        { error: "Session expired. Please re-verify at /lab." },
+        { status: 401 }
+      );
+    }
+
     // --- Rate limiting ---
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const { allowed, reason } = await checkRateLimit(ip);
@@ -51,7 +120,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { messages, turnCount = 0 } = body;
+    const { messages, turnCount = 0, conversationId } = body;
 
     // --- Session turn cap ---
     if (turnCount >= SESSION_TURN_LIMIT) {
@@ -102,6 +171,29 @@ export async function POST(req: NextRequest) {
     const content = response.content[0];
     if (content.type !== "text") {
       throw new Error("Unexpected response type from Anthropic");
+    }
+
+    // --- Log turn to Firestore (fire-and-forget) ---
+    if (conversationId && typeof conversationId === "string") {
+      const { input_tokens, output_tokens } = response.usage;
+      // Haiku pricing as at May 2026: $0.80/M input, $4.00/M output
+      const turnCostUSD =
+        (input_tokens / 1_000_000) * 0.8 +
+        (output_tokens / 1_000_000) * 4.0;
+
+      const turn: TurnRecord = {
+        seq: turnCount + 1,
+        userMessage: sanitisedMessages.at(-1)!.content,
+        assistantMessage: content.text,
+        inputTokens: input_tokens,
+        outputTokens: output_tokens,
+        turnCostUSD,
+        timestamp: new Date(),
+      };
+
+      logChatTurn(sessionUser, conversationId, turn, turnCount === 0).catch(
+        (err) => console.error("[/api/chat] Firestore log failed:", err)
+      );
     }
 
     return NextResponse.json({
