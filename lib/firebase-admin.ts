@@ -14,7 +14,11 @@ function getApp(): App {
   const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
   if (!projectId || !clientEmail || !privateKey) {
-    throw new Error("Firebase Admin environment variables are not set");
+    throw new Error(
+      "[firebase-admin] Missing environment variables. " +
+      "Ensure FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY " +
+      "are set in .env.local (local dev) or in the Vercel project dashboard (production)."
+    );
   }
 
   return initializeApp({

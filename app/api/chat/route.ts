@@ -45,7 +45,7 @@ KNOWLEDGE BASE — your memory about Dave, Darbury, and the portfolio:
 {{KNOWLEDGE}}`;
 
 // ---------------------------------------------------------------------------
-// Firestore chat logging (fire-and-forget)
+// Firestore chat logging
 // ---------------------------------------------------------------------------
 
 interface TurnRecord {
@@ -173,7 +173,7 @@ export async function POST(req: NextRequest) {
       throw new Error("Unexpected response type from Anthropic");
     }
 
-    // --- Log turn to Firestore (fire-and-forget) ---
+    // --- Log turn to Firestore ---
     if (conversationId && typeof conversationId === "string") {
       const { input_tokens, output_tokens } = response.usage;
       // Haiku pricing as at May 2026: $0.80/M input, $4.00/M output
@@ -191,9 +191,12 @@ export async function POST(req: NextRequest) {
         timestamp: new Date(),
       };
 
-      logChatTurn(sessionUser, conversationId, turn, turnCount === 0).catch(
-        (err) => console.error("[/api/chat] Firestore log failed:", err)
-      );
+      try {
+        await logChatTurn(sessionUser, conversationId, turn, turnCount === 0);
+        console.log("[/api/chat] Firestore write success", sessionUser.email, conversationId);
+      } catch (err) {
+        console.error("[/api/chat] Firestore write failed:", err);
+      }
     }
 
     return NextResponse.json({
