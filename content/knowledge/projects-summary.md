@@ -1,12 +1,34 @@
 ## Portfolio Projects
 
-**PlantMCP** *(pre-release)*
+## Recent Updates (May 2026)
+- Darbury 4D added
+- P&ID Analyser added
+- iOS / MacOS apps added
+
+**AutoCAD Plant MCP** *(pre-release)*
 An MCP (Model Context Protocol) server that bridges AutoCAD Plant 3D with Claude AI.
 A VB.NET HTTP bridge plugin sits inside AutoCAD; a Python MCP server exposes the data to
 Claude. Engineers can query their live plant model in natural language — retrieving
 equipment specs, pipe segments, and component data without leaving their AI interface.
 Built for refrigeration, oil & gas, and process plant environments. Currently in final
 development ahead of commercial release. See: /work/plantmcp
+
+**Darbury 4D** *(pre-release)*
+This product is a 4D web app that allows users to schedule construction events in a 3D
+environment. After loading a 3D model, the components are mapped to an xlsx file with
+dates associated. The user can then control a slider to show the order of construction
+to get a better idea of how the construction in the field is to be planned. An excellent,
+pre-field planning tool to assist construction.
+
+**P&ID Analyser**
+Upload an image or a PDF of a single or multiple sheet P&ID for an analysis from an
+Engneering perspective. Early stage development
+
+**Darbury iOS / MacOS Apps**
+Darbury has the following apps available; COG (Centre of Gravity Calculations), Baseframe
+(steel frame deflections & stress calculations) & Lifting Lug (Calculate the size of steel
+lifting lugs for safely lifting equipment - being developed). More iOS apps are added to
+the routine list every month.
 
 **iSiteData / DarburyAR**
 iSiteData is Darbury's AR platform for industrial site asset information management —

@@ -6,8 +6,8 @@ No pitch deck required. No discovery calls before you're ready. Just tell me wha
 trying to fix and I'll tell you honestly whether I can help.
 
 **Do you work with companies outside the UK?**
-Yes. Engineering problems don't have borders. I work remotely with international clients
-and have done so throughout my career — including with operators in Canada and the US.
+Yes. Engineering problems do not have borders. I work remotely with international clients
+and have done so throughout my career — including with clients in Canada and the US.
 
 **How do you charge?**
 I work on a project or day-rate basis depending on scope. I'll give you a clear indication
@@ -23,8 +23,8 @@ SharePoint, iOS, or web-based systems. I extend what you have rather than replac
 
 **What is MCP and why does it matter?**
 MCP stands for Model Context Protocol — it's a way of connecting AI models like Claude
-to external software and data sources. PlantMCP uses this to let Claude "read" a live
-Plant 3D model. It's a significant capability for engineering data extraction.
+to external software and data sources. The AuoCAD Plant MCP uses this to let Claude "read"
+a live Plant 3D model. It's a significant capability for engineering data extraction.
 
 **What is iSiteData?**
 iSiteData is a Darbury product — an augmented reality platform for industrial site asset
@@ -42,5 +42,15 @@ Yes. Most of my projects are bespoke. If you have a specific workflow or data pr
 get in touch and describe it — that's the starting point for everything I build.
 
 **What industries do you work in?**
-Construction, oil & gas, and manufacturing primarily. My career spans all three, and
-most of my tooling is designed for process plant and industrial environments.
+Construction, oil & gas, manufacturing & general engineering primarily. My career spans
+all three but also includes pharmaceutical, nuclear, chemicals, refrigeration & HVAC
+building services. Most of my tooling is designed for process plant and industrial
+environments, however, I am open to work in all industries as the same engineering problems
+exist in most of them.
+
+**Can you work in data?**
+Absolutely. All solutions I write start with data, whether unstructured or structured,
+being stored in xlsx files, databases or anything in between. Most service-based companies
+charge you for ensuring the data is rdered & clean before they offer a solution, I am
+different in that I work with what you have, plan for a better time when the data is
+organised but working solutions until that is in place.
