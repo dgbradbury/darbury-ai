@@ -77,11 +77,24 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* Content */}
-      <section className="px-6 pb-24 max-w-3xl mx-auto prose prose-invert prose-headings:font-[var(--font-barlow)] prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-a:text-[var(--accent-teal)] prose-strong:text-[var(--text-primary)]">
-        <div
-          dangerouslySetInnerHTML={{ __html: project.content }}
-          className="[&>h2]:font-[var(--font-barlow)] [&>h2]:font-semibold [&>h2]:text-2xl [&>h2]:uppercase [&>h2]:tracking-wide [&>h2]:text-[var(--text-primary)] [&>h2]:mt-10 [&>h2]:mb-4 [&>p]:text-[var(--text-secondary)] [&>p]:leading-relaxed [&>ul]:text-[var(--text-secondary)]"
-        />
+      <section className="px-6 pb-24 max-w-3xl mx-auto">
+        <div className="space-y-14">
+          {project.sections.map((section, i) => (
+            <div key={section.title} className="border-l-2 border-[var(--accent-teal)] pl-6">
+              <span className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] block mb-3">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+                {section.title}
+              </h2>
+              {section.body.split("\n\n").map((para, j) => (
+                <p key={j} className="text-[var(--text-secondary)] leading-relaxed mb-4 last:mb-0">
+                  {para.trim()}
+                </p>
+              ))}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Tech stack */}

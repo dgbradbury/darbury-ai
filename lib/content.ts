@@ -18,8 +18,35 @@ export interface ProjectMeta {
   imageFit?: "cover" | "contain";
 }
 
+export interface ProjectSection {
+  title: string;
+  body: string;
+}
+
 export interface Project extends ProjectMeta {
   content: string;
+  sections: ProjectSection[];
+}
+
+function parseSections(content: string): ProjectSection[] {
+  const sections: ProjectSection[] = [];
+  let current: { title: string; lines: string[] } | null = null;
+
+  for (const line of content.split("\n")) {
+    if (line.startsWith("## ")) {
+      if (current) {
+        sections.push({ title: current.title, body: current.lines.join("\n").trim() });
+      }
+      current = { title: line.slice(3).trim(), lines: [] };
+    } else if (current) {
+      current.lines.push(line);
+    }
+  }
+  if (current) {
+    sections.push({ title: current.title, body: current.lines.join("\n").trim() });
+  }
+
+  return sections;
 }
 
 export function getAllProjects(): ProjectMeta[] {
@@ -40,7 +67,7 @@ export function getProject(slug: string): Project | null {
   if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  return { slug, ...data, content } as Project;
+  return { slug, ...data, content, sections: parseSections(content) } as Project;
 }
 
 export function getKnowledgeBase(): string {
