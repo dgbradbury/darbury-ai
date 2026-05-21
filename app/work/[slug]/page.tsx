@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getProject, getAllProjects } from "@/lib/content";
 import Badge from "@/components/ui/Badge";
 import PlaceholderAsset from "@/components/ui/PlaceholderAsset";
@@ -55,11 +56,24 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </h1>
         <p className="text-xl text-[var(--text-secondary)] mb-10">{project.tagline}</p>
 
-        <PlaceholderAsset
-          title={project.title}
-          prompt={`Dark technical illustration: ${project.tagline}, engineering context, teal accent on dark background, isometric perspective`}
-          aspectRatio="aspect-[21/9]"
-        />
+        {project.image ? (
+          <div className="aspect-[21/9] relative overflow-hidden rounded-lg">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
+            />
+          </div>
+        ) : (
+          <PlaceholderAsset
+            title={project.title}
+            prompt={`Dark technical illustration: ${project.tagline}, engineering context, teal accent on dark background, isometric perspective`}
+            aspectRatio="aspect-[21/9]"
+          />
+        )}
       </section>
 
       {/* Content */}

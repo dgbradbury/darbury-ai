@@ -21,9 +21,13 @@ const PILLARS = [
   },
 ];
 
+const FEATURED_SLUGS = ["plantmcp", "plant-viewer", "pid-analyser"];
+
 export default function HomePage() {
   const allProjects = getAllProjects();
-  const featured = allProjects.filter((p) => p.featured).slice(0, 3);
+  const featured = FEATURED_SLUGS
+    .map((slug) => allProjects.find((p) => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => p !== undefined);
 
   return (
     <main className="flex flex-col">

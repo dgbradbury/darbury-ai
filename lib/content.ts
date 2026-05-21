@@ -14,6 +14,8 @@ export interface ProjectMeta {
   tech: string[];
   featured?: boolean;
   order?: number;
+  image?: string;
+  imageFit?: "cover" | "contain";
 }
 
 export interface Project extends ProjectMeta {

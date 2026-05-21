@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 import type { ProjectMeta } from "@/lib/content";
 
@@ -14,15 +15,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       href={`/work/${project.slug}`}
       className="group block bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg overflow-hidden hover:border-[var(--accent-teal)]/50 hover:-translate-y-1 transition-all duration-300"
     >
-      {/* Placeholder thumbnail */}
+      {/* Thumbnail */}
       <div className="aspect-video bg-[var(--bg-elevated)] relative overflow-hidden">
-        <div className="absolute inset-0 blueprint-grid opacity-40" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4">
-          <span className="text-3xl text-[var(--accent-teal)] opacity-30">◈</span>
-          <p className="font-[var(--font-barlow)] font-semibold text-sm uppercase tracking-wider text-[var(--text-muted)] text-center">
-            {project.title}
-          </p>
-        </div>
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className={`${project.imageFit === "contain" ? "object-contain" : "object-cover group-hover:scale-105 transition-transform duration-500"}`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 blueprint-grid opacity-40" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4">
+              <span className="text-3xl text-[var(--accent-teal)] opacity-30">◈</span>
+              <p className="font-[var(--font-barlow)] font-semibold text-sm uppercase tracking-wider text-[var(--text-muted)] text-center">
+                {project.title}
+              </p>
+            </div>
+          </>
+        )}
         {isComingSoon && (
           <div className="absolute top-3 right-3">
             <Badge label="Coming Soon" variant="coming-soon" />
