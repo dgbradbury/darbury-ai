@@ -167,11 +167,11 @@ export default function ContactPage() {
             Contact
           </p>
           <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-6">
-            Let&apos;s Talk About Your Problem
+            Let&apos;s Talk About Your Engineering Problems
           </h1>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
             No pitch decks. No discovery calls before you&apos;re ready. Just tell me what
-            you&apos;re trying to fix — I&apos;ll read it properly and come back to you with an
+            you&apos;re trying to fix, I&apos;ll read it properly and come back to you with an
             honest response.
           </p>
 
@@ -197,11 +197,11 @@ export default function ContactPage() {
               Typical enquiries
             </p>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">
-              <li>AutoCAD / Plant 3D automation</li>
+              <li>General engineering technology consultancy</li>
+              <li>AutoCAD, Plant 3D & Inventor automation</li>
               <li>AI integration for engineering workflows</li>
               <li>Document intelligence & OCR pipelines</li>
-              <li>iOS app development</li>
-              <li>General engineering technology consultancy</li>
+              <li>iOS, MacOS & VisionOS app development</li>
             </ul>
           </div>
         </div>

@@ -52,7 +52,7 @@ export default function HomePage() {
 
           <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed mb-10">
             Engineering Technology Consultancy. CAD automation, AI-powered tooling, and
-            intelligent workflows — built for engineers who need their problems actually solved.
+            intelligent workflows — built for engineers & facility owners who need their problems actually solved.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -150,7 +150,7 @@ export default function HomePage() {
       <section className="px-6 py-32 text-center max-w-4xl mx-auto">
         <blockquote className="font-[var(--font-barlow)] font-bold text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-[var(--text-primary)] leading-tight mb-8">
           &quot;I don&apos;t use AI for the sake of it.{" "}
-          <span className="text-[var(--accent-teal)]">I use it to solve real engineering problems.&quot;</span>
+          <span className="text-[var(--accent-teal)]">I use AI to solve real engineering problems.&quot;</span>
         </blockquote>
         <p className="text-[var(--text-secondary)] mb-10">— Dave Bradbury, Darbury Ltd</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -158,13 +158,13 @@ export default function HomePage() {
             href="/lab"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
           >
-            Try the AI Lab →
+            Try the AI Tools →
           </Link>
           <Link
             href="/about"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[var(--border)] text-[var(--text-secondary)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:border-[var(--accent-teal)]/40 hover:text-[var(--text-primary)] transition-colors"
           >
-            About Dave
+            About Dave →
           </Link>
         </div>
       </section>

@@ -9,12 +9,12 @@ const CREDENTIALS = [
 ];
 
 const DOMAINS = [
-  { title: "AutoCAD & Plant 3D", detail: "Deep platform expertise, 26yr ADN member" },
+  { title: "AutoCAD & Plant 3D", detail: "Deep platform expertise, designer, 3D model expert & ADN member" },
   { title: "Python Automation", detail: "Scripting, pipelines, AI integration" },
-  { title: "Swift & iOS", detail: "Native apps, ARKit, Vision, Core ML" },
-  { title: "Anthropic / Claude API", detail: "Server-side integration, domain tooling" },
+  { title: "Swift (iOS, MacOS & VisionOS)", detail: "iOS, MacOS & VisionOS, native apps, ARKit, Core ML" },
+  { title: "Anthropic / Claude API", detail: "Server-side integration, vibe coding, domain tooling" },
   { title: "Power Platform", detail: "Power Automate, Power Apps, M365" },
-  { title: "OCR & Computer Vision", detail: "Document intelligence, drawing analysis" },
+  { title: "OCR & Computer Vision", detail: "Document intelligence, drawing analysis & live camera interpretations" },
 ];
 
 export default function AboutPage() {
@@ -68,22 +68,30 @@ export default function AboutPage() {
           </div>
 
           <p className="text-[var(--text-secondary)] leading-relaxed">
-            I started on a drawing board in the early 1980s. Every line was deliberate — there
-            was no undo. That discipline shapes how I think about software: every tool I build
-            has to earn its place by making an engineer&apos;s day materially better.
+            I started on a drawing board in the early 1980s. Every line was deliberate, there
+            was no undo. That discipline shapes how I think about software. Every tool I build
+            has to earn its place by making an engineer&apos;s day materially better or a
+            facility more efficient.
           </p>
           <p className="text-[var(--text-secondary)] leading-relaxed">
             I founded Darbury Ltd in 2000 as an engineering technology consultancy. Over the
-            following decades I built deep expertise in AutoCAD, Plant 3D, and the broader
-            Autodesk ecosystem — joining the Autodesk Developer Network in the early days and
-            maintaining that membership for 26 years.
+            following decades I built deep expertise in AutoCAD, Plant 3D, Inventor, and the
+            broader Autodesk ecosystem. I joining the Autodesk Developer Network in the early
+            days and maintained that membership for over 26 years. It has allowed me to work in
+            multiple countries and industries, gaining fantastc experience along the way.
           </p>
           <p className="text-[var(--text-secondary)] leading-relaxed">
-            When the AI era arrived properly, I didn&apos;t pivot to it — I extended into it.
-            The same problems I&apos;d been solving with Python scripts and AutoLISP are now
-            solvable at a completely different scale and sophistication with Claude. I use Haiku
-            for cost-efficient production tools and larger models for complex reasoning. The
-            model is a means, not the point.
+            When the AI era arrived properly, I didn&apos;t pivot to it, I extended into it.
+            The same problems I&apos;d been solving with VB .NET, Python and AutoLISP are now
+            solvable at a completely different scale and sophistication with AI, particularly
+            Claude. I use Haiku for cost-efficient production tools and larger models for complex
+            reasoning. The model is a means, not the point.
+          </p>
+          <p className="text-[var(--text-secondary)] leading-relaxed">
+            I work with what you currently have. Many consultants charge you to organise the data
+            first before they even get to a solution. You already know what data you have so I put
+            in place solutions with what you know about first then we work towards a more organised
+            future.
           </p>
         </div>
       </section>
