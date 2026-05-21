@@ -16,7 +16,7 @@ export default function LabPage() {
         Live AI Tools
       </h1>
       <p className="text-xl text-[var(--text-secondary)] max-w-2xl mb-16">
-        Three AI tools built for real engineering problems. Try them directly in your browser —
+        Three AI tools built for real engineering problems. Try them directly in your browser,
         no installation, no account needed.
       </p>
 

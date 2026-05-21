@@ -52,7 +52,7 @@ export default function HomePage() {
 
           <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed mb-10">
             Engineering Technology Consultancy. CAD automation, AI-powered tooling, and
-            intelligent workflows — built for engineers & facility owners who need their problems actually solved.
+            intelligent workflows. Built for engineers & facility owners who need their problems actually solved.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
