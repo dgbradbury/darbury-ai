@@ -57,15 +57,30 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <p className="text-xl text-[var(--text-secondary)] mb-10">{project.tagline}</p>
 
         {project.image ? (
-          <div className="aspect-[21/9] relative overflow-hidden rounded-lg">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              priority
-            />
+          <div className="relative">
+            <div className="aspect-[21/9] relative overflow-hidden rounded-lg">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                priority
+              />
+            </div>
+            {project.liveUrl && (
+              <div className="mt-4 flex justify-end">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)] hover:text-[var(--bg-primary)] transition-colors"
+                >
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                  Try it live
+                </a>
+              </div>
+            )}
           </div>
         ) : (
           <PlaceholderAsset

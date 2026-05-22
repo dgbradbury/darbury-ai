@@ -16,6 +16,7 @@ export interface ProjectMeta {
   order?: number;
   image?: string;
   imageFit?: "cover" | "contain";
+  liveUrl?: string;
 }
 
 export interface ProjectSection {
