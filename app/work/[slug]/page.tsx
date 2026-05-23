@@ -136,7 +136,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             Could this solve your problem?
           </h2>
           <p className="text-[var(--text-secondary)] mb-6">
-            If {project.title} sounds relevant to a challenge you&apos;re facing, I&apos;d like to hear about it.
+            If {project.title}{" "}sounds relevant to a challenge you&apos;re facing, I&apos;d like to hear about it.
           </p>
           <Link
             href={`/contact?project=${encodeURIComponent(project.title)}`}
