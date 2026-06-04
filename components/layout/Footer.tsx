@@ -25,6 +25,7 @@ export default function Footer() {
           <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] mb-4">Navigate</p>
           <nav className="flex flex-col gap-2">
             {[
+              { href: "https://www.darbury.ai", label: "Home" },
               { href: "/work", label: "Work" },
               { href: "/lab", label: "AI Tools" },
               { href: "/contact", label: "Contact" },

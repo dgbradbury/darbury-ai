@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const NAV = [
+  { href: "https://www.darbury.ai", label: "Home", external: true },
   { href: "/work", label: "Work" },
   { href: "/lab", label: "AI Tools" },
   { href: "/contact", label: "Contact" },
@@ -32,12 +33,13 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV.map(({ href, label }) => (
+          {NAV.map(({ href, label, external }) => (
             <Link
               key={href}
               href={href}
+              {...(external ? { target: "_self", rel: "noopener" } : {})}
               className={`text-sm font-medium uppercase tracking-wider transition-colors ${
-                pathname.startsWith(href)
+                !external && pathname.startsWith(href)
                   ? "text-[var(--accent-teal)]"
                   : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               }`}
@@ -62,13 +64,14 @@ export default function Header() {
       {/* Mobile nav */}
       {open && (
         <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg-surface)] px-6 py-4 flex flex-col gap-4">
-          {NAV.map(({ href, label }) => (
+          {NAV.map(({ href, label, external }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setOpen(false)}
+              {...(external ? { target: "_self", rel: "noopener" } : {})}
               className={`text-sm font-medium uppercase tracking-wider ${
-                pathname.startsWith(href)
+                !external && pathname.startsWith(href)
                   ? "text-[var(--accent-teal)]"
                   : "text-[var(--text-secondary)]"
               }`}
