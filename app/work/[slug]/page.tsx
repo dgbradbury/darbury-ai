@@ -58,15 +58,40 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {project.image ? (
           <div className="relative">
-            <div className="aspect-[21/9] relative overflow-hidden rounded-lg">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                priority
-              />
+            <div className="aspect-[21/9] relative overflow-hidden rounded-lg group">
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-full absolute inset-0"
+                  aria-label={`Open ${project.title}`}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-[var(--accent-teal)]/0 group-hover:bg-[var(--accent-teal)]/10 transition-colors duration-200 flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--bg-primary)]/80 backdrop-blur-sm border border-[var(--accent-teal)] text-[var(--accent-teal)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                      Try it live
+                    </span>
+                  </div>
+                </a>
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
+              )}
             </div>
             {project.liveUrl && (
               <div className="mt-4 flex justify-end">
