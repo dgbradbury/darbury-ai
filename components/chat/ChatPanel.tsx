@@ -20,7 +20,7 @@ interface Message {
 const WELCOME_MESSAGE: Message = {
   role: "assistant",
   content:
-    "Hi — I'm Dave. Forty-two years solving engineering problems with technology. Tell me what you're working on, or what's giving you grief, and I'll tell you honestly if I can help.",
+    "Hi — I'm Dave. Multiple decades of solving engineering problems with technology. Tell me what you're working on, or what's giving you grief and I'll tell you honestly if I can help.",
 };
 
 const LEAD_CAPTURE_TURN = 6;
