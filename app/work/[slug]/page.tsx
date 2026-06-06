@@ -36,6 +36,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       ? "coming-soon"
       : "teal";
 
+  const statusBadgeLabel =
+    project.status === "pre-release"
+      ? "Coming Soon"
+      : project.status === "active"
+      ? "Active"
+      : project.status;
+
   return (
     <main className="pt-24">
       {/* Hero */}
@@ -48,7 +55,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             ← Work
           </Link>
           <Badge label={project.category} />
-          <Badge label={project.status} variant={statusLabel} />
+          <Badge label={statusBadgeLabel} variant={statusLabel} />
         </div>
 
         <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">

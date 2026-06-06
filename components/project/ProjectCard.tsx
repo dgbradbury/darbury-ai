@@ -9,6 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const isComingSoon = project.status === "pre-release";
+  const isActive = project.status === "active";
 
   return (
     <Link
@@ -39,6 +40,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {isComingSoon && (
           <div className="absolute top-3 right-3">
             <Badge label="Coming Soon" variant="coming-soon" />
+          </div>
+        )}
+        {isActive && !isComingSoon && !project.liveUrl && (
+          <div className="absolute top-3 right-3">
+            <Badge label="Active" variant="teal" />
           </div>
         )}
         {project.liveUrl && !isComingSoon && (
