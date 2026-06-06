@@ -44,7 +44,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
         {isActive && !isComingSoon && !project.liveUrl && (
           <div className="absolute top-3 right-3">
-            <Badge label="Active" variant="teal" />
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-[var(--font-jetbrains)] uppercase tracking-wider rounded bg-[var(--accent-teal)] text-[var(--bg-primary)] font-semibold shadow-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+              Active
+            </span>
           </div>
         )}
         {project.liveUrl && !isComingSoon && (
