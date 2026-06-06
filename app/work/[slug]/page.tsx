@@ -34,6 +34,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       ? "coming-soon"
       : project.status === "concept"
       ? "coming-soon"
+      : project.status === "active"
+      ? "active"
       : "teal";
 
   const statusBadgeLabel =
