@@ -69,7 +69,7 @@ export default function ChatWidget() {
           width={55}
           height={16}
           className="h-4 w-auto object-contain"
-
+          style={{ filter: "brightness(0)" }}
           aria-hidden="true"
         />
         <span>{buttonLabel}</span>
