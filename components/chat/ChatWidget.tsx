@@ -64,12 +64,12 @@ export default function ChatWidget() {
         }}
       >
         <Image
-          src="/darbury-logo.png"
+          src="/images/darbury-lockup-white.png"
           alt="Darbury"
           width={55}
           height={16}
           className="h-4 w-auto object-contain"
-          style={{ filter: "brightness(0)" }}
+
           aria-hidden="true"
         />
         <span>{buttonLabel}</span>
