@@ -76,11 +76,6 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
 
       const data = await res.json();
 
-      if (res.status === 401) {
-        setError("Your access session has expired. Please re-verify at the AI Tools page.");
-        return;
-      }
-
       if (res.status === 429) {
         setError(data.error ?? "Too many messages — please try again later.");
         return;

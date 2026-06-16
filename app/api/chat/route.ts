@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAnthropic, HAIKU_MODEL } from "@/lib/anthropic";
 import { getKnowledgeBase } from "@/lib/content";
 import { checkRateLimit } from "@/lib/rateLimit";
-import { validateSession, SessionUser } from "@/lib/auth";
 import { getDb } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 
@@ -45,7 +44,8 @@ KNOWLEDGE BASE — your memory about Dave, Darbury, and the portfolio:
 {{KNOWLEDGE}}`;
 
 // ---------------------------------------------------------------------------
-// Firestore chat logging
+// Firestore chat logging — anonymous sessions
+// Collection: public_chat_sessions/{conversationId}
 // ---------------------------------------------------------------------------
 
 interface TurnRecord {
@@ -59,17 +59,13 @@ interface TurnRecord {
 }
 
 async function logChatTurn(
-  user: SessionUser,
+  ip: string,
   conversationId: string,
   turn: TurnRecord,
   isFirst: boolean
 ): Promise<void> {
   const db = getDb();
-  const ref = db
-    .collection("lab_users")
-    .doc(user.email)
-    .collection("chat_sessions")
-    .doc(conversationId);
+  const ref = db.collection("public_chat_sessions").doc(conversationId);
 
   const always = {
     lastActiveAt: FieldValue.serverTimestamp(),
@@ -84,9 +80,7 @@ async function logChatTurn(
     await ref.set(
       {
         conversationId,
-        userEmail: user.email,
-        userName: user.name,
-        userCompany: user.company,
+        ip,
         startedAt: FieldValue.serverTimestamp(),
         ...always,
       },
@@ -103,15 +97,6 @@ async function logChatTurn(
 
 export async function POST(req: NextRequest) {
   try {
-    // --- Session guard (also gives us the user identity for logging) ---
-    const sessionUser = await validateSession();
-    if (!sessionUser) {
-      return NextResponse.json(
-        { error: "Session expired. Please re-verify at /lab." },
-        { status: 401 }
-      );
-    }
-
     // --- Rate limiting ---
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const { allowed, reason } = await checkRateLimit(ip);
@@ -192,8 +177,8 @@ export async function POST(req: NextRequest) {
       };
 
       try {
-        await logChatTurn(sessionUser, conversationId, turn, turnCount === 0);
-        console.log("[/api/chat] Firestore write success", sessionUser.email, conversationId);
+        await logChatTurn(ip, conversationId, turn, turnCount === 0);
+        console.log("[/api/chat] Firestore write success", conversationId);
       } catch (err) {
         console.error("[/api/chat] Firestore write failed:", err);
       }
