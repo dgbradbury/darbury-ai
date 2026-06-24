@@ -5,6 +5,21 @@ Free browser-based viewer for 3D model files. Supports GLB, GLTF, OBJ, FBX, and 
 Includes a slicing function to expose internal model geometry. No installation or licence required.
 Live at https://darbury-3d-viewer.vercel.app
 
+## Recent Updates (June 2026)
+- PID BOM added
+- ISO BOM added
+
+**P&ID BOM**
+Upload an image or a PDF of a single or multiple sheet P&ID. After processing, a complete
+BOM (Bill of Material) will exist of all the components contained within the drawing.
+Early stage development
+
+**ISO BOM**
+Upload multi-page & multiple isometrics for processing. The app extracts all the BOM 
+(Bill of Materials) contained on the drawings. Log the drawings against a project, 
+provide multiple revisions of the same drawings & export the complete material list 
+to xlsx for purchasing. Early stage development
+
 ## Recent Updates (May 2026)
 - Darbury 4D added
 - P&ID Analyser added
