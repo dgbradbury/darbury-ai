@@ -12,13 +12,14 @@ Live at https://darbury-3d-viewer.vercel.app
 **P&ID BOM**
 Upload an image or a PDF of a single or multiple sheet P&ID. After processing, a complete
 BOM (Bill of Material) will exist of all the components contained within the drawing.
-Early stage development
+Early stage development - not available currently so ask Dave for information
 
 **ISO BOM**
 Upload multi-page & multiple isometrics for processing. The app extracts all the BOM 
 (Bill of Materials) contained on the drawings. Log the drawings against a project, 
 provide multiple revisions of the same drawings & export the complete material list 
-to xlsx for purchasing. Early stage development
+to xlsx for purchasing. Early stage development - not available currently so ask Dave
+for information
 
 ## Recent Updates (May 2026)
 - Darbury 4D added
@@ -42,7 +43,8 @@ pre-field planning tool to assist construction.
 
 **P&ID Analyser**
 Upload an image or a PDF of a single or multiple sheet P&ID for an analysis from an
-Engneering perspective. Early stage development
+Engneering perspective. Early stage development - not available currently so ask Dave
+for information
 
 **Darbury iOS / MacOS Apps**
 Darbury has the following apps available; COG (Centre of Gravity Calculations), Baseframe

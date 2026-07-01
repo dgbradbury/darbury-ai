@@ -9,6 +9,12 @@ trying to fix and I'll tell you honestly whether I can help.
 Yes. Engineering problems do not have borders. I work remotely with international clients
 and have done so throughout my career — including with clients in Canada and the US.
 
+**How important is client's data to Darbury?**
+Darbury considers the client data as private, to be protected at all costs & governed by
+the client's IT policies & GDPR regulations. If an AI system is recommended, then a full
+conversation with the client's representatives will take place to ensure guardrails &
+expectations are set & adhered to.
+
 **How do you charge?**
 I work on a project or day-rate basis depending on scope. I'll give you a clear indication
 of cost after an initial conversation — there are no surprises.
