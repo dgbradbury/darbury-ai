@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
+/* Darbury Design System v1.0 — dark surface tokens.
+   Brand teal #189B93, Ink #191D23 (see BRAND.md). Surfaces & elevated
+   values are Ink lightened in steps; borders use Dark Teal per spec. */
 :root {
-  --bg-primary: #0a0e14;
-  --bg-surface: #111820;
-  --bg-elevated: #1a2332;
-  --accent-teal: #3eb8a0;
-  --accent-teal-dim: #2a8a77;
-  --text-primary: #e8edf4;
-  --text-secondary: #8a9bb0;
-  --text-muted: #4a5568;
-  --border: #1e2d3d;
-  --blueprint: #1a3a5c;
+  --bg-primary: #191D23;
+  --bg-surface: #1E242B;
+  --bg-elevated: #252C35;
+  --accent-teal: #189B93;
+  --accent-teal-dim: #147A73;
+  --text-primary: #F0F2F3;
+  --text-secondary: #78919E;
+  --text-muted: #57707A;
+  --border: #2A3A38;
+  --blueprint: #334B49;
 }
 
 @theme inline {
@@ -52,4 +55,37 @@ body {
     linear-gradient(90deg, var(--blueprint) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.08;
+}
+
+/* Self-drawing P&ID hero sketch (see PidSketch.tsx).
+   Paths use pathLength=1 so a single dasharray drives every draw. */
+@keyframes pid-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes pid-pop {
+  to { opacity: 1; }
+}
+.pid-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: pid-draw 0.9s ease-out forwards;
+  animation-delay: var(--pid-delay, 0s);
+}
+.pid-pop {
+  opacity: 0;
+  animation: pid-pop 0.5s ease-out forwards;
+  animation-delay: var(--pid-delay, 0s);
+}
+.pid-tag-text {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pid-stroke,
+  .pid-pop {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }

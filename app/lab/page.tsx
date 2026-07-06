@@ -2,7 +2,7 @@ import Link from "next/link";
 import LabGate from "@/components/lab/LabGate";
 
 export const metadata = {
-  title: "AI Tools — Darbury",
+  title: "Live AI Tools",
   description: "Live AI tools built for engineering workflows — try them directly in your browser.",
 };
 
@@ -16,8 +16,9 @@ export default function LabPage() {
         Live AI Tools
       </h1>
       <p className="text-xl text-[var(--text-secondary)] max-w-2xl mb-16">
-        Three AI tools built for real engineering problems. Try them directly in your browser,
-        no installation, no account needed.
+        Three AI tools built for real engineering problems. Free to try, directly in your
+        browser, nothing to install. A quick email verification keeps the bots out (and lets
+        me know who&apos;s finding them useful).
       </p>
 
       <LabGate>

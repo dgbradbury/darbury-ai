@@ -1,5 +1,7 @@
 import Link from "next/link";
 import BlueprintGrid from "@/components/layout/BlueprintGrid";
+import PidSketch from "@/components/layout/PidSketch";
+import Reveal from "@/components/layout/Reveal";
 import ProjectCard from "@/components/project/ProjectCard";
 import { getAllProjects } from "@/lib/content";
 
@@ -23,6 +25,23 @@ const PILLARS = [
 
 const FEATURED_SLUGS = ["plantmcp", "plant-viewer", "pid-analyser"];
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Darbury AI",
+  url: "https://www.darbury.ai",
+  description:
+    "Engineering technology consultancy — CAD automation, AI tooling & intelligent workflows built on 42 years of engineering practice.",
+  founder: { "@type": "Person", name: "Dave Bradbury", jobTitle: "Managing Director & Owner" },
+  parentOrganization: { "@type": "Organization", name: "Darbury Ltd", url: "https://www.darbury.com" },
+  email: "dave@darbury.com",
+  address: { "@type": "PostalAddress", addressRegion: "Essex", addressCountry: "UK" },
+  sameAs: [
+    "https://www.darbury.com",
+    "https://www.linkedin.com/in/darbury/",
+  ],
+};
+
 export default function HomePage() {
   const allProjects = getAllProjects();
   const featured = FEATURED_SLUGS
@@ -31,9 +50,14 @@ export default function HomePage() {
 
   return (
     <main className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 overflow-hidden">
         <BlueprintGrid />
+        <PidSketch />
 
         {/* Glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--accent-teal)]/5 blur-3xl pointer-events-none" />
@@ -90,9 +114,10 @@ export default function HomePage() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {PILLARS.map((p) => (
-            <div
+          {PILLARS.map((p, i) => (
+            <Reveal
               key={p.title}
+              delay={i * 0.12}
               className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-8 hover:border-[var(--accent-teal)]/40 transition-colors group"
             >
               <div className="text-3xl text-[var(--accent-teal)] mb-4 group-hover:scale-110 transition-transform inline-block">
@@ -102,7 +127,7 @@ export default function HomePage() {
                 {p.title}
               </h3>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{p.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -129,8 +154,10 @@ export default function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {featured.map((project) => (
-                <ProjectCard key={project.slug} project={project} />
+              {featured.map((project, i) => (
+                <Reveal key={project.slug} delay={i * 0.12}>
+                  <ProjectCard project={project} />
+                </Reveal>
               ))}
             </div>
 
@@ -148,6 +175,7 @@ export default function HomePage() {
 
       {/* ── Quote / CTA ──────────────────────────────────────── */}
       <section className="px-6 py-32 text-center max-w-4xl mx-auto">
+        <Reveal>
         <blockquote className="font-[var(--font-barlow)] font-bold text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-[var(--text-primary)] leading-tight mb-8">
           &quot;I don&apos;t use AI for the sake of it.{" "}
           <span className="text-[var(--accent-teal)]">I use AI to solve real engineering problems.&quot;</span>
@@ -167,6 +195,7 @@ export default function HomePage() {
             About Dave →
           </Link>
         </div>
+        </Reveal>
       </section>
     </main>
   );

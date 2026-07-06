@@ -74,35 +74,65 @@ export default function ChatPanel({ onClose }: ChatPanelProps) {
         }),
       });
 
-      const data = await res.json();
+      // JSON responses are errors or the session-limit sign-off;
+      // successful replies stream back as plain text.
+      const contentType = res.headers.get("content-type") ?? "";
+      if (contentType.includes("application/json")) {
+        const data = await res.json();
 
-      if (res.status === 429) {
-        setError(data.error ?? "Too many messages — please try again later.");
+        if (res.status === 429) {
+          setError(data.error ?? "Too many messages — please try again later.");
+          return;
+        }
+
+        if (!res.ok) {
+          setError(
+            data.error ??
+              "Something went wrong — please try again or use the contact form."
+          );
+          return;
+        }
+
+        // Session limit reached — show Dave's sign-off message
+        if (data.error === "SESSION_LIMIT") {
+          setMessages((prev) => [
+            ...prev,
+            { role: "assistant", content: data.message },
+          ]);
+          return;
+        }
+
         return;
       }
 
-      if (!res.ok) {
-        setError(
-          data.error ??
-            "Something went wrong — please try again or use the contact form."
-        );
+      if (!res.ok || !res.body) {
+        setError("Something went wrong — please try again or use the contact form.");
         return;
       }
 
-      // Session limit reached — show Dave's sign-off message
-      if (data.error === "SESSION_LIMIT") {
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: data.message },
-        ]);
-        return;
-      }
+      // --- Streaming path ---
+      const newTurnCount =
+        parseInt(res.headers.get("x-turn-count") ?? "", 10) || turnCount + 1;
 
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.message },
-      ]);
-      setTurnCount(data.turnCount ?? turnCount + 1);
+      // Swap the typing indicator for a live-updating assistant message
+      setIsLoading(false);
+      setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let assistantText = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        assistantText += decoder.decode(value, { stream: true });
+        const snapshot = assistantText;
+        setMessages((prev) => {
+          const next = [...prev];
+          next[next.length - 1] = { role: "assistant", content: snapshot };
+          return next;
+        });
+      }
+      setTurnCount(newTurnCount);
     } catch {
       setError("Connection error — please check your network and try again.");
     } finally {

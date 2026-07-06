@@ -330,6 +330,24 @@ hero sections where relevant.
 
 ---
 
+## darbury.ai Site Extension (July 2026)
+
+The darbury.ai site follows the brand palette above with two recorded, deliberate
+exceptions:
+
+1. **JetBrains Mono is allowed as a third font on darbury.ai only.** It is used for
+   overlines, tags & technical labels to give the AI lab its terminal character. Do not
+   carry it over to darbury.com or other Darbury properties.
+2. **Dark-surface derived tokens.** `--bg-surface: #1E242B` and `--bg-elevated: #252C35`
+   are Ink `#191D23` lightened in steps, and `--border: #2A3A38` is a muted Dark Teal for
+   hairline borders on dark surfaces (full `#334B49` reads too strong at 1px). These are
+   the approved dark-UI derivatives for this site.
+
+All accent, text & status colours use the exact brand values (Teal `#189B93`,
+hover `#147A73`, Off-white `#F0F2F3`, Slate 500/700 for secondary/muted text).
+
+---
+
 *Brand reference v1.0 — June 2026*
 *Source: Darbury Design System v1.0, April 2026*
 *For use by Claude as project context when building Darbury websites*

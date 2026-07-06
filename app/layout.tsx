@@ -24,10 +24,37 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dave Bradbury | Darbury — Engineering AI & Automation",
+  metadataBase: new URL("https://www.darbury.ai"),
+  title: {
+    default: "Dave Bradbury | Darbury — Engineering AI & Automation",
+    template: "%s | Darbury AI",
+  },
   description:
     "42 years of engineering problems. Solved faster with AI. Engineering technology consultancy specialising in CAD automation, AI tooling, and intelligent workflows.",
-  keywords: ["engineering automation", "AI tooling", "AutoCAD", "Plant 3D", "Darbury"],
+  keywords: [
+    "engineering automation",
+    "AI tooling",
+    "AutoCAD",
+    "Plant 3D",
+    "P&ID analysis",
+    "MCP server",
+    "digital twin",
+    "Darbury",
+    "Dave Bradbury",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "Darbury AI",
+    url: "https://www.darbury.ai",
+    locale: "en_GB",
+    title: "Darbury AI — Engineering AI & Automation",
+    description:
+      "42 years of engineering problems. Solved faster with AI. Live AI tools built on real Plant 3D, P&ID and CAD workflows.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@dgbradbury",
+  },
 };
 
 export default function RootLayout({

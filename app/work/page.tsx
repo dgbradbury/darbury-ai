@@ -2,8 +2,9 @@ import { getAllProjects } from "@/lib/content";
 import ProjectFilter from "@/components/project/ProjectFilter";
 
 export const metadata = {
-  title: "Work — Darbury",
-  description: "Engineering problems solved with software, automation, and AI.",
+  title: "Work — Engineering AI & Automation Projects",
+  description:
+    "Engineering problems solved with software, automation, and AI — Plant 3D tooling, MCP servers, drawing intelligence, 3D viewers and more.",
 };
 
 export default function WorkPage() {

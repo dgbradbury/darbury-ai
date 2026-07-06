@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "About Dave Bradbury",
+  description:
+    "42 years in engineering, 26 years as an Autodesk ADN member, founder of Darbury Ltd. Apple, Microsoft & Autodesk developer applying AI to real engineering problems.",
+};
+
 const CREDENTIALS = [
   { label: "Experience", value: "42 Years" },
   { label: "ADN Membership", value: "26 Years" },

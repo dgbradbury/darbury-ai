@@ -3,7 +3,7 @@ import LabGate from "@/components/lab/LabGate";
 import BriefAnalyser from "@/components/lab/BriefAnalyser";
 
 export const metadata = {
-  title: "Engineering Brief Analyser — Darbury AI Tools",
+  title: "Engineering Brief Analyser",
   description:
     "Describe your engineering problem. Get an immediate assessment of the automation approach, toolchain, and what a solution could look like — from 42 years of engineering experience, assisted by AI.",
 };

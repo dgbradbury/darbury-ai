@@ -46,6 +46,9 @@ KNOWLEDGE BASE — your memory about Dave, Darbury, and the portfolio:
 // ---------------------------------------------------------------------------
 // Firestore chat logging — anonymous sessions
 // Collection: public_chat_sessions/{conversationId}
+// Kept in sync with darbury-com (the master copy of the chat stack):
+//   - ipPrefix (first two octets) stored instead of full ip — avoids PII
+//   - source: "darbury.ai" distinguishes records from the two sites
 // ---------------------------------------------------------------------------
 
 interface TurnRecord {
@@ -59,7 +62,7 @@ interface TurnRecord {
 }
 
 async function logChatTurn(
-  ip: string,
+  ipPrefix: string,
   conversationId: string,
   turn: TurnRecord,
   isFirst: boolean
@@ -80,7 +83,8 @@ async function logChatTurn(
     await ref.set(
       {
         conversationId,
-        ip,
+        ipPrefix, // e.g. "82.68" — not full IP
+        source: "darbury.ai",
         startedAt: FieldValue.serverTimestamp(),
         ...always,
       },
@@ -99,6 +103,7 @@ export async function POST(req: NextRequest) {
   try {
     // --- Rate limiting ---
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const ipPrefix = ip.split(".").slice(0, 2).join("."); // "82.68.x.x" → "82.68"
     const { allowed, reason } = await checkRateLimit(ip);
     if (!allowed) {
       return NextResponse.json({ error: reason }, { status: 429 });
@@ -145,48 +150,74 @@ export async function POST(req: NextRequest) {
     const knowledge = getKnowledgeBase();
     const systemPrompt = SYSTEM_PROMPT_PREFIX.replace("{{KNOWLEDGE}}", knowledge);
 
-    // --- Call Haiku ---
-    const response = await getAnthropic().messages.create({
+    // --- Call Haiku (streaming) ---
+    // Text is streamed to the client as plain text chunks; the new turn count
+    // travels in the X-Turn-Count header. Errors & session limits still return
+    // JSON, which the client detects via Content-Type.
+    const stream = getAnthropic().messages.stream({
       model: HAIKU_MODEL,
       max_tokens: MAX_TOKENS,
       system: systemPrompt,
       messages: sanitisedMessages,
     });
 
-    const content = response.content[0];
-    if (content.type !== "text") {
-      throw new Error("Unexpected response type from Anthropic");
-    }
+    const encoder = new TextEncoder();
+    const readable = new ReadableStream<Uint8Array>({
+      async start(controller) {
+        try {
+          for await (const event of stream) {
+            if (
+              event.type === "content_block_delta" &&
+              event.delta.type === "text_delta"
+            ) {
+              controller.enqueue(encoder.encode(event.delta.text));
+            }
+          }
 
-    // --- Log turn to Firestore ---
-    if (conversationId && typeof conversationId === "string") {
-      const { input_tokens, output_tokens } = response.usage;
-      // Haiku pricing as at May 2026: $0.80/M input, $4.00/M output
-      const turnCostUSD =
-        (input_tokens / 1_000_000) * 0.8 +
-        (output_tokens / 1_000_000) * 4.0;
+          // --- Log turn to Firestore (after stream completes, before close
+          //     so the function instance stays alive for the write) ---
+          const final = await stream.finalMessage();
+          const finalText = final.content
+            .map((b) => (b.type === "text" ? b.text : ""))
+            .join("");
 
-      const turn: TurnRecord = {
-        seq: turnCount + 1,
-        userMessage: sanitisedMessages.at(-1)!.content,
-        assistantMessage: content.text,
-        inputTokens: input_tokens,
-        outputTokens: output_tokens,
-        turnCostUSD,
-        timestamp: new Date(),
-      };
+          if (conversationId && typeof conversationId === "string") {
+            const { input_tokens, output_tokens } = final.usage;
+            // Haiku pricing as at May 2026: $0.80/M input, $4.00/M output
+            const turnCostUSD =
+              (input_tokens / 1_000_000) * 0.8 +
+              (output_tokens / 1_000_000) * 4.0;
 
-      try {
-        await logChatTurn(ip, conversationId, turn, turnCount === 0);
-        console.log("[/api/chat] Firestore write success", conversationId);
-      } catch (err) {
-        console.error("[/api/chat] Firestore write failed:", err);
-      }
-    }
+            const turn: TurnRecord = {
+              seq: turnCount + 1,
+              userMessage: sanitisedMessages.at(-1)!.content,
+              assistantMessage: finalText,
+              inputTokens: input_tokens,
+              outputTokens: output_tokens,
+              turnCostUSD,
+              timestamp: new Date(),
+            };
 
-    return NextResponse.json({
-      message: content.text,
-      turnCount: turnCount + 1,
+            try {
+              await logChatTurn(ipPrefix, conversationId, turn, turnCount === 0);
+            } catch (err) {
+              console.error("[/api/chat] Firestore write failed:", err);
+            }
+          }
+        } catch (err) {
+          console.error("[/api/chat] stream error:", err);
+        } finally {
+          controller.close();
+        }
+      },
+    });
+
+    return new Response(readable, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache",
+        "X-Turn-Count": String(turnCount + 1),
+      },
     });
   } catch (err) {
     console.error("[/api/chat]", err);

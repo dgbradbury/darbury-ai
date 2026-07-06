@@ -14,8 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = getProject(slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Darbury`,
+    title: project.title,
     description: project.tagline,
+    openGraph: {
+      title: `${project.title} | Darbury AI`,
+      description: project.tagline,
+      type: "article",
+    },
   };
 }
 

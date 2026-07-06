@@ -1,5 +1,7 @@
 export const metadata = {
-  title: "Build Log — Darbury",
+  title: "Build Log",
+  description:
+    "What's being built at Darbury, as it happens — AI tools, engineering automation & lessons learned along the way.",
 };
 
 export default function LogPage() {

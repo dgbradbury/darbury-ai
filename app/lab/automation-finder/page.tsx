@@ -3,7 +3,7 @@ import LabGate from "@/components/lab/LabGate";
 import AuditWizard from "@/components/lab/AuditWizard";
 
 export const metadata = {
-  title: "Automation Opportunity Finder — Darbury AI Tools",
+  title: "Automation Opportunity Finder",
   description:
     "Five questions about your workflow. Three specific automation opportunities — generated for your situation, not a generic checklist.",
 };

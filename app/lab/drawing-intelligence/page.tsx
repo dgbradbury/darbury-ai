@@ -3,7 +3,7 @@ import LabGate from "@/components/lab/LabGate";
 import DrawingUpload from "@/components/lab/DrawingUpload";
 
 export const metadata = {
-  title: "Drawing Intelligence — Darbury AI Tools",
+  title: "Drawing Intelligence",
   description:
     "Upload a photo of an engineering drawing, P&ID, sketch, or diagram. Find out what AI can see — and what the Darbury automation pipeline could do with it.",
 };
