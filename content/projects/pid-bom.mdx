@@ -1,0 +1,21 @@
+---
+title: PID BOM
+tagline: Upload P&ID drawings, get back a consolidated bill of materials
+category: AI Tooling
+status: pre-release
+tech: [Next.js, Claude AI, Firebase, Tesseract OCR, PDF Pipeline]
+featured: false
+order: 12
+---
+
+## Problem
+
+Building a bill of materials from a set of P&IDs is slow, manual work. Someone has to walk every sheet, pick out each line, valve, instrument & piece of equipment, then tally the lot into purchasing lists. Every company draws its P&IDs slightly differently, so generic tools fall over on real project drawings.
+
+## Approach
+
+PID BOM builds on the reading engine developed for the P&ID Analyser: each uploaded PDF is rasterised, split into a grid of tiles & read through a three-layer extraction pipeline (vector extraction, AI vision & OCR fallback) before the results are reconciled into one picture of the sheet. The difference is what happens next. You feed in your company's legend & standard sheets so the app learns your symbology & line numbering convention, then it extracts every tagged component across the drawing set. A Raw Extraction view shows exactly what came off each sheet (tag, confidence, source layer & bounding box) so you can verify the reading before trusting the numbers.
+
+## Result
+
+The extraction pipeline is running & inspection tooling is in place, with the consolidated BOM roll-up (legend ingestion, standards profiles & valve schedules) in active development. The goal is simple: drop in a drawing package, get back a purchasing-ready BOM instead of a week of manual take-off.
