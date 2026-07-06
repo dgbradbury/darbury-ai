@@ -5,7 +5,7 @@ category: AI Tooling
 status: pre-release
 tech: [Next.js, Claude AI, Firebase, xlsx, PDF Pipeline]
 featured: false
-order: 13
+order: 7
 ---
 
 ## Problem
@@ -14,8 +14,8 @@ A piping project can carry hundreds of isometric sheets, each with its own BOM t
 
 ## Approach
 
-ISO BOM reads uploaded isometric PDFs page by page: the bill of materials table from the top-right of each sheet & the title block for the drawing number & revision. It counts the components, rolls everything up into a consolidated BOM & exports the lot to xlsx. Unlike P&IDs, an isometric's BOM table is self-describing, so there is no symbology to teach — upload & read. Reprocess the project after a revision & it calculates the deltas per drawing: what each new revision adds or removes.
+ISO BOM reads uploaded isometric PDFs page by page: the bill of materials table of each sheet & the title block for the drawing number & revision. It counts the components, rolls everything up into a consolidated BOM & exports the lot to xlsx. Unlike P&IDs, an isometric's BOM table is self-describing, so there is no symbology to teach, just upload & read. Reprocess the project after a revision & it calculates the deltas per drawing, what each new revision adds or removes.
 
 ## Result
 
-Purchasing gets a single consolidated list instead of a stack of sheets, and on revised projects they see exactly what to buy or send back rather than re-checking the whole package. Built on the same upload, store, rasterise, read, persist & export pipeline as PID BOM, running on its own Firebase project.
+Purchasing gets a single consolidated list instead of a stack of sheets and on revised projects they see exactly what to buy or send back rather than re-checking the whole package. Built on the same upload, store, rasterise, read, persist & export pipeline as PID BOM.

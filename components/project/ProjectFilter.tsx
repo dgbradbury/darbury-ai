@@ -4,16 +4,12 @@ import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import type { ProjectMeta } from "@/lib/content";
 
-const CATEGORIES = [
-  "All",
-  "Engineering Automation",
-  "AI Tooling",
-  "CAD/Plant 3D",
-  "Concepts & Future",
-];
-
 export default function ProjectFilter({ projects }: { projects: ProjectMeta[] }) {
   const [active, setActive] = useState("All");
+
+  // Filter buttons come from the project pages themselves (in display order),
+  // so editing a page's `category:` frontmatter is all that's ever needed.
+  const categories = ["All", ...new Set(projects.map((p) => p.category))];
 
   const filtered =
     active === "All"
@@ -23,7 +19,7 @@ export default function ProjectFilter({ projects }: { projects: ProjectMeta[] })
   return (
     <>
       <div className="flex flex-wrap gap-2 mb-12">
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
