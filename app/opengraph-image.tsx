@@ -7,7 +7,7 @@ export const alt =
   "Darbury AI — 42 years of engineering problems, solved faster with AI";
 
 export default async function Image() {
-  const lockup = publicImageDataUri("/images/darbury-lockup-white.png");
+  const lockup = await publicImageDataUri("/images/darbury-lockup-white.png");
 
   return new ImageResponse(
     (

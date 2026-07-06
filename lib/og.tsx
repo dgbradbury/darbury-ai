@@ -24,11 +24,20 @@ export function loadOgFonts() {
   ];
 }
 
-/** Reads a file from /public and returns it as a data URI (satori-safe). */
-export function publicImageDataUri(publicPath: string): string | null {
+/** Reads a file from /public and returns it as a data URI (satori-safe).
+    Satori/resvg cannot decode webp, so webp source images are converted to
+    png on the fly via sharp (already a next/image dependency). */
+export async function publicImageDataUri(publicPath: string): Promise<string | null> {
   const file = path.join(process.cwd(), "public", publicPath.replace(/^\//, ""));
   if (!fs.existsSync(file)) return null;
   const ext = path.extname(file).slice(1).toLowerCase();
+
+  if (ext === "webp") {
+    const sharp = (await import("sharp")).default;
+    const png = await sharp(file).png().toBuffer();
+    return `data:image/png;base64,${png.toString("base64")}`;
+  }
+
   const mime = ext === "jpg" ? "jpeg" : ext;
   return `data:image/${mime};base64,${fs.readFileSync(file).toString("base64")}`;
 }

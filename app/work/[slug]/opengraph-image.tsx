@@ -12,8 +12,8 @@ export function generateStaticParams() {
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = getProject(slug);
-  const lockup = publicImageDataUri("/images/darbury-lockup-white.png");
-  const shot = project?.image ? publicImageDataUri(project.image) : null;
+  const lockup = await publicImageDataUri("/images/darbury-lockup-white.png");
+  const shot = project?.image ? await publicImageDataUri(project.image) : null;
 
   return new ImageResponse(
     (
