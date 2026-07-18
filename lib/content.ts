@@ -17,6 +17,8 @@ export interface ProjectMeta {
   image?: string;
   imageFit?: "cover" | "contain";
   liveUrl?: string;
+  pdf?: string;
+  videos?: { title: string; src: string }[];
 }
 
 export interface ProjectSection {

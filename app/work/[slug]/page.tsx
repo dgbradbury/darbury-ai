@@ -70,6 +70,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </h1>
         <p className="text-xl text-[var(--text-secondary)] mb-10">{project.tagline}</p>
 
+        {project.pdf && (
+          <div className="mb-10">
+            <a
+              href={project.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)] hover:text-[var(--bg-primary)] transition-colors"
+            >
+              Information Sheet (PDF)
+            </a>
+          </div>
+        )}
+
         {project.image ? (
           <div className="relative">
             <div className="aspect-[21/9] relative overflow-hidden rounded-lg group">
@@ -150,6 +163,31 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ))}
         </div>
       </section>
+
+      {/* Videos */}
+      {project.videos && project.videos.length > 0 && (
+        <section className="px-6 pb-24 max-w-3xl mx-auto">
+          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-8">
+            Videos
+          </p>
+          <div className="space-y-12">
+            {project.videos.map((v) => (
+              <div key={v.src}>
+                <h2 className="font-[var(--font-barlow)] font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-4">
+                  {v.title}
+                </h2>
+                <video
+                  controls
+                  preload="metadata"
+                  className="w-full rounded-lg border border-[var(--border)]"
+                >
+                  <source src={v.src} type="video/mp4" />
+                </video>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Tech stack */}
       <section className="px-6 pb-16 max-w-3xl mx-auto">
