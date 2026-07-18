@@ -56,6 +56,16 @@ videos:
     src: /videos/<slug>/early-demo.mp4
 ```
 
+## Adding more media to a page that already has some
+
+The recommended workflow is media first, plumbing second: drop the new file
+into the same locations as above, then edit the frontmatter. For an extra
+video, append one more `- title:` / `src:` entry to the existing `videos:`
+list — existing entries stay untouched. Videos render in the order listed,
+so reorder the list entries to reorder the page. Replacing the PDF is just
+overwriting `public/pdfs/<slug>.pdf` (the frontmatter line stays the same).
+It is the same one-file edit whether it is the first video or the fifth.
+
 ## What renders
 
 - **`pdf:`** an "Information Sheet (PDF)" outline button in the page hero,
