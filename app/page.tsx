@@ -23,7 +23,7 @@ const PILLARS = [
   },
 ];
 
-const FEATURED_SLUGS = ["plantmcp", "plant-viewer", "pid-analyser"];
+const FEATURED_SLUGS = ["pid-analyser", "alfred", "iso-bom"];
 
 const schema = {
   "@context": "https://schema.org",
