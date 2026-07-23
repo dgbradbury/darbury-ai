@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
 
     const resend = getResend();
     await resend.emails.send({
-      from: process.env.RESEND_FROM ?? "AILab@darbury.com",
+      from: process.env.RESEND_FROM || "AILab@darbury.com", // || not ?? so empty-string env falls back too
       to: email,
       subject: `Your Darbury AI Lab access code: ${code}`,
       html: verificationEmailHtml(code),
