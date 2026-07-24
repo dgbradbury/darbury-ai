@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/lab/brief-analyser`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/lab/drawing-intelligence`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/lab/automation-finder`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/lab/extractor`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/lab/compliance`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/about`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/log`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${BASE}/contact`, changeFrequency: "yearly", priority: 0.8 },

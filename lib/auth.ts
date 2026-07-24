@@ -49,9 +49,11 @@ export async function clearSessionCookie(): Promise<void> {
   cookieStore.delete(SESSION_COOKIE);
 }
 
+type LabId = "brief" | "drawing" | "audit" | "extract" | "compliance";
+
 export async function getUsageCount(
   email: string,
-  lab: "brief" | "drawing" | "audit"
+  lab: LabId
 ): Promise<number> {
   const kv = getKv();
   const date = new Date().toISOString().slice(0, 10);
@@ -61,7 +63,7 @@ export async function getUsageCount(
 
 export async function incrementUsage(
   email: string,
-  lab: "brief" | "drawing" | "audit"
+  lab: LabId
 ): Promise<number> {
   const kv = getKv();
   const date = new Date().toISOString().slice(0, 10);

@@ -16,7 +16,7 @@ export default function LabPage() {
         Live AI Tools
       </h1>
       <p className="text-xl text-[var(--text-secondary)] max-w-2xl mb-16">
-        Three AI tools built for real engineering problems. Free to try, directly in your
+        Five AI tools built for real engineering problems. Free to try, directly in your
         browser, nothing to install. A quick email verification keeps the bots out (and lets
         me know who&apos;s finding them useful).
       </p>
@@ -91,6 +91,58 @@ export default function LabPage() {
               <p className="text-[var(--text-secondary)] mb-6 max-w-xl">
                 Answer 5 questions about your workflow. Get a personalised report of 3 specific
                 automation opportunities — emailed to you and reviewed by Dave.
+              </p>
+              <div className="inline-block px-3 py-1 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
+                Live — Try it →
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Feature 4 — live */}
+        <Link
+          href="/lab/extractor"
+          className="group bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent-teal)]/50 rounded-lg p-10 transition-colors block"
+        >
+          <div className="flex items-start gap-6">
+            <span className="text-4xl text-[var(--accent-teal)]">▤</span>
+            <div className="flex-1">
+              <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
+                AI Tool 4
+              </p>
+              <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
+                Instant Tag &amp; Line Extractor
+              </h2>
+              <p className="text-[var(--text-secondary)] mb-6 max-w-xl">
+                Upload a P&amp;ID or ISO fragment and get your own data back as a structured,
+                downloadable table — tags, lines, equipment &amp; instruments, read straight off
+                the drawing.
+              </p>
+              <div className="inline-block px-3 py-1 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
+                Live — Try it →
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Feature 5 — live */}
+        <Link
+          href="/lab/compliance"
+          className="group bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent-teal)]/50 rounded-lg p-10 transition-colors block"
+        >
+          <div className="flex items-start gap-6">
+            <span className="text-4xl text-[var(--accent-teal)]">✓</span>
+            <div className="flex-1">
+              <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-2">
+                AI Tool 5
+              </p>
+              <h2 className="font-[var(--font-barlow)] font-semibold text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-teal)] transition-colors">
+                Standard Compliance Gap Checker
+              </h2>
+              <p className="text-[var(--text-secondary)] mb-6 max-w-xl">
+                Paste a spec, work instruction, or tag list, pick a standard (ISO 19650,
+                tag-numbering, naming rules), and get back the gaps — each with a finding &amp; a
+                fix.
               </p>
               <div className="inline-block px-3 py-1 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider">
                 Live — Try it →
