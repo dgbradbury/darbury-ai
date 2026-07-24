@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAnthropic, HAIKU_MODEL } from "@/lib/anthropic";
+import { getAnthropic, SONNET_MODEL } from "@/lib/anthropic";
 import { validateSession, getUsageCount, incrementUsage } from "@/lib/auth";
 import { getDb, getBucket } from "@/lib/firebase-admin";
 import { getResend } from "@/lib/resend";
@@ -105,8 +105,12 @@ export async function POST(req: NextRequest) {
         };
 
     const aiResponse = await getAnthropic().messages.create({
-      model: HAIKU_MODEL,
+      model: SONNET_MODEL,
       max_tokens: isPdf ? 2500 : 1800,
+      // ponytail: thinking disabled keeps this a fast, predictable single-shot and stops
+      // content[0] being a thinking block. If accuracy still falls short, switch to
+      // { type: "adaptive" } — but that needs streaming to dodge the HTTP timeout.
+      thinking: { type: "disabled" },
       system: SYSTEM,
       messages: [
         {
@@ -119,7 +123,9 @@ export async function POST(req: NextRequest) {
       ],
     });
 
-    const rawText = aiResponse.content[0].type === "text" ? aiResponse.content[0].text : "{}";
+    // Grab the first text block (robust even if the model emits other block types first)
+    const textBlock = aiResponse.content.find((b) => b.type === "text");
+    const rawText = textBlock && textBlock.type === "text" ? textBlock.text : "{}";
     const cleaned = rawText.replace(/^```(?:json)?\n?/m, "").replace(/\n?```$/m, "").trim();
 
     let parsed: { documentType: string; items: ExtractItem[]; note: string };
@@ -134,7 +140,8 @@ export async function POST(req: NextRequest) {
 
     const inputTokens = aiResponse.usage.input_tokens;
     const outputTokens = aiResponse.usage.output_tokens;
-    const costUsd = inputTokens * 0.0000008 + outputTokens * 0.000004;
+    // Sonnet 5 pricing: $3/MTok input, $15/MTok output
+    const costUsd = inputTokens * 0.000003 + outputTokens * 0.000015;
 
     await incrementUsage(user.email, "extract");
 
@@ -170,7 +177,7 @@ export async function POST(req: NextRequest) {
           rawHaikuResponse: rawText,
         },
         aiUsage: {
-          model: HAIKU_MODEL,
+          model: SONNET_MODEL,
           inputTokens,
           outputTokens,
           costUsd: parseFloat(costUsd.toFixed(6)),
