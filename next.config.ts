@@ -32,6 +32,13 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // lib/og.tsx reads public/ via a dynamic path, so @vercel/nft can't tell
+  // which file it needs and bundles all of public/ into every function's
+  // trace. Videos & PDFs are never read that way (only /images/*), so
+  // excluding them keeps function output under Vercel's size limit.
+  outputFileTracingExcludes: {
+    "/*": ["./public/videos/**/*", "./public/pdfs/**/*"],
+  },
   images: {
     remotePatterns: [
       {
