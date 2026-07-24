@@ -49,7 +49,7 @@ export async function clearSessionCookie(): Promise<void> {
   cookieStore.delete(SESSION_COOKIE);
 }
 
-type LabId = "brief" | "drawing" | "audit" | "extract" | "compliance";
+type LabId = "brief" | "drawing" | "audit" | "extract" | "compliance" | "askplant" | "advisor" | "readiness";
 
 export async function getUsageCount(
   email: string,
