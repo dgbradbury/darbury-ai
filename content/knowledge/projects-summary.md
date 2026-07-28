@@ -5,6 +5,20 @@ Free browser-based viewer for 3D model files. Supports GLB, GLTF, OBJ, FBX, and 
 Includes a slicing function to expose internal model geometry. No installation or licence required.
 Live at https://darbury-3d-viewer.vercel.app
 
+## Recent Updates (July 2026)
+- Alfred added
+- IFC Analyser added
+
+**Alfred**
+Alfred is a native macOS assistant driven entirely by voice, a wake word, a hotkey or a click on the orb. He runs on one of two brains, switchable per conversation; Claude in the cloud for capability or a local model through Ollama where speech recognition, inference & web search all stay on the Mac. Tools cover screen capture, clipboard, calendar & reminders, timers, email drafting, file search, AppleScript & Shortcuts, dictation into any app and a persistent second-brain vault he can consult and add to.
+
+**IFC Analyser**
+When an IFC file turns up at the handover of a project, it is normally too late to validate that the file contains the information
+it should and that the elements are classified, the property sets are populated, anything is georeferenced or whether half the
+model has been dumped into IfcBuildingElementProxy. This app uses Claude AI to score the quality of the file and report on any issues
+in time for correction before the end of the project.
+
+
 ## Recent Updates (June 2026)
 - PID BOM added
 - ISO BOM added
