@@ -1,0 +1,23 @@
+---
+title: IFC Analyser
+tagline: Drop in an IFC model, get a data quality score, a gap report & an AI verdict on what to fix
+category: Engineering Intelligence
+status: pre-release
+tech: [Next.js, web-ifc, Three.js, Claude AI, xlsx]
+featured: false
+order: 15
+image: /images/ifc-analyser.jpg
+imageFit: contain
+---
+
+## Problem
+
+An IFC model turns up at handover and it either carries the information you need or it doesn't, and there is no quick way to tell which. The geometry always looks fine on screen. What you can't see is whether the elements are classified, whether the property sets are populated, whether anything is georeferenced, or whether half the model has been dumped into IfcBuildingElementProxy. By the time someone tries to build an asset register out of it, the authoring team has moved on and every fix costs ten times what it would have cost at export.
+
+## Approach
+
+IFC Analyser reads the model in the browser using web-ifc, builds a census of what is actually in there (schema, storeys, element counts by class, property set coverage, units, georeferencing) and runs it against eight quality rules covering missing names and tags, empty property sets, missing classification, orphan elements, absent manufacturer data, proxy overuse, no georeferencing & undeclared units. Findings are weighted by severity into a single 0-100 score. A 3D viewer sits alongside the report so you can click an element and see its real properties. Claude then writes the verdict, reading only the census & gap summary and never the model itself, so the IFC file never leaves your machine.
+
+## Result
+
+You get a straight answer in about a minute instead of a week of manual checking, and the verdict tells you where the fix belongs. Most low scores come from one or two export settings rather than thousands of broken elements, so the advice is usually go back to the authoring team, correct the export & reissue, not go and repair 762 elements by hand. The gap report exports to xlsx so it can go back to the model author as a punch list.
