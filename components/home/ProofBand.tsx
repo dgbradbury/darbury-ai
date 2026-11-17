@@ -29,7 +29,7 @@ export default function ProofBand() {
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
           <Reveal className="flex flex-col sm:flex-row gap-8 items-start">
             <Image
-              src="/dave-bradbury.jpg"
+              src="/dave-bradbury-2026.jpg"
               alt="Dave Bradbury"
               width={160}
               height={160}

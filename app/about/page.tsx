@@ -46,7 +46,7 @@ export default function AboutPage() {
       <section className="px-6 max-w-6xl mx-auto mb-20 grid md:grid-cols-2 gap-12 items-start">
         <div className="rounded-lg overflow-hidden border border-[var(--border)]">
           <Image
-            src="/dave-bradbury.jpg"
+            src="/dave-bradbury-2026.jpg"
             alt="Dave Bradbury — Darbury"
             width={600}
             height={800}
