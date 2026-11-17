@@ -1,6 +1,6 @@
 import Link from "next/link";
 import BlueprintGrid from "@/components/layout/BlueprintGrid";
-import PidSketch from "@/components/layout/PidSketch";
+import DrawingReader from "@/components/home/DrawingReader";
 import Reveal from "@/components/layout/Reveal";
 import ProductBand from "@/components/home/ProductBand";
 
@@ -47,50 +47,48 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 overflow-hidden">
+      <section className="relative px-6 pt-28 pb-20 lg:pt-32 overflow-hidden">
         <BlueprintGrid />
-        <PidSketch />
 
-        {/* Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--accent-teal)]/5 blur-3xl pointer-events-none" />
+        <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center gap-12">
+          <div className="flex-1 min-w-0">
+            <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-6">
+              Dave Bradbury · Darbury Ltd
+            </p>
 
-        <div className="relative z-10 max-w-4xl">
-          <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-6">
-            Dave Bradbury · Darbury Ltd
-          </p>
+            <h1 className="font-display font-extrabold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] leading-[0.95] mb-6">
+              42 Years of{" "}
+              <span className="text-[var(--accent-teal)]">Engineering Problems.</span>
+              <br />
+              Solved Faster with AI.
+            </h1>
 
-          <h1 className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl uppercase tracking-tight text-[var(--text-primary)] leading-none mb-6">
-            42 Years of{" "}
-            <span className="text-[var(--accent-teal)]">Engineering Problems.</span>
-            <br />
-            Solved Faster with AI.
-          </h1>
+            <p className="text-lg text-[var(--text-secondary)] max-w-xl leading-relaxed mb-8">
+              I build AI tools that read P&amp;IDs, isometrics &amp; 3D models, then hand you the
+              data. Four products are live &amp; there are eight tools you can try right now.
+            </p>
 
-          <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed mb-10">
-            Engineering Technology Consultancy. CAD automation, AI-powered tooling, and
-            intelligent workflows. Built for engineers & facility owners who need their problems actually solved.
-          </p>
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+              <Link
+                href="/lab"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors active:scale-95"
+              >
+                Try a Live Tool →
+              </Link>
+              <Link
+                href="#products"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)]/10 transition-colors active:scale-95"
+              >
+                See the Products
+              </Link>
+            </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/work"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors active:scale-95"
-            >
-              See the Work →
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)]/10 transition-colors active:scale-95"
-            >
-              Get in Touch
-            </Link>
+            <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider">
+              8 live tools · 4 products · 26 years Autodesk ADN
+            </p>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--text-muted)]">
-          <span className="text-xs font-mono uppercase tracking-widest">Scroll</span>
-          <div className="w-px h-10 bg-gradient-to-b from-[var(--text-muted)] to-transparent" />
+          <DrawingReader />
         </div>
       </section>
 

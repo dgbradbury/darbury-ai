@@ -64,7 +64,7 @@ body {
   opacity: 0.08;
 }
 
-/* Self-drawing P&ID hero sketch (see PidSketch.tsx).
+/* Drawing reader hero panel (see components/home/DrawingReader.tsx).
    Paths use pathLength=1 so a single dasharray drives every draw. */
 @keyframes pid-draw {
   to { stroke-dashoffset: 0; }
@@ -83,19 +83,58 @@ body {
   animation: pid-pop 0.5s ease-out forwards;
   animation-delay: var(--pid-delay, 0s);
 }
-.pid-tag-text {
+.dr-text {
   font-family: var(--font-jetbrains), monospace;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+.dr-scan {
+  opacity: 0;
+  animation: dr-scan 3.6s linear forwards;
+  animation-delay: var(--pid-delay, 0s);
+}
+@keyframes dr-scan {
+  0% { opacity: 1; transform: translateX(0); }
+  95% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(600px); }
+}
+.dr-row {
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: dr-row 0.3s ease-out forwards;
+  animation-delay: var(--pid-delay, 0s);
+}
+@keyframes dr-row {
+  to { opacity: 1; transform: none; }
+}
+/* Fade out at the end of each 9.4s cycle before the loop remounts */
+.dr-cycle {
+  animation: dr-fade 9.4s linear forwards;
+}
+@keyframes dr-fade {
+  0%, 93% { opacity: 1; }
+  100% { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-pan-y {
     animation: none;
   }
   .pid-stroke,
-  .pid-pop {
+  .pid-pop,
+  .dr-row,
+  .dr-cycle {
     animation: none;
     stroke-dashoffset: 0;
     opacity: 1;
+    transform: none;
+  }
+  .dr-scan {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
