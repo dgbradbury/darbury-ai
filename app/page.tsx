@@ -6,24 +6,7 @@ import Reveal from "@/components/layout/Reveal";
 import ProductBand from "@/components/home/ProductBand";
 import ToolGrid from "@/components/home/ToolGrid";
 import ProofBand from "@/components/home/ProofBand";
-
-const PILLARS = [
-  {
-    icon: "⚙",
-    title: "Engineering Automation",
-    body: "Batch processing, drawing intelligence, and workflow automation for CAD and plant design environments.",
-  },
-  {
-    icon: "◈",
-    title: "AI-Powered Tooling",
-    body: "Domain-specific AI applications built on Claude — chatbots, document intelligence, and analysis tools that actually understand engineering.",
-  },
-  {
-    icon: "⬡",
-    title: "CAD & Plant 3D Intelligence",
-    body: "Deep AutoCAD Plant 3D expertise: MCP integrations, spec management, P&ID validation, and report automation.",
-  },
-];
+import HowIWork from "@/components/home/HowIWork";
 
 const schema = {
   "@context": "https://schema.org",
@@ -98,62 +81,42 @@ export default function HomePage() {
       {/* ── Try it now ───────────────────────────────────────── */}
       <AskPlantDemo />
 
-      {/* ── Problem Pillars ──────────────────────────────────── */}
-      <section className="px-6 py-24 max-w-6xl mx-auto w-full">
-        <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
-          What I do
-        </p>
-        <h2 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight text-[var(--text-primary)] mb-12">
-          Three Capabilities.
-          <br />
-          <span className="text-[var(--text-secondary)]">One Destination: Your Solved Problem.</span>
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {PILLARS.map((p, i) => (
-            <Reveal
-              key={p.title}
-              delay={i * 0.12}
-              className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-8 hover:border-[var(--accent-teal)]/40 transition-colors group"
-            >
-              <div className="text-3xl text-[var(--accent-teal)] mb-4 group-hover:scale-110 transition-transform inline-block">
-                {p.icon}
-              </div>
-              <h3 className="font-display font-semibold text-xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
-                {p.title}
-              </h3>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{p.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
       {/* ── Live products ────────────────────────────────────── */}
       <ProductBand />
 
       {/* ── Eight live tools ─────────────────────────────────── */}
       <ToolGrid />
 
+      {/* ── How I work ───────────────────────────────────────── */}
+      <HowIWork />
+
       {/* ── Proof ────────────────────────────────────────────── */}
       <ProofBand />
 
-      {/* ── Close ──────────────────────────────────────── */}
-      <section className="px-6 py-24 text-center max-w-4xl mx-auto">
+      {/* ── Close ────────────────────────────────────────────── */}
+      <section className="px-6 py-28 text-center max-w-3xl mx-auto">
         <Reveal>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/lab"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
-          >
-            Try the AI Tools →
-          </Link>
-          <Link
-            href="/about"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[var(--border)] text-[var(--text-secondary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:border-[var(--accent-teal)]/40 hover:text-[var(--text-primary)] transition-colors"
-          >
-            About Dave →
-          </Link>
-        </div>
+          <h2 className="font-display font-extrabold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-6">
+            Send Me <span className="text-[var(--accent-teal)]">One Drawing.</span>
+          </h2>
+          <p className="text-lg text-[var(--text-secondary)] leading-relaxed mb-10">
+            I&apos;ll run it through the tools &amp; send back what they found. If it&apos;s useful we
+            talk about the rest of the set. If it isn&apos;t, you&apos;ve lost nothing.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href={`/contact?project=${encodeURIComponent("One drawing trial")}`}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
+            >
+              Send a Drawing →
+            </Link>
+            <Link
+              href="/lab"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[var(--border)] text-[var(--text-secondary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:border-[var(--accent-teal)]/40 hover:text-[var(--text-primary)] transition-colors"
+            >
+              Try the Tools Yourself
+            </Link>
+          </div>
         </Reveal>
       </section>
     </main>
