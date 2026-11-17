@@ -78,7 +78,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={handleCopy}
       className={[
-        "inline-flex items-center gap-2 px-5 py-2.5 rounded border text-sm font-[var(--font-barlow)] font-semibold uppercase tracking-wider transition-all duration-200",
+        "inline-flex items-center gap-2 px-5 py-2.5 rounded border text-sm font-display font-semibold uppercase tracking-wider transition-all duration-200",
         copied
           ? "border-[var(--accent-teal)] bg-[var(--accent-teal)]/10 text-[var(--accent-teal)]"
           : "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--accent-teal)]/50 hover:text-[var(--text-primary)]",
@@ -120,13 +120,13 @@ export default function ReportCard({ data }: { data: ReportResult }) {
     >
       {/* Report header */}
       <div className="px-8 pt-8 pb-6 border-b border-[var(--border)]">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.2em] mb-2">
+        <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.2em] mb-2">
           Your Report
         </p>
-        <h2 className="font-[var(--font-barlow)] font-bold text-2xl md:text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-1">
+        <h2 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wide text-[var(--text-primary)] mb-1">
           {report.reportTitle}
         </h2>
-        <p className="text-sm text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+        <p className="text-sm text-[var(--text-muted)] font-mono">
           Prepared for {userName} · {date}
         </p>
       </div>
@@ -146,10 +146,10 @@ export default function ReportCard({ data }: { data: ReportResult }) {
             transition={{ duration: 0.4, delay: 0.15 + i * 0.1, ease: "easeOut" }}
             className="border-l-2 border-[var(--accent-teal)] pl-5"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.15em] mb-1">
+            <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.15em] mb-1">
               Opportunity {i + 1}
             </p>
-            <h3 className="font-[var(--font-barlow)] font-semibold text-lg uppercase tracking-wide text-[var(--text-primary)] mb-2">
+            <h3 className="font-display font-semibold text-lg uppercase tracking-wide text-[var(--text-primary)] mb-2">
               {opp.title}
             </h3>
             <p className="text-[var(--text-secondary)] leading-relaxed text-sm mb-3">
@@ -179,7 +179,7 @@ export default function ReportCard({ data }: { data: ReportResult }) {
         </div>
 
         {visitorEmailSent && (
-          <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+          <p className="text-xs text-[var(--text-muted)] font-mono">
             A copy of this report has been sent to{" "}
             <span className="text-[var(--text-secondary)]">{userEmail}</span>
           </p>

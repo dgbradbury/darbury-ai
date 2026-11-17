@@ -9,11 +9,11 @@ export default function BlueprintGrid() {
       >
         <defs>
           <pattern id="grid-small" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3eb8a0" strokeWidth="0.5" />
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#189B93" strokeWidth="0.5" />
           </pattern>
           <pattern id="grid-large" width="200" height="200" patternUnits="userSpaceOnUse">
             <rect width="200" height="200" fill="url(#grid-small)" />
-            <path d="M 200 0 L 0 0 0 200" fill="none" stroke="#3eb8a0" strokeWidth="1" />
+            <path d="M 200 0 L 0 0 0 200" fill="none" stroke="#189B93" strokeWidth="1" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid-large)" />

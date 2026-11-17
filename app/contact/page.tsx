@@ -53,7 +53,7 @@ function ContactForm() {
     return (
       <div className="bg-[var(--bg-surface)] border border-[var(--accent-teal)]/30 rounded-lg p-10 text-center">
         <div className="text-4xl text-[var(--accent-teal)] mb-4">✓</div>
-        <h2 className="font-[var(--font-barlow)] font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
+        <h2 className="font-display font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
           Message Received
         </h2>
         <p className="text-[var(--text-secondary)]">
@@ -67,7 +67,7 @@ function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="grid md:grid-cols-2 gap-5">
         <label className="flex flex-col gap-1.5">
-          <span className="text-xs font-[var(--font-jetbrains)] uppercase tracking-widest text-[var(--text-muted)]">
+          <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
             Name *
           </span>
           <input
@@ -82,7 +82,7 @@ function ContactForm() {
         </label>
 
         <label className="flex flex-col gap-1.5">
-          <span className="text-xs font-[var(--font-jetbrains)] uppercase tracking-widest text-[var(--text-muted)]">
+          <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
             Email *
           </span>
           <input
@@ -98,7 +98,7 @@ function ContactForm() {
       </div>
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-xs font-[var(--font-jetbrains)] uppercase tracking-widest text-[var(--text-muted)]">
+        <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
           Company (optional)
         </span>
         <input
@@ -113,7 +113,7 @@ function ContactForm() {
 
       {projectParam && (
         <label className="flex flex-col gap-1.5">
-          <span className="text-xs font-[var(--font-jetbrains)] uppercase tracking-widest text-[var(--text-muted)]">
+          <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
             Re: Project
           </span>
           <input
@@ -127,7 +127,7 @@ function ContactForm() {
       )}
 
       <label className="flex flex-col gap-1.5">
-        <span className="text-xs font-[var(--font-jetbrains)] uppercase tracking-widest text-[var(--text-muted)]">
+        <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">
           Tell me your problem *
         </span>
         <textarea
@@ -150,7 +150,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="self-start inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors disabled:opacity-50 active:scale-95"
+        className="self-start inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors disabled:opacity-50 active:scale-95"
       >
         {status === "sending" ? "Sending…" : "Send Message →"}
       </button>
@@ -163,10 +163,10 @@ export default function ContactPage() {
     <main className="pt-24 pb-24 px-6 max-w-6xl mx-auto">
       <div className="grid md:grid-cols-2 gap-16">
         <div>
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
+          <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
             Contact
           </p>
-          <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-6">
+          <h1 className="font-display font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-6">
             Let&apos;s Talk About Your Engineering Problems
           </h1>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
@@ -178,7 +178,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-4 mb-10">
             <a
               href="mailto:dave@darbury.com"
-              className="text-sm text-[var(--accent-teal)] hover:underline font-[var(--font-jetbrains)]"
+              className="text-sm text-[var(--accent-teal)] hover:underline font-mono"
             >
               dave@darbury.com
             </a>
@@ -193,7 +193,7 @@ export default function ContactPage() {
           </div>
 
           <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-6">
-            <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-3">
+            <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-3">
               Typical enquiries
             </p>
             <ul className="flex flex-col gap-2 text-sm text-[var(--text-secondary)]">

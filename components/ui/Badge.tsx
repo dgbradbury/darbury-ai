@@ -13,7 +13,7 @@ const variants = {
 export default function Badge({ label, variant = "default" }: BadgeProps) {
   return (
     <span
-      className={`inline-block px-2.5 py-1 text-xs font-[var(--font-jetbrains)] uppercase tracking-wider border rounded ${variants[variant]}`}
+      className={`inline-block px-2.5 py-1 text-xs font-mono uppercase tracking-wider border rounded ${variants[variant]}`}
     >
       {label}
     </span>

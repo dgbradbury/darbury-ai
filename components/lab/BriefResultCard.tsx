@@ -20,7 +20,7 @@ export default function BriefResultCard({ result }: { result: BriefResult }) {
     >
       {/* Automation Approach */}
       <section className="mb-7">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
+        <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
           Automation Approach
         </p>
         <p className="text-[var(--text-primary)] leading-relaxed">
@@ -31,7 +31,7 @@ export default function BriefResultCard({ result }: { result: BriefResult }) {
       {/* Suggested Toolchain */}
       {result.suggestedToolchain.length > 0 && (
         <section className="mb-7">
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-3">
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-3">
             Suggested Toolchain
           </p>
           <div className="flex flex-wrap gap-2">
@@ -41,7 +41,7 @@ export default function BriefResultCard({ result }: { result: BriefResult }) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="px-3 py-1.5 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-[var(--font-jetbrains)] uppercase tracking-wider"
+                className="px-3 py-1.5 bg-[var(--accent-teal)]/10 text-[var(--accent-teal)] border border-[var(--accent-teal)]/30 rounded text-xs font-mono uppercase tracking-wider"
               >
                 {tool}
               </motion.span>
@@ -53,7 +53,7 @@ export default function BriefResultCard({ result }: { result: BriefResult }) {
       {/* Narrative */}
       {result.narrative && (
         <section className="mb-8">
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
             What This Could Look Like
           </p>
           <p className="text-[var(--text-secondary)] leading-relaxed">

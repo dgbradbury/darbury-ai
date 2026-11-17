@@ -46,7 +46,7 @@ const REC_COLOUR: Record<string, string> = {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block mb-4">
-      <span className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2 block">
+      <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2 block">
         {label}
       </span>
       {children}
@@ -123,7 +123,7 @@ export default function AiAdvisor() {
               rows={5}
               className="w-full bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg px-5 py-4 pb-10 text-[var(--text-primary)] text-sm leading-relaxed placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-teal)] transition-colors resize-none disabled:opacity-50"
             />
-            <span className="absolute bottom-3 right-4 font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)]">
+            <span className="absolute bottom-3 right-4 font-mono text-xs text-[var(--text-muted)]">
               {workflow.length}/{MAX_CHARS}
             </span>
           </div>
@@ -169,7 +169,7 @@ export default function AiAdvisor() {
             </Button>
           )}
           {state === "idle" && workflow.length > 0 && workflow.length < MIN_CHARS && (
-            <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+            <p className="text-xs text-[var(--text-muted)] font-mono">
               {MIN_CHARS - workflow.length} more characters needed
             </p>
           )}
@@ -188,7 +188,7 @@ export default function AiAdvisor() {
             className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-8"
           >
             <span
-              className="inline-block text-xs font-[var(--font-jetbrains)] uppercase tracking-wider rounded-full px-3 py-1 border mb-4"
+              className="inline-block text-xs font-mono uppercase tracking-wider rounded-full px-3 py-1 border mb-4"
               style={{ color: REC_COLOUR[result.recommendation] ?? "var(--accent-teal)", borderColor: REC_COLOUR[result.recommendation] ?? "var(--accent-teal)" }}
             >
               {result.recommendation}
@@ -197,11 +197,11 @@ export default function AiAdvisor() {
 
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div className="bg-[var(--bg-elevated)] rounded-lg px-4 py-3">
-                <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.12em] mb-1">Model</p>
+                <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.12em] mb-1">Model</p>
                 <p className="text-sm text-[var(--text-primary)] leading-snug">{result.model}</p>
               </div>
               <div className="bg-[var(--bg-elevated)] rounded-lg px-4 py-3">
-                <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.12em] mb-1">Hardware</p>
+                <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.12em] mb-1">Hardware</p>
                 <p className="text-sm text-[var(--text-primary)] leading-snug">{result.hardware}</p>
               </div>
             </div>
@@ -245,7 +245,7 @@ export default function AiAdvisor() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
               Daily Limit Reached
             </p>
             <p className="text-[var(--text-secondary)] mb-6 max-w-md mx-auto">

@@ -84,7 +84,7 @@ export default function AskPlant() {
     <div className="max-w-3xl mx-auto">
       {/* Dataset note */}
       <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-5 mb-6">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.2em] mb-2">
+        <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.2em] mb-2">
           Read-only · Sample dataset
         </p>
         <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
@@ -150,7 +150,7 @@ export default function AskPlant() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-8"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-3">
               Answer · {result.rows.length} {result.rows.length === 1 ? "asset" : "assets"} matched
             </p>
             <p className="text-[var(--text-primary)] leading-relaxed mb-2">{result.answer}</p>
@@ -166,7 +166,7 @@ export default function AskPlant() {
                       {["Tag", "Description", "Line", "Status", "P&ID"].map((h) => (
                         <th
                           key={h}
-                          className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-wider px-4 py-2.5 whitespace-nowrap"
+                          className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider px-4 py-2.5 whitespace-nowrap"
                         >
                           {h}
                         </th>
@@ -176,7 +176,7 @@ export default function AskPlant() {
                   <tbody>
                     {result.rows.map((r) => (
                       <tr key={r.tag} className="border-b border-[var(--border)] last:border-0">
-                        <td className="px-4 py-2.5 font-[var(--font-jetbrains)] text-[var(--accent-teal)] whitespace-nowrap">
+                        <td className="px-4 py-2.5 font-mono text-[var(--accent-teal)] whitespace-nowrap">
                           {r.tag}
                         </td>
                         <td className="px-4 py-2.5 text-[var(--text-secondary)]">{r.description}</td>
@@ -229,7 +229,7 @@ export default function AskPlant() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
               Daily Limit Reached
             </p>
             <p className="text-[var(--text-secondary)] mb-6 max-w-md mx-auto">

@@ -81,7 +81,7 @@ export default function ComplianceChecker() {
       <form onSubmit={handleSubmit} className="mb-8">
         {/* Standard selector */}
         <label className="block mb-4">
-          <span className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2 block">
+          <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2 block">
             Check against
           </span>
           <select
@@ -109,7 +109,7 @@ export default function ComplianceChecker() {
             className="w-full bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg px-5 py-4 pb-10 text-[var(--text-primary)] text-sm leading-relaxed placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-teal)] transition-colors resize-none disabled:opacity-50"
           />
           <span
-            className={`absolute bottom-3 right-4 font-[var(--font-jetbrains)] text-xs transition-colors ${
+            className={`absolute bottom-3 right-4 font-mono text-xs transition-colors ${
               charCount >= MAX_CHARS
                 ? "text-amber-400"
                 : charCount >= MAX_CHARS * 0.9
@@ -148,7 +148,7 @@ export default function ComplianceChecker() {
           )}
 
           {state === "idle" && charCount > 0 && charCount < MIN_CHARS && (
-            <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+            <p className="text-xs text-[var(--text-muted)] font-mono">
               {MIN_CHARS - charCount} more {MIN_CHARS - charCount === 1 ? "character" : "characters"} needed
             </p>
           )}
@@ -176,7 +176,7 @@ export default function ComplianceChecker() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
               Daily Limit Reached
             </p>
             <p className="text-[var(--text-secondary)] mb-6 max-w-md mx-auto">

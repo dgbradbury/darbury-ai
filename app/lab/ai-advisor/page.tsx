@@ -11,7 +11,7 @@ export const metadata = {
 export default function AiAdvisorPage() {
   return (
     <main className="pt-24 pb-24 px-6 max-w-5xl mx-auto">
-      <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mb-10">
+      <p className="font-mono text-xs text-[var(--text-muted)] mb-10">
         <Link href="/lab" className="hover:text-[var(--accent-teal)] transition-colors">
           AI Tools
         </Link>
@@ -19,10 +19,10 @@ export default function AiAdvisorPage() {
         <span className="text-[var(--text-secondary)]">Cloud-or-Local AI Advisor</span>
       </p>
 
-      <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
+      <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
         AI Tool 7
       </p>
-      <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+      <h1 className="font-display font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
         Cloud-or-Local AI Advisor
       </h1>
       <p className="text-xl text-[var(--text-secondary)] max-w-2xl mb-3">

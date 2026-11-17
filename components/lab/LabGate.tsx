@@ -173,10 +173,10 @@ export default function LabGate({ children }: LabGateProps) {
     return (
       <div className="max-w-lg mx-auto mt-12">
         <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10 text-center">
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.25em] mb-4">
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.25em] mb-4">
             AI Lab
           </p>
-          <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+          <h2 className="font-display font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
             Lab Unavailable
           </h2>
           <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
@@ -200,14 +200,14 @@ export default function LabGate({ children }: LabGateProps) {
         {(state === "unverified" || state === "expired") && (
           <>
             {state === "expired" && (
-              <p className="text-sm text-[var(--accent-teal)] mb-4 font-[var(--font-jetbrains)]">
+              <p className="text-sm text-[var(--accent-teal)] mb-4 font-mono">
                 Your session has expired. Please verify again.
               </p>
             )}
-            <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
+            <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
               AI Tools Access
             </p>
-            <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-2">
+            <h2 className="font-display font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-2">
               Access the Darbury AI Tools
             </h2>
             <p className="text-sm text-[var(--text-secondary)] mb-6">
@@ -257,10 +257,10 @@ export default function LabGate({ children }: LabGateProps) {
 
         {state === "code_sent" && (
           <>
-            <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
+            <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
               Check your inbox
             </p>
-            <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-2">
+            <h2 className="font-display font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-2">
               Enter your code
             </h2>
             <p className="text-sm text-[var(--text-secondary)] mb-6">
@@ -279,7 +279,7 @@ export default function LabGate({ children }: LabGateProps) {
                 required
                 value={code}
                 onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-                className="w-full bg-[var(--bg-elevated)] border border-[var(--border)] rounded px-4 py-3 text-[var(--text-primary)] text-2xl tracking-[0.5em] font-[var(--font-jetbrains)] text-center focus:outline-none focus:border-[var(--accent-teal)] transition-colors"
+                className="w-full bg-[var(--bg-elevated)] border border-[var(--border)] rounded px-4 py-3 text-[var(--text-primary)] text-2xl tracking-[0.5em] font-mono text-center focus:outline-none focus:border-[var(--accent-teal)] transition-colors"
               />
 
               {error && <p className="text-red-400 text-sm">{error}</p>}

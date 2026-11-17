@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const NAV = [
-  { href: "https://www.darbury.ai", label: "Home", external: true },
+  { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
   { href: "/lab", label: "AI Tools" },
   { href: "/contact", label: "Contact" },
   { href: "/about", label: "About" },
+  { href: "https://www.darbury.com", label: "darbury.com", external: true },
 ];
 
 export default function Header() {
@@ -20,12 +21,12 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-[var(--bg-primary)]/90 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="https://www.darbury.com" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <Image
-            src="/darbury-logo.png"
+            src="/images/darbury-lockup-white.png"
             alt="Darbury"
-            width={140}
-            height={41}
+            width={125}
+            height={36}
             priority
             className="h-9 w-auto"
           />
@@ -39,7 +40,7 @@ export default function Header() {
               href={href}
               {...(external ? { target: "_self", rel: "noopener" } : {})}
               className={`text-sm font-medium uppercase tracking-wider transition-colors ${
-                !external && pathname.startsWith(href)
+                !external && (href === "/" ? pathname === "/" : pathname.startsWith(href))
                   ? "text-[var(--accent-teal)]"
                   : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               }`}
@@ -71,7 +72,7 @@ export default function Header() {
               onClick={() => setOpen(false)}
               {...(external ? { target: "_self", rel: "noopener" } : {})}
               className={`text-sm font-medium uppercase tracking-wider ${
-                !external && pathname.startsWith(href)
+                !external && (href === "/" ? pathname === "/" : pathname.startsWith(href))
                   ? "text-[var(--accent-teal)]"
                   : "text-[var(--text-secondary)]"
               }`}

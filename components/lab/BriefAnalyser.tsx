@@ -85,7 +85,7 @@ export default function BriefAnalyser() {
           />
           {/* Character counter */}
           <span
-            className={`absolute bottom-3 right-4 font-[var(--font-jetbrains)] text-xs transition-colors ${
+            className={`absolute bottom-3 right-4 font-mono text-xs transition-colors ${
               charCount >= MAX_CHARS
                 ? "text-amber-400"
                 : charCount >= MAX_CHARS * 0.9
@@ -136,7 +136,7 @@ export default function BriefAnalyser() {
 
           {/* Inline hints */}
           {state === "idle" && charCount > 0 && charCount < MIN_CHARS && (
-            <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+            <p className="text-xs text-[var(--text-muted)] font-mono">
               {MIN_CHARS - charCount} more {MIN_CHARS - charCount === 1 ? "character" : "characters"} needed
             </p>
           )}
@@ -162,7 +162,7 @@ export default function BriefAnalyser() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
               Daily Limit Reached
             </p>
             <p className="text-[var(--text-secondary)] mb-6 max-w-md mx-auto">

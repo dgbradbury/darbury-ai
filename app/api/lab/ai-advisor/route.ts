@@ -144,29 +144,29 @@ Recommend cloud vs on-prem for this visitor.`;
           subject: `[Lab 7 Lead] ${user.name} — ${user.company} — AI Advisor (${parsed.recommendation})`,
           html: `
 <div style="font-family:system-ui,sans-serif;max-width:660px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
-  <p style="font-size:11px;color:#3eb8a0;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 7</p>
+  <p style="font-size:11px;color:#189B93;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 7</p>
   <h1 style="font-size:22px;margin:0 0 24px;color:#e8edf4;">Cloud-or-Local Advisor — ${parsed.recommendation}</h1>
   <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;text-decoration:none;">${user.name}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;text-decoration:none;">${user.name}</a></td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Company</td><td style="padding:6px 0;font-size:13px;">${user.company}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Job Title</td><td style="padding:6px 0;font-size:13px;">${user.jobTitle}</td></tr>
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;">${user.email}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;">${user.email}</a></td></tr>
   </table>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Their Inputs</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Their Inputs</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:16px 20px;margin-bottom:24px;">
     <p style="font-size:13px;color:#e8edf4;margin:0 0 8px;"><strong>Sensitivity:</strong> ${SENSITIVITY[sensitivity]}</p>
     <p style="font-size:13px;color:#e8edf4;margin:0 0 8px;"><strong>Volume:</strong> ${VOLUME[volume]}</p>
     <p style="font-size:13px;color:#e8edf4;margin:0 0 8px;"><strong>Hardware:</strong> ${HARDWARE[hardware]}</p>
     <p style="font-size:13px;color:#8a9bb0;margin:0;line-height:1.6;"><strong style="color:#e8edf4;">Workflow:</strong> ${workflow}</p>
   </div>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Recommendation</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Recommendation</p>
   <p style="font-size:15px;color:#e8edf4;margin:0 0 12px;line-height:1.6;">${parsed.headline ?? ""}</p>
   <p style="font-size:13px;color:#c8d3e0;margin:0 0 4px;"><strong>Model:</strong> ${parsed.model ?? ""}</p>
   <p style="font-size:13px;color:#c8d3e0;margin:0 0 12px;"><strong>Hardware:</strong> ${parsed.hardware ?? ""}</p>
   <ul style="margin:0 0 12px;padding-left:18px;">${reasoningRows}</ul>
   <p style="font-size:13px;color:#8a9bb0;margin:0 0 24px;font-style:italic;">${parsed.caveat ?? ""}</p>
   <div style="border-top:1px solid #1e2d3d;padding-top:12px;">
-    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#189B93;">${costLabel}</span></p>
     <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
   </div>
 </div>`.trim(),

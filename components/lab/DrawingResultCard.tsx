@@ -63,7 +63,7 @@ export default function DrawingResultCard({
                   d="M9 13h6M9 17h4"
                 />
               </svg>
-              <span className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] underline underline-offset-2 group-hover:opacity-80 transition-opacity break-all">
+              <span className="font-mono text-xs text-[var(--accent-teal)] underline underline-offset-2 group-hover:opacity-80 transition-opacity break-all">
                 View PDF
               </span>
             </a>
@@ -79,7 +79,7 @@ export default function DrawingResultCard({
 
         {/* Response panel */}
         <div className="flex-1 p-8">
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-4">
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-4">
             AI Assessment
           </p>
           {/* Render each paragraph separately for readable spacing */}

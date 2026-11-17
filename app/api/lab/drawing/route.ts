@@ -220,33 +220,33 @@ export async function POST(req: NextRequest) {
           subject: `[Lab 2 Lead] ${user.name} — ${user.company} — Drawing Intelligence`,
           html: `
 <div style="font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
-  <p style="font-size:11px;color:#3eb8a0;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 2</p>
+  <p style="font-size:11px;color:#189B93;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 2</p>
   <h1 style="font-size:22px;margin:0 0 24px;color:#e8edf4;">New Drawing Intelligence Submission</h1>
 
   <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;text-decoration:none;">${user.name}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;text-decoration:none;">${user.name}</a></td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Company</td><td style="padding:6px 0;font-size:13px;">${user.company}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Job Title</td><td style="padding:6px 0;font-size:13px;">${user.jobTitle}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Phone</td><td style="padding:6px 0;font-size:13px;">${user.phone}</td></tr>
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;">${user.email}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;">${user.email}</a></td></tr>
   </table>
 
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Uploaded Drawing</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Uploaded Drawing</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:16px;margin-bottom:24px;">
     <p style="font-size:13px;margin:0 0 8px;color:#8a9bb0;">${mimeLabel} &middot; ${sizeLabel}</p>
     ${imageStorageUrl
-      ? `<a href="${imageStorageUrl}" style="display:inline-block;background:#3eb8a0;color:#0a0e14;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600;">View Uploaded Drawing →</a>`
+      ? `<a href="${imageStorageUrl}" style="display:inline-block;background:#189B93;color:#0a0e14;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600;">View Uploaded Drawing →</a>`
       : `<p style="font-size:12px;color:#4a5568;margin:0;font-style:italic;">Image storage unavailable — reply to user to request the original file</p>`
     }
   </div>
 
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">AI Assessment</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">AI Assessment</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:20px;margin-bottom:24px;">
     <p style="font-size:14px;margin:0;line-height:1.8;color:#e8edf4;">${rawText.replace(/\n\n/g, "</p><p style=\"font-size:14px;margin:12px 0 0;line-height:1.8;color:#e8edf4;\">").replace(/\n/g, "<br/>")}</p>
   </div>
 
   <div style="border-top:1px solid #1e2d3d;padding-top:12px;margin-top:4px;">
-    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#189B93;">${costLabel}</span></p>
     <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
   </div>
 </div>

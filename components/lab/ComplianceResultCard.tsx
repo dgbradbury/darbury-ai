@@ -36,10 +36,10 @@ export default function ComplianceResultCard({
     >
       {/* Standard + overall */}
       <section className="mb-7">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
+        <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
           Checked Against · {gaps.length} {gaps.length === 1 ? "gap" : "gaps"}
         </p>
-        <p className="text-[var(--accent-teal)] text-sm font-[var(--font-jetbrains)] mb-4">
+        <p className="text-[var(--accent-teal)] text-sm font-mono mb-4">
           {standardLabel}
         </p>
         <p className="text-[var(--text-primary)] leading-relaxed">{overallAssessment}</p>
@@ -61,7 +61,7 @@ export default function ComplianceResultCard({
               >
                 <div className="flex items-center gap-3 mb-1">
                   <span
-                    className="text-xs font-[var(--font-jetbrains)] uppercase tracking-wider"
+                    className="text-xs font-mono uppercase tracking-wider"
                     style={{ color: sev.colour }}
                   >
                     {sev.label}

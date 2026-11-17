@@ -97,7 +97,7 @@ function CharTextarea({
         className="w-full bg-[var(--bg-elevated)] border border-[var(--border)] rounded-lg px-4 py-3 pb-8 text-[var(--text-primary)] text-sm leading-relaxed placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-teal)] transition-colors resize-none"
       />
       <span
-        className={`absolute bottom-3 right-4 font-[var(--font-jetbrains)] text-xs transition-colors ${
+        className={`absolute bottom-3 right-4 font-mono text-xs transition-colors ${
           value.length >= maxLength
             ? "text-amber-400"
             : "text-[var(--text-muted)]"
@@ -191,10 +191,10 @@ function WizardProgress({ step }: { step: WizardPhase }) {
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-2">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.15em]">
+        <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.15em]">
           {step === "review" ? "Review your answers" : `Question ${stepNum} of 5`}
         </p>
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)]">
+        <p className="font-mono text-xs text-[var(--text-muted)]">
           {Array.from({ length: 5 }, (_, i) => (
             <span
               key={i}
@@ -355,7 +355,7 @@ export default function AuditWizard() {
         animate={{ opacity: 1, y: 0 }}
         className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
       >
-        <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+        <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
           Daily Limit Reached
         </p>
         <p className="text-[var(--text-secondary)] mb-2 max-w-md mx-auto">
@@ -392,7 +392,7 @@ export default function AuditWizard() {
             {/* ── Step 1: Toolstack ──────────────────────────────────────── */}
             {phase === 1 && (
               <div>
-                <h3 className="font-[var(--font-barlow)] font-semibold text-2xl text-[var(--text-primary)] mb-6">
+                <h3 className="font-display font-semibold text-2xl text-[var(--text-primary)] mb-6">
                   What software or tools does your team use on a daily basis?
                 </h3>
                 <CharTextarea
@@ -406,7 +406,7 @@ export default function AuditWizard() {
             {/* ── Step 2: Time loss ──────────────────────────────────────── */}
             {phase === 2 && (
               <div>
-                <h3 className="font-[var(--font-barlow)] font-semibold text-2xl text-[var(--text-primary)] mb-6">
+                <h3 className="font-display font-semibold text-2xl text-[var(--text-primary)] mb-6">
                   Where does your team lose the most time?
                 </h3>
                 <div className="divide-y divide-[var(--border)]">
@@ -447,7 +447,7 @@ export default function AuditWizard() {
             {/* ── Step 3: Current automation ─────────────────────────────── */}
             {phase === 3 && (
               <div>
-                <h3 className="font-[var(--font-barlow)] font-semibold text-2xl text-[var(--text-primary)] mb-6">
+                <h3 className="font-display font-semibold text-2xl text-[var(--text-primary)] mb-6">
                   Do you currently use any automation or AI in your workflow?
                 </h3>
                 <div className="divide-y divide-[var(--border)]">
@@ -486,7 +486,7 @@ export default function AuditWizard() {
             {/* ── Step 4: Success criteria ───────────────────────────────── */}
             {phase === 4 && (
               <div>
-                <h3 className="font-[var(--font-barlow)] font-semibold text-2xl text-[var(--text-primary)] mb-6">
+                <h3 className="font-display font-semibold text-2xl text-[var(--text-primary)] mb-6">
                   What would a successful outcome look like for you?
                 </h3>
                 <CharTextarea
@@ -500,10 +500,10 @@ export default function AuditWizard() {
             {/* ── Step 5: Barriers ──────────────────────────────────────── */}
             {phase === 5 && (
               <div>
-                <h3 className="font-[var(--font-barlow)] font-semibold text-2xl text-[var(--text-primary)] mb-2">
+                <h3 className="font-display font-semibold text-2xl text-[var(--text-primary)] mb-2">
                   What&apos;s the biggest barrier stopping you from automating today?
                 </h3>
-                <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)] mb-6">
+                <p className="text-xs text-[var(--text-muted)] font-mono mb-6">
                   Select up to 2
                 </p>
                 <div className="divide-y divide-[var(--border)]">
@@ -523,7 +523,7 @@ export default function AuditWizard() {
             {/* ── Review screen ─────────────────────────────────────────── */}
             {phase === "review" && (
               <div>
-                <h3 className="font-[var(--font-barlow)] font-semibold text-2xl text-[var(--text-primary)] mb-6">
+                <h3 className="font-display font-semibold text-2xl text-[var(--text-primary)] mb-6">
                   Does this look right?
                 </h3>
                 <div className="space-y-4">
@@ -561,7 +561,7 @@ export default function AuditWizard() {
                       className="bg-[var(--bg-elevated)] rounded-lg px-4 py-3 flex items-start gap-3"
                     >
                       <div className="flex-1 min-w-0">
-                        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.12em] mb-1">
+                        <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.12em] mb-1">
                           {label}
                         </p>
                         <p className="text-sm text-[var(--text-primary)] leading-snug">{value}</p>
@@ -569,7 +569,7 @@ export default function AuditWizard() {
                       <button
                         type="button"
                         onClick={() => goToStep(step)}
-                        className="shrink-0 text-xs text-[var(--accent-teal)] hover:underline underline-offset-2 font-[var(--font-jetbrains)]"
+                        className="shrink-0 text-xs text-[var(--accent-teal)] hover:underline underline-offset-2 font-mono"
                       >
                         Edit
                       </button>
@@ -586,7 +586,7 @@ export default function AuditWizard() {
                   <circle className="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
                   <path className="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
-                <p className="font-[var(--font-barlow)] font-semibold text-xl text-[var(--text-primary)] mb-2">
+                <p className="font-display font-semibold text-xl text-[var(--text-primary)] mb-2">
                   Analysing your workflow…
                 </p>
                 <p className="text-sm text-[var(--text-muted)]">

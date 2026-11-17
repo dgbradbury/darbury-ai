@@ -206,7 +206,7 @@ export default function DrawingUpload() {
                   </span>
                 </p>
 
-                <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mt-3 mb-5">
+                <p className="font-mono text-xs text-[var(--text-muted)] mt-3 mb-5">
                   PNG · JPG · WEBP · PDF · Max 5 MB
                 </p>
 
@@ -263,7 +263,7 @@ export default function DrawingUpload() {
                   <p className="text-[var(--text-primary)] text-sm font-medium truncate mb-1">
                     {selectedFile.name}
                   </p>
-                  <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] mb-4">
+                  <p className="font-mono text-xs text-[var(--text-muted)] mb-4">
                     {formatFileType(fileMimeType)} ·{" "}
                     {formatBytes(selectedFile.size)}
                   </p>
@@ -358,7 +358,7 @@ export default function DrawingUpload() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
               Daily Limit Reached
             </p>
             <p className="text-[var(--text-secondary)] mb-6 max-w-md mx-auto">

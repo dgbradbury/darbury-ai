@@ -153,21 +153,21 @@ export async function POST(req: NextRequest) {
           subject: `[Lab 6 Lead] ${user.name} — ${user.company} — Ask the Plant`,
           html: `
 <div style="font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
-  <p style="font-size:11px;color:#3eb8a0;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 6</p>
+  <p style="font-size:11px;color:#189B93;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 6</p>
   <h1 style="font-size:22px;margin:0 0 24px;color:#e8edf4;">Ask the Plant — Query</h1>
   <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;text-decoration:none;">${user.name}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;text-decoration:none;">${user.name}</a></td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Company</td><td style="padding:6px 0;font-size:13px;">${user.company}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Job Title</td><td style="padding:6px 0;font-size:13px;">${user.jobTitle}</td></tr>
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;">${user.email}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;">${user.email}</a></td></tr>
   </table>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Their Question</p>
-  <blockquote style="margin:0 0 24px;padding:16px;background:#111820;border-left:3px solid #3eb8a0;border-radius:4px;font-size:14px;color:#e8edf4;line-height:1.6;">${question}</blockquote>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Answer</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Their Question</p>
+  <blockquote style="margin:0 0 24px;padding:16px;background:#111820;border-left:3px solid #189B93;border-radius:4px;font-size:14px;color:#e8edf4;line-height:1.6;">${question}</blockquote>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Answer</p>
   <p style="font-size:14px;margin:0 0 12px;line-height:1.6;">${parsed.answer ?? ""}</p>
   <p style="font-size:13px;color:#8a9bb0;margin:0 0 24px;">Matched: ${matchedTags.join(", ") || "none"}</p>
   <div style="border-top:1px solid #1e2d3d;padding-top:12px;">
-    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#189B93;">${costLabel}</span></p>
     <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
   </div>
 </div>`.trim(),

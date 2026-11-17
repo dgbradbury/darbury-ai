@@ -63,7 +63,7 @@ export default function ExtractorResultCard({
       {/* Header */}
       <div className="px-8 pt-8 pb-5 flex flex-wrap items-start justify-between gap-4 border-b border-[var(--border)]">
         <div>
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
+          <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2">
             Extracted Data · {items.length} {items.length === 1 ? "item" : "items"}
           </p>
           {documentType && (
@@ -86,7 +86,7 @@ export default function ExtractorResultCard({
                 {["Tag", "Category", "Description", "Detail"].map((h) => (
                   <th
                     key={h}
-                    className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium px-6 py-3 border-b border-[var(--border)]"
+                    className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium px-6 py-3 border-b border-[var(--border)]"
                   >
                     {h}
                   </th>
@@ -96,12 +96,12 @@ export default function ExtractorResultCard({
             <tbody>
               {items.map((it, i) => (
                 <tr key={i} className="border-b border-[var(--border)]/50 last:border-0">
-                  <td className="px-6 py-3 font-[var(--font-jetbrains)] text-[var(--accent-teal)] whitespace-nowrap">
+                  <td className="px-6 py-3 font-mono text-[var(--accent-teal)] whitespace-nowrap">
                     {it.tag}
                   </td>
                   <td className="px-6 py-3 whitespace-nowrap">
                     <span
-                      className="text-xs font-[var(--font-jetbrains)] uppercase tracking-wider"
+                      className="text-xs font-mono uppercase tracking-wider"
                       style={{ color: CATEGORY_COLOURS[it.category] ?? "var(--text-muted)" }}
                     >
                       {it.category}

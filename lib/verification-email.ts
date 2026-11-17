@@ -14,7 +14,7 @@ export function verificationEmailHtml(code: string): string {
           <!-- Header -->
           <tr>
             <td style="padding:32px 40px 24px;border-bottom:1px solid #1e2d3d;">
-              <p style="margin:0;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:#3eb8a0;">
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:#189B93;">
                 DARBURY AI LAB
               </p>
             </td>
@@ -35,7 +35,7 @@ export function verificationEmailHtml(code: string): string {
                     .split("")
                     .map(
                       (d) =>
-                        `<td style="width:48px;height:56px;background:#1a2332;border:1px solid #1e2d3d;border-radius:4px;text-align:center;vertical-align:middle;font-family:monospace;font-size:28px;font-weight:700;color:#3eb8a0;margin-right:6px;">${d}</td>`
+                        `<td style="width:48px;height:56px;background:#1a2332;border:1px solid #1e2d3d;border-radius:4px;text-align:center;vertical-align:middle;font-family:monospace;font-size:28px;font-weight:700;color:#189B93;margin-right:6px;">${d}</td>`
                     )
                     .join('<td style="width:6px;"></td>')}
                 </tr>

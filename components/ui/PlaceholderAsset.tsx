@@ -19,11 +19,11 @@ export default function PlaceholderAsset({
       <div className="absolute inset-0 blueprint-grid pointer-events-none" />
 
       <span className="text-4xl text-[var(--accent-teal)] opacity-40 z-10">{icon}</span>
-      <p className="font-[var(--font-barlow)] font-semibold text-lg uppercase tracking-wider text-[var(--text-secondary)] z-10 text-center">
+      <p className="font-display font-semibold text-lg uppercase tracking-wider text-[var(--text-secondary)] z-10 text-center">
         {title}
       </p>
       {prompt && (
-        <p className="text-xs text-[var(--text-muted)] z-10 text-center max-w-sm font-[var(--font-jetbrains)] italic">
+        <p className="text-xs text-[var(--text-muted)] z-10 text-center max-w-sm font-mono italic">
           {prompt}
         </p>
       )}

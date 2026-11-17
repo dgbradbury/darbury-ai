@@ -28,10 +28,10 @@ export default function AboutPage() {
     <main className="pt-24 pb-24">
       {/* Header */}
       <section className="px-6 max-w-6xl mx-auto mb-20">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
+        <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
           About
         </p>
-        <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-6">
+        <h1 className="font-display font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-6">
           Dave Bradbury
           <br />
           <span className="text-[var(--text-secondary)]">is Darbury.</span>
@@ -63,10 +63,10 @@ export default function AboutPage() {
                 key={label}
                 className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-4"
               >
-                <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-widest mb-1">
+                <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-widest mb-1">
                   {label}
                 </p>
-                <p className="font-[var(--font-barlow)] font-semibold text-lg text-[var(--accent-teal)]">
+                <p className="font-display font-semibold text-lg text-[var(--accent-teal)]">
                   {value}
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
       {/* Philosophy */}
       <section className="px-6 py-20 bg-[var(--bg-surface)] border-y border-[var(--border)] mb-20">
         <div className="max-w-4xl mx-auto text-center">
-          <blockquote className="font-[var(--font-barlow)] font-bold text-3xl md:text-4xl uppercase tracking-tight text-[var(--text-primary)] leading-tight mb-6">
+          <blockquote className="font-display font-bold text-3xl md:text-4xl uppercase tracking-tight text-[var(--text-primary)] leading-tight mb-6">
             &quot;AI is a tool, not a destination.{" "}
             <span className="text-[var(--accent-teal)]">
               The destination is your solved problem.&quot;
@@ -116,10 +116,10 @@ export default function AboutPage() {
 
       {/* Capability map */}
       <section className="px-6 max-w-6xl mx-auto mb-20">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
+        <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
           Capability map
         </p>
-        <h2 className="font-[var(--font-barlow)] font-bold text-4xl uppercase tracking-tight text-[var(--text-primary)] mb-10">
+        <h2 className="font-display font-bold text-4xl uppercase tracking-tight text-[var(--text-primary)] mb-10">
           Domain Expertise
         </h2>
         <div className="grid md:grid-cols-3 gap-4">
@@ -128,7 +128,7 @@ export default function AboutPage() {
               key={title}
               className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-6 hover:border-[var(--accent-teal)]/40 transition-colors"
             >
-              <h3 className="font-[var(--font-barlow)] font-semibold text-lg uppercase tracking-wide text-[var(--text-primary)] mb-2">
+              <h3 className="font-display font-semibold text-lg uppercase tracking-wide text-[var(--text-primary)] mb-2">
                 {title}
               </h3>
               <p className="text-sm text-[var(--text-secondary)]">{detail}</p>
@@ -140,7 +140,7 @@ export default function AboutPage() {
       {/* Testimonial */}
       <section className="px-6 max-w-3xl mx-auto mb-20">
         <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg p-10">
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-6">
+          <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-6">
             Testimonial
           </p>
           <blockquote className="text-lg text-[var(--text-primary)] leading-relaxed mb-6 italic">
@@ -155,7 +155,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="px-6 max-w-4xl mx-auto text-center">
-        <h2 className="font-[var(--font-barlow)] font-bold text-4xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+        <h2 className="font-display font-bold text-4xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
           Got a Problem Worth Solving?
         </h2>
         <p className="text-[var(--text-secondary)] mb-8">
@@ -164,7 +164,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
         >
           Get in Touch →
         </Link>

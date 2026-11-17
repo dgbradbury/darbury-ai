@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="mb-6 flex flex-wrap items-center gap-3">
           <Link
             href="/work"
-            className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)] hover:text-[var(--accent-teal)] transition-colors"
+            className="text-xs text-[var(--text-muted)] font-mono hover:text-[var(--accent-teal)] transition-colors"
           >
             ← Work
           </Link>
@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <Badge label={statusBadgeLabel} variant={statusLabel} />
         </div>
 
-        <h1 className="font-[var(--font-barlow)] font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+        <h1 className="font-display font-bold text-5xl md:text-6xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
           {project.title}
         </h1>
         <p className="text-xl text-[var(--text-secondary)] mb-10">{project.tagline}</p>
@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               href={project.pdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)] hover:text-[var(--bg-primary)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)] hover:text-[var(--bg-primary)] transition-colors"
             >
               Information Sheet (PDF)
             </a>
@@ -103,7 +103,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     priority
                   />
                   <div className="absolute inset-0 bg-[var(--accent-teal)]/0 group-hover:bg-[var(--accent-teal)]/10 transition-colors duration-200 flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--bg-primary)]/80 backdrop-blur-sm border border-[var(--accent-teal)] text-[var(--accent-teal)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--bg-primary)]/80 backdrop-blur-sm border border-[var(--accent-teal)] text-[var(--accent-teal)] font-display font-semibold uppercase tracking-wider text-sm rounded">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
                       Try it live
                     </span>
@@ -126,7 +126,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)] hover:text-[var(--bg-primary)] transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--accent-teal)] text-[var(--accent-teal)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal)] hover:text-[var(--bg-primary)] transition-colors"
                 >
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
                   Try it live
@@ -148,10 +148,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="space-y-14">
           {project.sections.map((section, i) => (
             <div key={section.title} className="border-l-2 border-[var(--accent-teal)] pl-6">
-              <span className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] block mb-3">
+              <span className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] block mb-3">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h2 className="font-[var(--font-barlow)] font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
+              <h2 className="font-display font-bold text-3xl uppercase tracking-tight text-[var(--text-primary)] mb-4">
                 {section.title}
               </h2>
               {section.body.split("\n\n").map((para, j) => (
@@ -167,13 +167,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {/* Videos */}
       {project.videos && project.videos.length > 0 && (
         <section className="px-6 pb-24 max-w-3xl mx-auto">
-          <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-8">
+          <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-8">
             Videos
           </p>
           <div className="space-y-12">
             {project.videos.map((v) => (
               <div key={v.src}>
-                <h2 className="font-[var(--font-barlow)] font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-4">
+                <h2 className="font-display font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-4">
                   {v.title}
                 </h2>
                 <video
@@ -191,14 +191,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {/* Tech stack */}
       <section className="px-6 pb-16 max-w-3xl mx-auto">
-        <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
+        <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-4">
           Tech Stack
         </p>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-sm font-[var(--font-jetbrains)] text-[var(--text-secondary)] bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1.5 rounded"
+              className="text-sm font-mono text-[var(--text-secondary)] bg-[var(--bg-surface)] border border-[var(--border)] px-3 py-1.5 rounded"
             >
               {t}
             </span>
@@ -209,7 +209,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {/* CTA */}
       <section className="px-6 pb-24 max-w-3xl mx-auto">
         <div className="bg-[var(--bg-surface)] border border-[var(--accent-teal)]/30 rounded-lg p-8">
-          <h2 className="font-[var(--font-barlow)] font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
+          <h2 className="font-display font-semibold text-2xl uppercase tracking-wide text-[var(--text-primary)] mb-3">
             Could this solve your problem?
           </h2>
           <p className="text-[var(--text-secondary)] mb-6">
@@ -217,7 +217,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </p>
           <Link
             href={`/contact?project=${encodeURIComponent(project.title)}`}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent-teal)] text-[var(--bg-primary)] font-display font-semibold uppercase tracking-wider text-sm rounded hover:bg-[var(--accent-teal-dim)] transition-colors"
           >
             Get in Touch →
           </Link>
@@ -228,7 +228,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {related.length > 0 && (
         <section className="px-6 pb-24 border-t border-[var(--border)] pt-16 bg-[var(--bg-surface)]">
           <div className="max-w-6xl mx-auto">
-            <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-8">
+            <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-8">
               Related work
             </p>
             <div className="grid md:grid-cols-3 gap-6">
@@ -238,7 +238,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   href={`/work/${p.slug}`}
                   className="block bg-[var(--bg-elevated)] border border-[var(--border)] rounded-lg p-6 hover:border-[var(--accent-teal)]/40 transition-colors group"
                 >
-                  <h3 className="font-[var(--font-barlow)] font-semibold text-lg uppercase tracking-wide text-[var(--text-primary)] group-hover:text-[var(--accent-teal)] transition-colors mb-2">
+                  <h3 className="font-display font-semibold text-lg uppercase tracking-wide text-[var(--text-primary)] group-hover:text-[var(--accent-teal)] transition-colors mb-2">
                     {p.title}
                   </h3>
                   <p className="text-sm text-[var(--text-secondary)]">{p.tagline}</p>

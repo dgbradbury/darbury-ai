@@ -165,7 +165,7 @@ Score their digital-twin readiness and give a staged roadmap.`;
           .join("");
         const stageRows = roadmap
           .map(
-            (s) => `<div style="margin-bottom:12px;"><p style="font-size:12px;color:#3eb8a0;margin:0 0 2px;">${s.stage} — ${s.title}</p><p style="font-size:13px;color:#c8d3e0;margin:0;">${s.actions.join(" · ")}</p></div>`
+            (s) => `<div style="margin-bottom:12px;"><p style="font-size:12px;color:#189B93;margin:0 0 2px;">${s.stage} — ${s.title}</p><p style="font-size:13px;color:#c8d3e0;margin:0;">${s.actions.join(" · ")}</p></div>`
           )
           .join("");
         await getResend().emails.send({
@@ -174,29 +174,29 @@ Score their digital-twin readiness and give a staged roadmap.`;
           subject: `[Lab 8 Lead] ${user.name} — ${user.company} — DT Readiness (${score}/100, ${parsed.band})`,
           html: `
 <div style="font-family:system-ui,sans-serif;max-width:660px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
-  <p style="font-size:11px;color:#3eb8a0;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 8</p>
+  <p style="font-size:11px;color:#189B93;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 8</p>
   <h1 style="font-size:22px;margin:0 0 24px;color:#e8edf4;">Digital Twin Readiness — ${score}/100 (${parsed.band})</h1>
   <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;text-decoration:none;">${user.name}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;text-decoration:none;">${user.name}</a></td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Company</td><td style="padding:6px 0;font-size:13px;">${user.company}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Job Title</td><td style="padding:6px 0;font-size:13px;">${user.jobTitle}</td></tr>
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;">${user.email}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;">${user.email}</a></td></tr>
   </table>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Their Inputs</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Their Inputs</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:16px 20px;margin-bottom:24px;">
     <p style="font-size:13px;color:#e8edf4;margin:0 0 8px;"><strong>Centralisation:</strong> ${CENTRAL[central]}</p>
     <p style="font-size:13px;color:#e8edf4;margin:0 0 8px;"><strong>Formats:</strong> ${FORMATS[formats]}</p>
     <p style="font-size:13px;color:#e8edf4;margin:0 0 8px;"><strong>Live data:</strong> ${LIVE[live]}</p>
     <p style="font-size:13px;color:#8a9bb0;margin:0;line-height:1.6;"><strong style="color:#e8edf4;">Description:</strong> ${description}</p>
   </div>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Summary</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Summary</p>
   <p style="font-size:14px;color:#e8edf4;margin:0 0 16px;line-height:1.6;">${parsed.summary ?? ""}</p>
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Dimensions</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 8px;">Dimensions</p>
   ${dimRows}
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:16px 0 8px;">Roadmap</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:16px 0 8px;">Roadmap</p>
   ${stageRows}
   <div style="border-top:1px solid #1e2d3d;padding-top:12px;margin-top:12px;">
-    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#189B93;">${costLabel}</span></p>
     <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
   </div>
 </div>`.trim(),

@@ -56,7 +56,7 @@ const BAND_COLOUR: Record<string, string> = {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block mb-4">
-      <span className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2 block">
+      <span className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-2 block">
         {label}
       </span>
       {children}
@@ -152,7 +152,7 @@ export default function ReadinessScorer() {
               rows={5}
               className="w-full bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg px-5 py-4 pb-10 text-[var(--text-primary)] text-sm leading-relaxed placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-teal)] transition-colors resize-none disabled:opacity-50"
             />
-            <span className="absolute bottom-3 right-4 font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)]">
+            <span className="absolute bottom-3 right-4 font-mono text-xs text-[var(--text-muted)]">
               {description.length}/{MAX_CHARS}
             </span>
           </div>
@@ -181,7 +181,7 @@ export default function ReadinessScorer() {
             </Button>
           )}
           {state === "idle" && description.length > 0 && description.length < MIN_CHARS && (
-            <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+            <p className="text-xs text-[var(--text-muted)] font-mono">
               {MIN_CHARS - description.length} more characters needed
             </p>
           )}
@@ -205,14 +205,14 @@ export default function ReadinessScorer() {
                 className="shrink-0 w-24 h-24 rounded-full flex flex-col items-center justify-center border-4"
                 style={{ borderColor: bandColour }}
               >
-                <span className="font-[var(--font-barlow)] font-bold text-3xl text-[var(--text-primary)] leading-none">
+                <span className="font-display font-bold text-3xl text-[var(--text-primary)] leading-none">
                   {result.score}
                 </span>
-                <span className="font-[var(--font-jetbrains)] text-[10px] text-[var(--text-muted)]">/ 100</span>
+                <span className="font-mono text-[10px] text-[var(--text-muted)]">/ 100</span>
               </div>
               <div>
                 <span
-                  className="inline-block text-xs font-[var(--font-jetbrains)] uppercase tracking-wider rounded-full px-3 py-1 border mb-2"
+                  className="inline-block text-xs font-mono uppercase tracking-wider rounded-full px-3 py-1 border mb-2"
                   style={{ color: bandColour, borderColor: bandColour }}
                 >
                   {result.band}
@@ -228,7 +228,7 @@ export default function ReadinessScorer() {
                   <div key={i}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-[var(--text-primary)]">{d.name}</span>
-                      <span className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)]">{d.score}/100</span>
+                      <span className="font-mono text-xs text-[var(--text-muted)]">{d.score}/100</span>
                     </div>
                     <div className="h-1.5 bg-[var(--bg-elevated)] rounded-full overflow-hidden mb-1">
                       <motion.div
@@ -248,7 +248,7 @@ export default function ReadinessScorer() {
             {/* Roadmap */}
             {result.roadmap.length > 0 && (
               <div className="mb-8">
-                <p className="font-[var(--font-jetbrains)] text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-4">
+                <p className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-[0.2em] mb-4">
                   Staged Roadmap
                 </p>
                 <div className="space-y-4">
@@ -260,10 +260,10 @@ export default function ReadinessScorer() {
                       transition={{ duration: 0.3, delay: 0.2 + i * 0.1 }}
                       className="border-l-2 border-[var(--accent-teal)] pl-4"
                     >
-                      <p className="font-[var(--font-jetbrains)] text-xs text-[var(--accent-teal)] uppercase tracking-wider mb-1">
+                      <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-wider mb-1">
                         {s.stage}
                       </p>
-                      <p className="text-[var(--text-primary)] font-[var(--font-barlow)] font-semibold text-lg mb-2">
+                      <p className="text-[var(--text-primary)] font-display font-semibold text-lg mb-2">
                         {s.title}
                       </p>
                       <ul className="space-y-1">
@@ -302,7 +302,7 @@ export default function ReadinessScorer() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="bg-[var(--bg-surface)] border border-amber-800/50 rounded-lg p-10 text-center"
           >
-            <p className="font-[var(--font-jetbrains)] text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
+            <p className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] mb-3">
               Daily Limit Reached
             </p>
             <p className="text-[var(--text-secondary)] mb-6 max-w-md mx-auto">

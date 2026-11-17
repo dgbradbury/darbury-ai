@@ -25,7 +25,7 @@ export default function Footer() {
           <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] mb-4">Navigate</p>
           <nav className="flex flex-col gap-2">
             {[
-              { href: "https://www.darbury.ai", label: "Home" },
+              { href: "/", label: "Home" },
               { href: "/work", label: "Work" },
               { href: "/lab", label: "AI Tools" },
               { href: "/contact", label: "Contact" },
@@ -57,6 +57,11 @@ export default function Footer() {
               dave@darbury.com
             </a>
           </p>
+          <p className="text-sm text-[var(--text-secondary)] mt-2">
+            <a href="https://www.darbury.com" className="hover:text-[var(--accent-teal)] transition-colors">
+              www.darbury.com
+            </a>
+          </p>
         </div>
       </div>
 
@@ -64,7 +69,7 @@ export default function Footer() {
         <p className="text-xs text-[var(--text-muted)]">
           © {new Date().getFullYear()} Darbury Ltd. All rights reserved.
         </p>
-        <p className="text-xs text-[var(--text-muted)] font-[var(--font-jetbrains)]">
+        <p className="text-xs text-[var(--text-muted)] font-mono">
           Built with AI. Solved with experience.
         </p>
       </div>

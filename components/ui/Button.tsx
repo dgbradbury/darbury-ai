@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const base =
-  "inline-flex items-center justify-center gap-2 px-6 py-3 font-[var(--font-barlow)] font-semibold uppercase tracking-wider text-sm transition-all duration-200 rounded";
+  "inline-flex items-center justify-center gap-2 px-6 py-3 font-display font-semibold uppercase tracking-wider text-sm transition-all duration-200 rounded";
 
 const variants = {
   primary:

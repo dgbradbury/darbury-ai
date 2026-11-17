@@ -141,11 +141,11 @@ async function generateReport(prompt: string): Promise<{ report: Report; raw: st
 
 function oppHtml(opp: Opportunity, num: number): string {
   return `
-    <div style="margin-bottom:20px;padding:16px;background:#111820;border-left:3px solid #3eb8a0;border-radius:4px;">
-      <p style="font-size:11px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 4px;">Opportunity ${num}</p>
+    <div style="margin-bottom:20px;padding:16px;background:#111820;border-left:3px solid #189B93;border-radius:4px;">
+      <p style="font-size:11px;color:#189B93;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 4px;">Opportunity ${num}</p>
       <p style="font-size:15px;font-weight:600;color:#e8edf4;margin:0 0 8px;">${opp.title}</p>
       <p style="font-size:13px;color:#c8d3e0;line-height:1.6;margin:0 0 8px;">${opp.description}</p>
-      <p style="font-size:12px;color:#3eb8a0;margin:0;">→ ${opp.impact}</p>
+      <p style="font-size:12px;color:#189B93;margin:0;">→ ${opp.impact}</p>
     </div>`;
 }
 
@@ -156,7 +156,7 @@ function visitorEmailHtml(
 ): string {
   return `
 <div style="font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
-  <p style="font-size:11px;color:#3eb8a0;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 3</p>
+  <p style="font-size:11px;color:#189B93;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 3</p>
   <h1 style="font-size:20px;margin:0 0 4px;color:#e8edf4;">${report.reportTitle}</h1>
   <p style="font-size:12px;color:#8a9bb0;margin:0 0 24px;">Prepared for ${user.name} &middot; ${date}</p>
 
@@ -168,7 +168,7 @@ function visitorEmailHtml(
 
   <div style="border-top:1px solid #1e2d3d;padding-top:20px;margin-top:24px;">
     <p style="font-size:13px;color:#8a9bb0;margin:0 0 16px;">This report was generated based on the workflow audit you completed on the Darbury AI Lab. Dave Bradbury reviews every submission. If any of these opportunities resonate, the next step is a conversation — no commitment required.</p>
-    <a href="https://darbury.com/contact" style="display:inline-block;background:#3eb8a0;color:#0a0e14;padding:10px 20px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:600;">Contact Dave →</a>
+    <a href="https://darbury.com/contact" style="display:inline-block;background:#189B93;color:#0a0e14;padding:10px 20px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:600;">Contact Dave →</a>
   </div>
 
   <p style="font-size:11px;color:#4a5568;margin:24px 0 0;">Darbury Ltd &middot; Engineering Technology Consultancy &middot; darbury.com</p>
@@ -185,18 +185,18 @@ function daveEmailHtml(
 ): string {
   return `
 <div style="font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;background:#0a0e14;color:#e8edf4;padding:32px;border-radius:8px;">
-  <p style="font-size:11px;color:#3eb8a0;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 3</p>
+  <p style="font-size:11px;color:#189B93;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 4px;">Darbury AI Lab · Lab 3</p>
   <h1 style="font-size:22px;margin:0 0 24px;color:#e8edf4;">New Automation Finder Submission</h1>
 
   <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;text-decoration:none;">${user.name}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;width:120px;">Name</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;text-decoration:none;">${user.name}</a></td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Company</td><td style="padding:6px 0;font-size:13px;">${user.company}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Job Title</td><td style="padding:6px 0;font-size:13px;">${user.jobTitle}</td></tr>
     <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Phone</td><td style="padding:6px 0;font-size:13px;">${user.phone}</td></tr>
-    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#3eb8a0;">${user.email}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#8a9bb0;font-size:13px;">Email</td><td style="padding:6px 0;font-size:13px;"><a href="mailto:${user.email}" style="color:#189B93;">${user.email}</a></td></tr>
   </table>
 
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 12px;">Questionnaire Answers</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 12px;">Questionnaire Answers</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:20px;margin-bottom:24px;">
     <p style="font-size:11px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 4px;">Q1 — Tools used daily</p>
     <p style="font-size:13px;color:#e8edf4;margin:0 0 16px;">${answers.q1_toolstack}</p>
@@ -211,11 +211,11 @@ function daveEmailHtml(
     <p style="font-size:11px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 4px;">Q4 — What success looks like</p>
     <p style="font-size:13px;color:#e8edf4;margin:0 0 16px;">${answers.q4_successCriteria}</p>
 
-    <p style="font-size:11px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 4px;">Q5 — Biggest barriers <span style="color:#3eb8a0;">(address this in your reply)</span></p>
+    <p style="font-size:11px;color:#8a9bb0;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 4px;">Q5 — Biggest barriers <span style="color:#189B93;">(address this in your reply)</span></p>
     <p style="font-size:13px;color:#e8edf4;margin:0;">${answers.q5_barriers.join("<br/>")}</p>
   </div>
 
-  <p style="font-size:12px;color:#3eb8a0;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 12px;">Generated Report</p>
+  <p style="font-size:12px;color:#189B93;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 12px;">Generated Report</p>
   <div style="background:#111820;border:1px solid #1e2d3d;border-radius:6px;padding:20px;margin-bottom:24px;">
     <h2 style="font-size:16px;color:#e8edf4;margin:0 0 4px;">${report.reportTitle}</h2>
     <p style="font-size:13px;color:#8a9bb0;margin:0 0 16px;">${report.intro}</p>
@@ -224,7 +224,7 @@ function daveEmailHtml(
   </div>
 
   <div style="border-top:1px solid #1e2d3d;padding-top:12px;margin-top:4px;">
-    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#3eb8a0;">${costLabel}</span></p>
+    <p style="font-size:11px;color:#4a5568;margin:0 0 4px;">AI Cost: <span style="color:#189B93;">${costLabel}</span></p>
     <p style="font-size:11px;color:#4a5568;margin:0;">Submission ID: ${submissionId} &middot; ${timestamp}</p>
   </div>
 </div>`.trim();
