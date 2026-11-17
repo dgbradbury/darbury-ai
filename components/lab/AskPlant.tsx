@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/Button";
+import { STATUS_COLOUR } from "@/lib/ask-plant";
 
 type AskState = "idle" | "submitting" | "success" | "limit_reached" | "error";
 
@@ -28,13 +29,6 @@ const EXAMPLES = [
   "Show every asset with no P&ID basis",
   "What's on line 300 and what's its status?",
 ];
-
-const STATUS_COLOUR: Record<string, string> = {
-  Operational: "#189B93",
-  Commissioned: "#334B49",
-  Decommissioned: "#864268",
-  Maintenance: "#BD759B",
-};
 
 export default function AskPlant() {
   const [state, setState] = useState<AskState>("idle");

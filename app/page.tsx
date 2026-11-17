@@ -1,6 +1,7 @@
 import Link from "next/link";
 import BlueprintGrid from "@/components/layout/BlueprintGrid";
 import DrawingReader from "@/components/home/DrawingReader";
+import AskPlantDemo from "@/components/home/AskPlantDemo";
 import Reveal from "@/components/layout/Reveal";
 import ProductBand from "@/components/home/ProductBand";
 
@@ -91,6 +92,9 @@ export default function HomePage() {
           <DrawingReader />
         </div>
       </section>
+
+      {/* ── Try it now ───────────────────────────────────────── */}
+      <AskPlantDemo />
 
       {/* ── Problem Pillars ──────────────────────────────────── */}
       <section className="px-6 py-24 max-w-6xl mx-auto w-full">
