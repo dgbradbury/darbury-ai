@@ -4,6 +4,8 @@ import DrawingReader from "@/components/home/DrawingReader";
 import AskPlantDemo from "@/components/home/AskPlantDemo";
 import Reveal from "@/components/layout/Reveal";
 import ProductBand from "@/components/home/ProductBand";
+import ToolGrid from "@/components/home/ToolGrid";
+import ProofBand from "@/components/home/ProofBand";
 
 const PILLARS = [
   {
@@ -129,14 +131,15 @@ export default function HomePage() {
       {/* ── Live products ────────────────────────────────────── */}
       <ProductBand />
 
-      {/* ── Quote / CTA ──────────────────────────────────────── */}
-      <section className="px-6 py-32 text-center max-w-4xl mx-auto">
+      {/* ── Eight live tools ─────────────────────────────────── */}
+      <ToolGrid />
+
+      {/* ── Proof ────────────────────────────────────────────── */}
+      <ProofBand />
+
+      {/* ── Close ──────────────────────────────────────── */}
+      <section className="px-6 py-24 text-center max-w-4xl mx-auto">
         <Reveal>
-        <blockquote className="font-display font-bold text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-[var(--text-primary)] leading-tight mb-8">
-          &quot;I don&apos;t use AI for the sake of it.{" "}
-          <span className="text-[var(--accent-teal)]">I use AI to solve real engineering problems.&quot;</span>
-        </blockquote>
-        <p className="text-[var(--text-secondary)] mb-10">— Dave Bradbury, Darbury Ltd</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/lab"
