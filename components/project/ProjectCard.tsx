@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const isComingSoon = project.status === "pre-release";
-  const isActive = project.status === "active";
+  const isActive = project.status === "active" || project.status === "live";
 
   return (
     <Link
@@ -46,7 +46,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <div className="absolute top-3 right-3">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono uppercase tracking-wider rounded bg-[var(--accent-teal)] text-[var(--bg-primary)] font-semibold shadow-md">
               <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-              Active
+              {project.status === "live" ? "Live" : "Active"}
             </span>
           </div>
         )}

@@ -20,20 +20,19 @@ in time for correction before the end of the project.
 
 
 ## Recent Updates (June 2026)
-- PID BOM added
+- P&ID BOM added
 - ISO BOM added
 
 **P&ID BOM**
 Upload an image or a PDF of a single or multiple sheet P&ID. After processing, a complete
 BOM (Bill of Material) will exist of all the components contained within the drawing.
-Early stage development - not available currently so ask Dave for information
+Live now. Trials are arranged through the contact form (/contact).
 
 **ISO BOM**
 Upload multi-page & multiple isometrics for processing. The app extracts all the BOM 
 (Bill of Materials) contained on the drawings. Log the drawings against a project, 
 provide multiple revisions of the same drawings & export the complete material list 
-to xlsx for purchasing. Early stage development - not available currently so ask Dave
-for information
+to xlsx for purchasing. Live now. Trials are arranged through the contact form (/contact).
 
 ## Recent Updates (May 2026)
 - Darbury 4D added
@@ -48,7 +47,7 @@ equipment specs, pipe segments, and component data without leaving their AI inte
 Built for refrigeration, oil & gas, and process plant environments. Currently in final
 development ahead of commercial release. See: /work/plantmcp
 
-**Darbury 4D** *(pre-release)*
+**Darbury 4D** *(live, trials via the contact form)*
 This product is a 4D web app that allows users to schedule construction events in a 3D
 environment. After loading a 3D model, the components are mapped to an xlsx file with
 dates associated. The user can then control a slider to show the order of construction
@@ -57,8 +56,7 @@ pre-field planning tool to assist construction.
 
 **P&ID Analyser**
 Upload an image or a PDF of a single or multiple sheet P&ID for an analysis from an
-Engneering perspective. Early stage development - not available currently so ask Dave
-for information
+Engneering perspective. Live now. Trials are arranged through the contact form (/contact).
 
 **Darbury iOS / MacOS Apps**
 Darbury has the following apps available; COG (Centre of Gravity Calculations), Baseframe

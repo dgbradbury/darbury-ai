@@ -2,8 +2,7 @@ import Link from "next/link";
 import BlueprintGrid from "@/components/layout/BlueprintGrid";
 import PidSketch from "@/components/layout/PidSketch";
 import Reveal from "@/components/layout/Reveal";
-import ProjectCard from "@/components/project/ProjectCard";
-import { getAllProjects } from "@/lib/content";
+import ProductBand from "@/components/home/ProductBand";
 
 const PILLARS = [
   {
@@ -23,8 +22,6 @@ const PILLARS = [
   },
 ];
 
-const FEATURED_SLUGS = ["pid-analyser", "alfred", "iso-bom"];
-
 const schema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -43,11 +40,6 @@ const schema = {
 };
 
 export default function HomePage() {
-  const allProjects = getAllProjects();
-  const featured = FEATURED_SLUGS
-    .map((slug) => allProjects.find((p) => p.slug === slug))
-    .filter((p): p is NonNullable<typeof p> => p !== undefined);
-
   return (
     <main className="flex flex-col">
       <script
@@ -132,46 +124,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Featured Projects ─────────────────────────────────── */}
-      {featured.length > 0 && (
-        <section className="px-6 py-24 bg-[var(--bg-surface)] border-y border-[var(--border)]">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <p className="font-mono text-xs text-[var(--accent-teal)] uppercase tracking-[0.25em] mb-3">
-                  Featured work
-                </p>
-                <h2 className="font-display font-bold text-4xl md:text-5xl uppercase tracking-tight text-[var(--text-primary)]">
-                  Recent Projects
-                </h2>
-              </div>
-              <Link
-                href="/work"
-                className="hidden md:inline text-sm text-[var(--accent-teal)] font-display uppercase tracking-wider hover:underline"
-              >
-                View all →
-              </Link>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {featured.map((project, i) => (
-                <Reveal key={project.slug} delay={i * 0.12}>
-                  <ProjectCard project={project} />
-                </Reveal>
-              ))}
-            </div>
-
-            <div className="mt-8 md:hidden">
-              <Link
-                href="/work"
-                className="text-sm text-[var(--accent-teal)] font-display uppercase tracking-wider hover:underline"
-              >
-                View all projects →
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+      {/* ── Live products ────────────────────────────────────── */}
+      <ProductBand />
 
       {/* ── Quote / CTA ──────────────────────────────────────── */}
       <section className="px-6 py-32 text-center max-w-4xl mx-auto">

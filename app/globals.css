@@ -30,6 +30,13 @@
   --font-display: var(--font-barlow);
   --font-body: var(--font-inter);
   --font-mono: var(--font-jetbrains);
+  --animate-pan-y: pan-y 14s ease-in-out infinite alternate;
+
+  /* Slow top-to-bottom pan for product screenshots without a clip */
+  @keyframes pan-y {
+    from { object-position: 50% 0%; }
+    to { object-position: 50% 100%; }
+  }
 }
 
 html {
@@ -82,6 +89,9 @@ body {
   letter-spacing: 0.08em;
 }
 @media (prefers-reduced-motion: reduce) {
+  .animate-pan-y {
+    animation: none;
+  }
   .pid-stroke,
   .pid-pop {
     animation: none;
